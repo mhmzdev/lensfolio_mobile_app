@@ -1,5 +1,5 @@
 ---
-to: "<%= level === 'app' ? 'lib/features/app' : `lib/features/${h.changeCase.snake(feature)}` %>/ui/<%= h.changeCase.snake(name) %>/listeners/_<%= h.changeCase.snake(arg.state) %>.dart"
+to: "lib/ui/screens/<%= h.changeCase.snake(name) %>/listeners/_<%= h.changeCase.snake(arg.state) %>.dart"
 ---
 part of '../<%= h.changeCase.snake(name) %>.dart';
 <% bloc = h.changeCase.pascal(arg.bloc) %>

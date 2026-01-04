@@ -1,8 +1,8 @@
 ---
-to: "<%= level === 'app' ? 'lib/features/app' : `lib/features/${h.changeCase.snake(feature)}` %>/ui/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>.dart"
+to: "lib/ui/screens/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>.dart"
 ---
 import 'package:flutter/material.dart';
-import 'package:pine_configs/pine_configs.dart';
+import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:provider/provider.dart';
 <% if (formData) { %>
 import 'package:flutter/foundation.dart';
@@ -24,8 +24,6 @@ class <%=h.changeCase.pascal(name)%>Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    App.init(context);
-
     return ChangeNotifierProvider<_ScreenState>(
       create: (_) => _ScreenState(),
       child: const _Body(),

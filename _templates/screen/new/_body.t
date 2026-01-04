@@ -1,5 +1,5 @@
 ---
-to: "<%= level === 'app' ? 'lib/features/app' : `lib/features/${h.changeCase.snake(feature)}` %>/ui/<%= h.changeCase.snake(name) %>/widgets/_body.dart"
+to: "lib/ui/screens/<%= h.changeCase.snake(name) %>/widgets/_body.dart"
 ---
 part of '../<%= h.changeCase.snake(name) %>.dart';
 

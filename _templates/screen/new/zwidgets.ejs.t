@@ -1,4 +1,4 @@
 ---
-sh: <%- h.widgetsToShell(name, widgets, level, feature) %>
+sh: <%- h.widgetsToShell(name, widgets) %>
 ---
 

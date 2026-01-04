@@ -1,4 +1,4 @@
-# Screen Templates - Feature-First Architecture
+# Screen Templates - Layer-First Architecture
 
 ## Overview
 Screen templates generate boilerplate code for creating new screens with proper structure, state management, and optional form handling.
@@ -31,23 +31,7 @@ hygen screen new <screen_name>
 
 ### Prompts
 
-#### 1. Bloc Level
-```
-? Is this an app-level or feature-level bloc?
-  > app
-    feature
-```
-
-#### 2. Feature Name
-```
-? Enter the feature name (e.g., auth, rallies) [Press Enter to skip for app-level]:
-  (default: app)
-```
-
-**For app-level**: Press Enter
-**For feature-level**: Type feature name (e.g., `auth`, `profile`, `settings`)
-
-#### 3. Form Data
+#### 1. Form Data
 ```
 ? Do you want Dev data for forms with new screen?
   > No / Yes
@@ -55,7 +39,7 @@ hygen screen new <screen_name>
 
 If `Yes`, creates form helper files with dev data for testing.
 
-#### 4. Form Keys
+#### 2. Form Keys
 ```
 ? Write the name of form keys in comma separated values.
 ```
@@ -64,7 +48,7 @@ Example: `email,password,name`
 
 Creates `_form_keys.dart` with these keys.
 
-#### 5. Widgets
+#### 3. Widgets
 ```
 ? Write the name of widgets in comma separated values.
 ```
@@ -81,9 +65,8 @@ Example: `header,footer,card` or `_header,_footer,_card`
 
 ### Generated Structure
 
-#### App-Level Screen
 ```
-lib/features/app/ui/<screen_name>/
+lib/ui/screens/<screen_name>/
 ├── <screen_name>.dart        # Main screen file
 ├── _state.dart                # Screen state (Provider)
 ├── static/                    # (if form enabled)
@@ -95,26 +78,11 @@ lib/features/app/ui/<screen_name>/
     └── _footer.dart           # (if specified)
 ```
 
-#### Feature-Level Screen
-```
-lib/features/<feature>/ui/<screen_name>/
-├── <screen_name>.dart
-├── _state.dart
-├── static/
-│   ├── _form_keys.dart
-│   └── _form_data.dart
-└── widgets/
-    ├── _body.dart
-    └── ...
-```
-
 ### Example
 
 ```bash
 $ hygen screen new profile
 
-? Level: feature
-? Feature: auth
 ? Form Data: Yes
 ? Form Keys: name,email,bio
 ? Widgets: header,avatar,stats
@@ -126,13 +94,13 @@ $ hygen screen new profile
 3. Creates `static/` folder with form files
 4. Creates `widgets/_body.dart` (always created)
 5. **Automatically runs** `hygen screen _widget` for each widget:
-   - `hygen screen _widget header --screen=profile --level=feature --feature=auth`
-   - `hygen screen _widget avatar --screen=profile --level=feature --feature=auth`
-   - `hygen screen _widget stats --screen=profile --level=feature --feature=auth`
+   - `hygen screen _widget header --screen=profile`
+   - `hygen screen _widget avatar --screen=profile`
+   - `hygen screen _widget stats --screen=profile`
 
 **Final structure:**
 ```
-lib/features/auth/ui/profile/
+lib/ui/screens/profile/
 ├── profile.dart
 ├── _state.dart
 ├── static/
@@ -163,9 +131,9 @@ part 'widgets/_stats.dart';
 
 2. **Executes shell commands** to generate each widget file automatically:
 ```bash
-hygen screen _widget header --screen=profile --level=feature --feature=auth &&
-hygen screen _widget avatar --screen=profile --level=feature --feature=auth &&
-hygen screen _widget stats --screen=profile --level=feature --feature=auth
+hygen screen _widget header --screen=profile &&
+hygen screen _widget avatar --screen=profile &&
+hygen screen _widget stats --screen=profile
 ```
 
 3. **Each widget file** is created with boilerplate code:
@@ -202,17 +170,7 @@ hygen screen consumer <screen_name>
 
 ### Prompts
 
-#### 1. Bloc Level
-```
-? Is this an app-level or feature-level bloc?
-```
-
-#### 2. Feature Name
-```
-? Enter the feature name [Press Enter to skip for app-level]:
-```
-
-#### 3. Bloc Configuration
+#### Bloc Configuration
 ```
 ? Write args in bloc:module:state format
 ```
@@ -231,7 +189,7 @@ Creates a `BlocConsumer` that:
 ### Generated Structure
 
 ```
-lib/features/<feature>/ui/<screen_name>/
+lib/ui/screens/<screen_name>/
 ├── <screen_name>.dart         # Updated with listener import
 └── listeners/
     └── _<listener_name>.dart  # New consumer listener
@@ -245,7 +203,7 @@ class _DeleteUserListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserBloc, UserState>(
+    return BlocConsumer<UserCubit, UserState>(
       listenWhen: (a, b) => a.delete != b.delete,
       listener: (_, state) {
         if (state.delete.isFailed) {
@@ -269,12 +227,10 @@ class _DeleteUserListener extends StatelessWidget {
 ```bash
 $ hygen screen consumer profile
 
-? Level: feature
-? Feature: auth
 ? Args: user:update:update_profile
 ```
 
-Creates `lib/features/auth/ui/profile/listeners/_update_profile.dart`
+Creates `lib/ui/screens/profile/listeners/_update_profile.dart`
 
 ---
 
@@ -307,7 +263,7 @@ class _DeleteUserListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UserBloc, UserState>(
+    return BlocListener<UserCubit, UserState>(
       listenWhen: (a, b) => a.delete != b.delete,
       listener: (_, state) {
         if (state.delete.isFailed) {
@@ -344,17 +300,7 @@ hygen screen _widget <widget_name>
 
 ### Prompts
 
-#### 1. Bloc Level
-```
-? Is this an app-level or feature-level bloc?
-```
-
-#### 2. Feature Name
-```
-? Enter the feature name [Press Enter to skip for app-level]:
-```
-
-#### 3. Screen Name
+#### Screen Name
 ```
 ? Enter the screen name!
 ```
@@ -364,7 +310,7 @@ The screen where you want to add the widget.
 ### Generated Structure
 
 ```
-lib/features/<feature>/ui/<screen_name>/
+lib/ui/screens/<screen_name>/
 ├── <screen_name>.dart         # Updated with widget import
 └── widgets/
     └── _<widget_name>.dart    # New widget
@@ -390,12 +336,10 @@ class _WidgetName extends StatelessWidget {
 ```bash
 $ hygen screen _widget stats_card
 
-? Level: feature
-? Feature: auth
 ? Screen: profile
 ```
 
-Creates `lib/features/auth/ui/profile/widgets/_stats_card.dart`
+Creates `lib/ui/screens/profile/widgets/_stats_card.dart`
 
 ---
 
@@ -406,8 +350,6 @@ Creates `lib/features/auth/ui/profile/widgets/_stats_card.dart`
 ```bash
 $ hygen screen new dashboard
 
-? Level: app
-? Feature: [press Enter]
 ? Form Data: No
 ? Form Keys: 
 ? Widgets: header,chart,summary
@@ -418,8 +360,6 @@ $ hygen screen new dashboard
 ```bash
 $ hygen screen consumer dashboard
 
-? Level: app
-? Feature: [press Enter]
 ? Args: analytics:fetch:fetch_analytics
 ```
 
@@ -428,8 +368,6 @@ $ hygen screen consumer dashboard
 ```bash
 $ hygen screen listener dashboard
 
-? Level: app
-? Feature: [press Enter]
 ? Args: analytics:refresh:refresh_analytics
 ```
 
@@ -438,15 +376,13 @@ $ hygen screen listener dashboard
 ```bash
 $ hygen screen _widget data_table
 
-? Level: app
-? Feature: [press Enter]
 ? Screen: dashboard
 ```
 
 ### Final Structure
 
 ```
-lib/features/app/ui/dashboard/
+lib/ui/screens/dashboard/
 ├── dashboard.dart
 ├── _state.dart
 ├── listeners/
@@ -573,6 +509,19 @@ return Screen(
 );
 ```
 
+### Screen Widget Import
+
+The `Screen` widget is imported from:
+```dart
+import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
+```
+
+This is the base wrapper widget that provides:
+- Keyboard handling (if `keyboardHandler: true`)
+- Form management
+- Safe area handling
+- Consistent app bar and scaffold structure
+
 ---
 
 ## Tips & Best Practices
@@ -584,7 +533,7 @@ return Screen(
 - Use Consumer for blocking operations (delete, submit)
 - Use Listener for background operations (refresh, sync)
 - Keep `_state.dart` for ephemeral UI state only
-- Use blocs for business logic and data
+- Use cubits for business logic and data
 
 ### ❌ DON'T
 
@@ -610,11 +559,13 @@ return Screen(
 **Problem**: State not updating
 - **Solution**: Ensure you're calling `notifyListeners()` in `_ScreenState`
 
+**Problem**: Screen widget not found
+- **Solution**: Verify import path: `lib/ui/widgets/core/screen/screen.dart`
+
 ---
 
 ## Related Documentation
 
 - [README.md](../../README.md) - Main project documentation
-- [Bloc Templates](../bloc/) - Bloc generation templates
-- [Feature-First Architecture](../../README.md#architecture)
-
+- [Cubit Templates](../cubit/) - Cubit generation templates
+- [Layer-First Architecture](../../README.md#architecture)

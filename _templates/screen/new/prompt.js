@@ -1,11 +1,7 @@
 // see types of prompts:
 // https://github.com/enquirer/enquirer/tree/master/examples
 //
-const inputs = require('../../js/inputs');
-
 module.exports = [
-  inputs.blocLevel,
-  inputs.featureName,
   {
     type: 'confirm',
     name: 'formData',
