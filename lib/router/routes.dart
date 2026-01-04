@@ -1,2 +1,8 @@
 abstract class AppRoutes {
+  static const letters = '/letters';
+  static const projects = '/projects';
+  static const jobs = '/jobs';
+  static const splash = '/splash';
+  static const home = '/home';
+  static const login = '/login';
 }

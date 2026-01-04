@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/router/routes.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/bottom_bar/bottom_bar.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/focus_handler.dart';
-import 'package:provider/provider.dart';
 
 class Screen extends StatefulWidget {
   const Screen({
@@ -86,9 +86,10 @@ class _ScreenState extends State<Screen> {
     var canPopValue = widget.canPop ?? true;
 
     const bottomBarRoutes = <String>[
-      AppRoutes.sessions,
-      AppRoutes.chats,
-      AppRoutes.profile,
+      AppRoutes.home,
+      AppRoutes.jobs,
+      AppRoutes.projects,
+      AppRoutes.letters,
     ];
     final currentRoute = context.currentPath;
 

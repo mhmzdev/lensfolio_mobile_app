@@ -60,6 +60,12 @@ dependencies:
   json_annotation: 4.9.0
   freezed_annotation: 3.1.0
 
+  # cache
+  path: 1.9.1
+  path_provider: 2.1.5
+  shared_preferences: 2.5.3
+  cached_network_image: 3.4.1
+
   # configs
   intl: 0.20.2
   color: 3.0.0
@@ -70,6 +76,12 @@ dependencies:
 
   # ui related
   flutter_svg: 2.2.3
+
+  # miscs
+  uuid: 4.5.2
+  package_info_plus: 8.3.1
+  device_info_plus: 12.3.0
+  connectivity_plus: 7.0.0
 
 dev_dependencies:
   flutter_test:

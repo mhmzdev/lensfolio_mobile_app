@@ -4,21 +4,21 @@ final _tabs = [
   _BottomBar(
     label: 'Home',
     path: AppRoutes.home,
-    icon: LucidIcons.strokeRoundedFootball,
+    icon: LucideIcons.house,
   ),
   _BottomBar(
-    label: 'Sessions',
-    path: AppRoutes.sessions,
-    icon: LucidIcons.strokeRoundedCalendar03,
+    label: 'Jobs',
+    path: AppRoutes.jobs,
+    icon: LucideIcons.briefcase,
   ),
   _BottomBar(
-    label: 'Chats',
-    path: AppRoutes.chats,
-    icon: LucidIcons.strokeRoundedMessage01,
+    label: 'Projects',
+    path: AppRoutes.projects,
+    icon: LucideIcons.folder,
   ),
   _BottomBar(
-    label: 'Profile',
-    path: AppRoutes.profile,
-    icon: LucidIcons.strokeRoundedShirt01,
+    label: 'Letters',
+    path: AppRoutes.letters,
+    icon: LucideIcons.file,
   ),
 ];

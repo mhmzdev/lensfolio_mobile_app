@@ -7,14 +7,6 @@ class _UserMocks {
     return Future.value({'message': 'mock', 'data': ''});
   }
 
-  static Future<Map> logout() {
-    return Future.value({'message': 'mock', 'data': ''});
-  }
-
-  static Future<Map<String, dynamic>> fetch() {
-    return Future.value({'status': 200, 'message': 'mock', 'data': {}});
-  }
-
   static Future<Map<String, dynamic>> login() {
     return Future.value({'status': 200, 'message': 'mock', 'data': {}});
   }

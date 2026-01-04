@@ -16,9 +16,5 @@ class UserRepo {
 
   Future<UserData> register() => _UserProvider.register();
 
-  Future<UserData> logout() => _UserProvider.logout();
-
-  Future<UserData> fetch() => _UserProvider.fetch();
-
   Future<UserData> login() => _UserProvider.login();
 }

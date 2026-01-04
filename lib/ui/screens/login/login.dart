@@ -1,25 +1,19 @@
----
-to: "lib/ui/screens/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>.dart"
----
 import 'package:flutter/material.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:provider/provider.dart';
-<% if (formData) { %>
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-<% } %>
 
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 
-<% if (formData) { %>part 'static/_form_data.dart';<% } %>
-<% if (formData) { %>part 'static/_form_keys.dart';<% } %>
-
-<% if (widgets.length) { widgets.forEach(function(key){ %>part 'widgets/_<%=h.changeCase.snake(key)%>.dart';<% }); } %>
+part 'static/_form_data.dart';
+part 'static/_form_keys.dart';
 
 part '_state.dart';
 
-class <%=h.changeCase.pascal(name)%>Screen extends StatelessWidget {
-  const <%=h.changeCase.pascal(name)%>Screen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +30,13 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     App.init(context);
-    <% if (formData) { %>final screenState = _ScreenState.s(context);<% } %>
+    final screenState = _ScreenState.s(context);
 
-    return <% if (!formData) { %> const <% } %> Screen(
-      <% if (formData) { %>
+    return Screen(
       formKey: screenState.formKey,
-      initialFormValue: _FormData.initialValues(),<% } %>
+      initialFormValue: _FormData.initialValues(),
       keyboardHandler: true,
-      child: <% if (formData) { %> const <% } %> SafeArea(
+      child: const SafeArea(
         child: Column(
           crossAxisAlignment: .stretch,
           children: [],

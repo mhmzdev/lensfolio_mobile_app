@@ -3,6 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
+import 'package:lensfolio_mobile_app/services/flavor/flavor.dart';
 import 'package:lensfolio_mobile_app/services/route_logger/route_logger.dart';
 part '_exts.dart';
 

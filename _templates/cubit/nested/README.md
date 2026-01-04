@@ -61,7 +61,7 @@ UserCubit.c(context).update(data);
 ```
 
 ### Inline State Emissions with BlocState Shorthands
-State emissions are handled directly in cubit methods using `BlocState` shorthand methods from `pine_configs`:
+State emissions are handled directly in cubit methods using `BlocState` shorthand methods from `configs`:
 ```dart
 void _fetchLoading({dynamic meta}) {
   emit(

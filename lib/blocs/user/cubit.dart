@@ -40,50 +40,6 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> logout() async {
-    emit(
-      state.copyWith(
-        logout: state.logout.toLoading(),
-      ),
-    );
-    try {
-      final data = await UserRepo.ins.logout();
-      emit(
-        state.copyWith(
-          logout: state.logout.toSuccess(data: data),
-        ),
-      );
-    } on Fault catch (e) {
-      emit(
-        state.copyWith(
-          logout: state.logout.toFailed(fault: e),
-        ),
-      );
-    }
-  }
-
-  Future<void> fetch() async {
-    emit(
-      state.copyWith(
-        fetch: state.fetch.toLoading(),
-      ),
-    );
-    try {
-      final data = await UserRepo.ins.fetch();
-      emit(
-        state.copyWith(
-          fetch: state.fetch.toSuccess(data: data),
-        ),
-      );
-    } on Fault catch (e) {
-      emit(
-        state.copyWith(
-          fetch: state.fetch.toFailed(fault: e),
-        ),
-      );
-    }
-  }
-
   Future<void> login() async {
     emit(
       state.copyWith(
