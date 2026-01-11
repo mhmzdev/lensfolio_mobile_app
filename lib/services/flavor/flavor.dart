@@ -3,10 +3,14 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:uuid/data.dart';
 import 'package:uuid/uuid.dart';
+
+import '_creds.dart';
 
 part '_enums.dart';
 
@@ -16,6 +20,7 @@ class AppFlavor {
   static late final int buildNo;
   static late final String version;
   static late final String deviceId;
+  static late final SupabaseCreds supabaseCreds;
   static late final Flavor flavor;
 
   static Future<void> init() async {
@@ -44,9 +49,15 @@ class AppFlavor {
       flavor = switch (flavorString) {
         'stage' => Flavor.stage,
         'qa' => Flavor.qa,
-        'prod' || 'pineamite' => Flavor.prod,
-        _ => Flavor.local,
+        'prod' || 'lensfolio' => Flavor.prod,
+        _ => Flavor.stage,
       };
+
+      final creds = await rootBundle.loadString(Assets.creds);
+      final credsMap = json.decode(creds);
+      supabaseCreds = SupabaseCreds.fromJson(
+        credsMap[flavor.name]['supabase'],
+      );
 
       buildNo = int.parse(
         packageInfo.buildNumber.replaceAll(RegExp('[a-z]'), ''),
@@ -59,7 +70,6 @@ class AppFlavor {
   }
 
   /// Getters
-  static bool get isLocal => flavor.isLocal;
   static bool get isStage => flavor.isStage;
   static bool get isQa => flavor.isQa;
   static bool get isProd => flavor.isProd;

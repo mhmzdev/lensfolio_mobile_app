@@ -1,12 +1,9 @@
 part of 'flavor.dart';
 
-/// Local, Stage, QA, Prod
-enum Flavor { local, stage, qa, prod }
+/// Stage, QA, Prod
+enum Flavor { stage, qa, prod }
 
 extension FlavorX on Flavor {
-  /// NOT BEING USED as of now
-  bool get isLocal => this == Flavor.local;
-
   /// Stage environment
   bool get isStage => this == Flavor.stage;
 

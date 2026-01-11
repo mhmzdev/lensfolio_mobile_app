@@ -49,3 +49,7 @@ reports/
 prompts/
 logs/
 .cursor/
+.vscode/
+
+# secrets
+creds.json

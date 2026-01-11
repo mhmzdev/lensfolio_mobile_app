@@ -1,0 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-qa.xcconfig"
+#include "Generated.xcconfig"
+
+ASSET_PREFIX=qa
+BUNDLE_NAME=Lens-QA
+BUNDLE_DISPLAY_NAME=Lens-QA
