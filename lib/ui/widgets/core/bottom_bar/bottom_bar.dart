@@ -17,7 +17,7 @@ class BottomBar extends StatelessWidget {
     return Container(
       padding: Space.z.sb(8).t(8),
       decoration: BoxDecoration(
-        color: AppTheme.c.neutralBlack,
+        color: AppTheme.c.background,
         // boxShadow: [AppProps.sectionShadow.first],
       ),
       child: Material(
@@ -26,8 +26,8 @@ class BottomBar extends StatelessWidget {
           children: _tabs.map((tab) {
             final isActive = tab.path == currentPath;
             final color = isActive
-                ? AppTheme.c.neutralWhite
-                : AppTheme.c.neutralWhite;
+                ? AppTheme.c.text
+                : AppTheme.c.subText;
 
             return Expanded(
               child: InkWell(

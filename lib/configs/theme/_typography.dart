@@ -2,22 +2,22 @@ part of '../configs.dart';
 
 /// [AppText] is a class that contains the text styles for the app.
 class AppText {
-  /// Font Size 24
+  /// Font Size 20
   static late TextStyle h1;
 
-  /// Font Size 24, Bold
+  /// Font Size 20, Bold
   static late TextStyle h1b;
 
-  /// Font Size 20
+  /// Font Size 18
   static late TextStyle h2;
 
-  /// Font Size 20, Bold
+  /// Font Size 18, Bold
   static late TextStyle h2b;
 
-  /// Font Size 18
+  /// Font Size 16
   static late TextStyle h3;
 
-  /// Font Size 18, Bold
+  /// Font Size 16, Bold
   static late TextStyle h3b;
 
   /// Font Size 14
@@ -43,28 +43,22 @@ class AppText {
       fontFamily: FontFamily.nunito,
     );
 
-    h1 = base.copyWith(fontSize: 24);
+    h1 = base.copyWith(fontSize: 20);
     h1b = h1.copyWith(fontWeight: FontWeight.w700);
 
-    h2 = base.copyWith(fontSize: 20);
+    h2 = base.copyWith(fontSize: 18);
     h2b = h2.copyWith(fontWeight: FontWeight.w700);
 
-    h3 = base.copyWith(fontSize: 18);
+    h3 = base.copyWith(fontSize: 16);
     h3b = h3.copyWith(fontWeight: FontWeight.w700);
 
-    b1 = base.copyWith(
-      fontSize: 14,
-    );
+    b1 = base.copyWith(fontSize: 14);
     b1b = b1.copyWith(fontWeight: FontWeight.w700);
 
-    b2 = base.copyWith(
-      fontSize: 12,
-    );
+    b2 = base.copyWith(fontSize: 12);
     b2b = b2.copyWith(fontWeight: FontWeight.w700);
 
-    l1 = base.copyWith(
-      fontSize: 10,
-    );
+    l1 = base.copyWith(fontSize: 10);
     l1b = l1.copyWith(fontWeight: FontWeight.w700);
   }
 }

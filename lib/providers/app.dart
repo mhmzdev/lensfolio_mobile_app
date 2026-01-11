@@ -23,7 +23,7 @@ class AppProvider extends ChangeNotifier {
   static AppProvider s(BuildContext context, [bool listen = false]) =>
       Provider.of<AppProvider>(context, listen: listen);
 
-  var themeMode = ThemeMode.dark;
+  var themeMode = ThemeMode.light;
   var key = const Key('app');
   var firstOpen = false;
 

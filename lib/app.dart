@@ -43,6 +43,8 @@ class _LensfolioState extends State<Lensfolio> {
 
   @override
   Widget build(BuildContext context) {
+    App.init(context);
+
     return MultiProvider(
       providers: [
         // bloc-initiate-start
@@ -53,6 +55,7 @@ class _LensfolioState extends State<Lensfolio> {
 
         // provider-initiate-start
         Provider(create: (_) => Connectivity()),
+        ChangeNotifierProvider(create: (_) => AppProvider()),
 
         // provider-initiate-end
       ],

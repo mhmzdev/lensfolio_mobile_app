@@ -16,24 +16,28 @@ extension SuperAppText on TextStyle {
     color: color,
   );
 
+  TextStyle removeHeight() {
+    return merge(const TextStyle(height: 0));
+  }
+
   /// FontWeight Extension
   ///
   /// .w(1) -> Thin
-  /// 
+  ///
   /// .w(2) -> Extra Light
-  /// 
+  ///
   /// .w(3) -> Light
-  /// 
+  ///
   /// .w(4) -> Regular
-  /// 
+  ///
   /// .w(5) -> Medium
-  /// 
+  ///
   /// .w(6) -> Semi Bold
-  /// 
+  ///
   /// .w(7) -> Bold
-  /// 
+  ///
   /// .w(8) -> Extra Bold
-  /// 
+  ///
   /// .w(9) -> Black
   TextStyle w(int weight) {
     final fontWeight = switch (weight) {

@@ -23,6 +23,8 @@ class <%=h.changeCase.pascal(name)%>Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    App.init(context);
+
     return ChangeNotifierProvider<_ScreenState>(
       create: (_) => _ScreenState(),
       child: const _Body(),
