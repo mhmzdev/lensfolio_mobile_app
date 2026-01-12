@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/headless/scroll_column_expandable.dart';
 import 'package:provider/provider.dart';
 
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
@@ -25,12 +27,20 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     App.init(context);
 
-    return const Screen(
+    final user = UserCubit.c(context);
+    final userData = user.state.login.data;
+
+    return Screen(
       keyboardHandler: true,
       child: SafeArea(
-        child: Column(
+        child: ScrollColumnExpandable(
+          padding: Space.a.t20,
           crossAxisAlignment: .stretch,
-          children: [],
+          children: [
+            Text(userData!.fullName),
+            Text(userData.email),
+            Text(userData.designation!),
+          ],
         ),
       ),
     );

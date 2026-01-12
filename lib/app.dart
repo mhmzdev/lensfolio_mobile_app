@@ -78,7 +78,7 @@ class _LensfolioState extends State<Lensfolio> {
             routes: appRoutes,
             navigatorObservers: [RouteLogger()],
             onGenerateRoute: onGenerateRoutes,
-            initialRoute: AppRoutes.splash,
+            initialRoute: AppRoutes.login,
             // builder: (context, child) => BlocSync(child: child!),
           );
         },

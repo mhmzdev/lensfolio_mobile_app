@@ -40,14 +40,14 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> login() async {
+  Future<void> login(Map<String, dynamic> values) async {
     emit(
       state.copyWith(
         login: state.login.toLoading(),
       ),
     );
     try {
-      final data = await UserRepo.ins.login();
+      final data = await UserRepo.ins.login(values);
       emit(
         state.copyWith(
           login: state.login.toSuccess(data: data),

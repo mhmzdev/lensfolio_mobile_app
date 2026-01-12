@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
+import 'package:supercharged/supercharged.dart';
 
 part 'user_mocks.dart';
 part 'user_parser.dart';
@@ -16,5 +17,5 @@ class UserRepo {
 
   Future<UserData> register() => _UserProvider.register();
 
-  Future<UserData> login() => _UserProvider.login();
+  Future<UserData> login(Map<String, dynamic> values) => _UserProvider.login(values);
 }

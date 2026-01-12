@@ -25,12 +25,13 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     App.init(context);
 
-    return const Screen(
+    return Screen(
       keyboardHandler: true,
       child: SafeArea(
-        child: Column(
-          crossAxisAlignment: .stretch,
-          children: [],
+        child: Center(
+          child: FlutterLogo(
+            size: SpaceToken.t100,
+          ),
         ),
       ),
     );

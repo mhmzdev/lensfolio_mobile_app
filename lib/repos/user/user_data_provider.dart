@@ -13,9 +13,12 @@ class _UserProvider {
     }
   }
 
-  static Future<UserData> login() async {
+  static Future<UserData> login(Map<String, dynamic> values) async {
     try {
-      final raw = <String, dynamic>{};
+      final response = await _UserMocks.login(values['email']);
+      await 1.seconds.delay;
+
+      final raw = response['data'] as Map<String, dynamic>;
       return UserData.fromJson(raw);
     } catch (e, st) {
       if (e is DioException) {
