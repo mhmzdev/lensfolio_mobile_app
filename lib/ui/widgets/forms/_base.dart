@@ -81,7 +81,7 @@ class _AppFormBaseState extends State<AppFormBase> {
           duration: 100.milliseconds,
           decoration: BoxDecoration(
             color: data.surface,
-            borderRadius: 12.radius(),
+            borderRadius: 8.radius(),
             border: Border.all(
               width: 1,
               color: widget.error != null ? data.error : data.border,

@@ -142,21 +142,33 @@ class _ScreenState extends State<Screen> {
         endDrawer: widget.endDrawer,
         drawer: widget.drawer,
         appBar: widget.appBar,
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (widget.belowBuilders != null) ...widget.belowBuilders!,
-            Positioned.fill(child: body),
-            if (widget.bottomBar)
-              Positioned(
-                key: bottomBarKey,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: const BottomBar(),
-              ),
-            if (widget.overlayBuilders != null) ...widget.overlayBuilders!,
-          ],
+        body: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: .topRight,
+              end: .center,
+              colors: [
+                AppTheme.c.primary.addOpacity(.5),
+                Colors.transparent,
+              ],
+            ),
+          ),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (widget.belowBuilders != null) ...widget.belowBuilders!,
+              Positioned.fill(child: body),
+              if (widget.bottomBar)
+                Positioned(
+                  key: bottomBarKey,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: const BottomBar(),
+                ),
+              if (widget.overlayBuilders != null) ...widget.overlayBuilders!,
+            ],
+          ),
         ),
       ),
     );

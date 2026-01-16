@@ -13,14 +13,14 @@ class AppButton extends StatefulWidget {
     this.icon,
     this.iconColor,
     this.textColor,
-    this.borderRadius = AppButtonRadius.normal,
-    this.size = AppButtonSize.medium,
-    this.style = AppButtonStyle.primary,
-    this.mainAxisSize = MainAxisSize.min,
-    this.state = AppButtonState.def,
-    this.margin = EdgeInsets.zero,
+    this.borderRadius = .normal,
+    this.size = .medium,
+    this.style = .primary,
+    this.mainAxisSize = .min,
+    this.state = .def,
+    this.margin = .zero,
     this.padding,
-    this.mainAxisAlignment = MainAxisAlignment.center,
+    this.mainAxisAlignment = .center,
   });
 
   final EdgeInsets margin;
@@ -97,7 +97,7 @@ class _AppButtonState extends State<AppButton> {
     final shadow = data.shadow[state];
     var padding = Space.sym(
       SpaceToken.t12,
-      SpaceToken.t12,
+      SpaceToken.t16,
     );
 
     if (_isDisabled()) {
@@ -110,9 +110,7 @@ class _AppButtonState extends State<AppButton> {
       padding = Space.v.t04 + Space.h.t20;
     }
 
-    final radius = widget.borderRadius == AppButtonRadius.normal
-        ? 5.radius()
-        : 50.radius();
+    final radius = _mapRadiusToBorderRadius()[widget.borderRadius]!;
 
     return GestureDetector(
       onTap: widget.onTap,

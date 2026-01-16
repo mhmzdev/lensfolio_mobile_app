@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
 import 'package:lensfolio_mobile_app/helpers/validators.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/headless/app_touch.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/scroll_column_expandable.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
 
@@ -53,9 +55,13 @@ class _Body extends StatelessWidget {
           padding: Space.a.t20,
           crossAxisAlignment: .stretch,
           children: [
+            Assets.app.icon.image(
+              height: 120,
+            ),
+            Space.y.t24,
             Text(
               'Login',
-              style: AppText.h2b,
+              style: AppText.h1b,
             ),
             Space.y.t04,
             Text(
@@ -103,6 +109,23 @@ class _Body extends StatelessWidget {
                   state: loading ? .disabled : .def,
                 );
               },
+            ),
+            Space.y.t16,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Don\'t have an account? ',
+                  style: AppText.b2,
+                ),
+                AppTouch(
+                  onTap: () {},
+                  child: Text(
+                    'Register now',
+                    style: AppText.b2b.cl(AppTheme.c.primary),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -2,86 +2,91 @@ part of 'button.dart';
 
 Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
   return {
-    AppButtonStyle.primary: _AppButtonModel(
+    .primary: _AppButtonModel(
       surface: {
-        AppButtonState.def: AppTheme.c.primary,
-        AppButtonState.pressed: AppTheme.c.secondary,
-        AppButtonState.disabled: AppTheme.c.primary.withValues(alpha: 0.5),
+        .def: AppTheme.c.primary,
+        .pressed: AppTheme.c.secondary,
+        .disabled: AppTheme.c.primary.withValues(alpha: 0.5),
       },
       text: {
-        AppButtonState.def: AppTheme.c.background,
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.primary,
       },
     ),
-    AppButtonStyle.primaryBorder: _AppButtonModel(
+    .primaryBorder: _AppButtonModel(
       surface: {
-        AppButtonState.def: AppTheme.c.background,
-        AppButtonState.disabled: AppTheme.c.subText,
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.primary.addOpacity(.1),
       },
       border: {
-        AppButtonState.def: AppTheme.c.primary,
-        AppButtonState.pressed: AppTheme.c.secondary,
-        AppButtonState.disabled: AppTheme.c.subText,
+        .def: AppTheme.c.primary,
+        .pressed: AppTheme.c.secondary,
+        .disabled: AppTheme.c.primary,
       },
       text: {
-        AppButtonState.def: AppTheme.c.primary,
-        AppButtonState.pressed: AppTheme.c.secondary,
-        AppButtonState.disabled: AppTheme.c.background,
+        .def: AppTheme.c.primary,
+        .pressed: AppTheme.c.secondary,
+        .disabled: AppTheme.c.primary,
       },
     ),
-    AppButtonStyle.blackBorder: _AppButtonModel(
+    .secondary: _AppButtonModel(
       surface: {
-        AppButtonState.def: Colors.transparent,
+        .def: AppTheme.c.secondary,
+        .pressed: AppTheme.c.primary,
+        .disabled: AppTheme.c.secondary.withValues(alpha: 0.5),
+      },
+      text: {
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.background.withValues(alpha: 0.7),
+      },
+    ),
+    .black: _AppButtonModel(
+      surface: {
+        .def: AppTheme.c.text,
+        .pressed: AppTheme.c.text.withValues(alpha: 0.9),
+        .disabled: AppTheme.c.text.withValues(alpha: 0.5),
+      },
+      text: {
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.text,
+      },
+    ),
+    .blackBorder: _AppButtonModel(
+      surface: {
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.text.withValues(alpha: 0.1),
       },
       border: {
-        AppButtonState.def: AppTheme.c.text,
-        AppButtonState.pressed: AppTheme.c.text.withValues(alpha: 0.8),
-        AppButtonState.disabled: AppTheme.c.subText,
+        .def: AppTheme.c.text,
+        .pressed: AppTheme.c.text.withValues(alpha: 0.8),
+        .disabled: AppTheme.c.text,
       },
       text: {
-        AppButtonState.def: AppTheme.c.text,
-        AppButtonState.pressed: AppTheme.c.text,
-        AppButtonState.disabled: AppTheme.c.subText,
+        .def: AppTheme.c.text,
+        .pressed: AppTheme.c.text.withValues(alpha: 0.8),
+        .disabled: AppTheme.c.text,
       },
     ),
-    AppButtonStyle.secondary: _AppButtonModel(
+    .error: _AppButtonModel(
       surface: {
-        AppButtonState.def: AppTheme.c.secondary,
-        AppButtonState.pressed: AppTheme.c.primary,
-        AppButtonState.disabled: AppTheme.c.secondary.withValues(alpha: 0.5),
+        .def: AppTheme.c.dangerBase,
+        .pressed: AppTheme.c.dangerShade,
+        .disabled: AppTheme.c.dangerBase.withValues(alpha: 0.5),
       },
       text: {
-        AppButtonState.def: AppTheme.c.background,
-        AppButtonState.disabled: AppTheme.c.background.withValues(alpha: 0.7),
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.background,
       },
     ),
-    AppButtonStyle.error: _AppButtonModel(
+    .success: _AppButtonModel(
       surface: {
-        AppButtonState.def: AppTheme.c.dangerBase,
-        AppButtonState.pressed: AppTheme.c.dangerShade,
-        AppButtonState.disabled: AppTheme.c.dangerBase.withValues(alpha: 0.5),
+        .def: AppTheme.c.successBase,
+        .pressed: AppTheme.c.successShade,
+        .disabled: AppTheme.c.successBase.withValues(alpha: 0.5),
       },
       text: {
-        AppButtonState.def: AppTheme.c.background,
-      },
-    ),
-    AppButtonStyle.black: _AppButtonModel(
-      surface: {
-        AppButtonState.def: AppTheme.c.text,
-        AppButtonState.pressed: AppTheme.c.text.withValues(alpha: 0.9),
-        AppButtonState.disabled: AppTheme.c.text.withValues(alpha: 0.5),
-      },
-      text: {
-        AppButtonState.def: AppTheme.c.background,
-      },
-    ),
-    AppButtonStyle.success: _AppButtonModel(
-      surface: {
-        AppButtonState.def: AppTheme.c.successBase,
-        AppButtonState.pressed: AppTheme.c.successShade,
-        AppButtonState.disabled: AppTheme.c.successBase.withValues(alpha: 0.5),
-      },
-      text: {
-        AppButtonState.def: AppTheme.c.background,
+        .def: AppTheme.c.background,
+        .disabled: AppTheme.c.background,
       },
     ),
   };
@@ -89,8 +94,16 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
 
 Map<AppButtonSize, TextStyle> _mapSizeToFontSize() {
   return {
-    AppButtonSize.large: AppText.h3.removeHeight(),
-    AppButtonSize.medium: AppText.b1.removeHeight(),
-    AppButtonSize.small: AppText.b2.removeHeight(),
+    .large: AppText.h3.removeHeight(),
+    .medium: AppText.b1.removeHeight(),
+    .small: AppText.b2.removeHeight(),
+  };
+}
+
+Map<AppButtonRadius, BorderRadius> _mapRadiusToBorderRadius() {
+  return {
+    .normal: 8.radius(),
+    .rounded: 12.radius(),
+    .capsule: 50.radius(),
   };
 }

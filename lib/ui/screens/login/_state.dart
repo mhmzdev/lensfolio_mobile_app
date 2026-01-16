@@ -13,6 +13,8 @@ class _ScreenState extends ChangeNotifier {
       final isValid = form.saveAndValidate();
       if (!isValid) return;
 
+      context.dismissKeyboard();
+
       final values = form.value;
       final cleanValue = values.trimStringValues();
 

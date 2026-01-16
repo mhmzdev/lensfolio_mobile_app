@@ -3,37 +3,52 @@ part of '../configs.dart';
 extension SuperEdgeInsets on EdgeInsets {
   EdgeInsets st([num plus = 0, bool un = false]) {
     final base = top + AppMedia.padding.top;
-    return copyWith(top: base + (un ? plus : plus.toDouble()));
+    return copyWith(
+      top: base + (un ? plus.sp() : plus.toDouble()),
+    );
   }
 
-  EdgeInsets sb([num plus = 0, bool un = false]) {
+  EdgeInsets sb([double plus = 0, bool un = false]) {
     final base = bottom + AppMedia.padding.bottom;
-    return copyWith(bottom: base + (un ? plus : plus.toDouble()));
+    return copyWith(
+      bottom: base + (un ? plus.sp() : plus.toDouble()),
+    );
   }
 
-  EdgeInsets h(double no, [bool un = false]) {
-    final val = un ? no : no.toDouble();
+  EdgeInsets sa({double b = 0, double t = 0, bool un = false}) {
+    final bb = bottom + AppMedia.padding.bottom;
+    final tt = top + AppMedia.padding.top;
+    return copyWith(
+      bottom: bb + (un ? b.sp() : b.toDouble()),
+      top: tt + (un ? t.sp() : t.toDouble()),
+    );
+  }
+
+  EdgeInsets h(num no, [bool un = false]) {
+    final val = un ? no.sp() : no.toDouble();
     return copyWith(top: val, bottom: val);
   }
 
-  EdgeInsets v(double no, [bool un = false]) {
-    final val = un ? no : no.toDouble();
+  EdgeInsets v(num no, [bool un = false]) {
+    final val = un ? no.sp() : no.toDouble();
     return copyWith(top: val, bottom: val);
   }
 
-  EdgeInsets b(double no, [bool un = false]) {
-    return copyWith(bottom: un ? no : no.toDouble());
+  EdgeInsets b(num no, [bool un = false]) {
+    return copyWith(bottom: un ? no.sp() : no.toDouble());
   }
 
-  EdgeInsets t(double no, [bool un = false]) {
-    return copyWith(top: un ? no : no.toDouble());
+  EdgeInsets t(num no, [bool un = false]) {
+    return copyWith(top: un ? no.sp() : no.toDouble());
   }
 
-  EdgeInsets l(double no, [bool un = false]) {
-    return copyWith(left: un ? no : no.toDouble());
+  EdgeInsets l(num no, [bool un = false]) {
+    final unit = un ? no.sp() : no.toDouble();
+    return copyWith(right: unit);
   }
 
-  EdgeInsets r(double no, [bool un = false]) {
-    return copyWith(right: un ? no : no.toDouble());
+  EdgeInsets r(num no, [bool un = false]) {
+    final unit = un ? no.sp() : no.toDouble();
+    return copyWith(left: unit);
   }
 }

@@ -56,7 +56,7 @@ class App {
     AppMedia.init(context);
     AppTheme.init(context);
     AppScreen.init();
-    // AppUnit.init();
+    AppUnit.init();
     AppText.init();
     Space.init();
 

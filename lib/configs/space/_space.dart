@@ -66,8 +66,8 @@ class Space {
     );
   }
 
-  static Widget yf(double y) => SizedBox(height: y);
-  static Widget xf(double x) => SizedBox(width: x);
+  static Widget yf(double y) => SizedBox(height: y.sp());
+  static Widget xf(double x) => SizedBox(width: x.sp());
 
   static EdgeInsets sym([double? h, double? v]) {
     final u = SpaceToken.t16;
