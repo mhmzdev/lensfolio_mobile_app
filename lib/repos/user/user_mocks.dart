@@ -3,6 +3,17 @@
 part of 'user_repo.dart';
 
 class _UserMocks {
+  static Future<Map<String, dynamic>> fetch(int id) {
+    return Future.value({
+      'status': 200,
+      'message': 'User data fetched successfully!',
+      'data': _users.firstWhere(
+        (user) => user['id'] == id,
+        orElse: () => {},
+      ),
+    });
+  }
+
   /// List of all mock users
   static final List<Map<String, dynamic>> _users = [
     {

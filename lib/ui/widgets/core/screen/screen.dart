@@ -13,7 +13,6 @@ class Screen extends StatefulWidget {
     this.padding = EdgeInsets.zero,
     this.keyboardHandler = false,
     this.renderSettings = true,
-    this.bottomBar = false,
     this.resizeToAvoidBottomInset = false,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
@@ -36,7 +35,6 @@ class Screen extends StatefulWidget {
   final EdgeInsets padding;
   final bool keyboardHandler;
   final bool renderSettings;
-  final bool bottomBar;
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Color? scaffoldBackgroundColor;
@@ -92,6 +90,7 @@ class _ScreenState extends State<Screen> {
       AppRoutes.letters,
     ];
     final currentRoute = context.currentPath;
+    final hasBottomBar = bottomBarRoutes.contains(currentRoute);
 
     if (widget.formKey != null) {
       body = FormBuilder(
@@ -158,7 +157,7 @@ class _ScreenState extends State<Screen> {
             children: [
               if (widget.belowBuilders != null) ...widget.belowBuilders!,
               Positioned.fill(child: body),
-              if (widget.bottomBar)
+              if (hasBottomBar)
                 Positioned(
                   key: bottomBarKey,
                   left: 0,

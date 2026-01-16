@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
+import 'package:lensfolio_mobile_app/router/routes.dart';
+import 'package:lensfolio_mobile_app/ui/screens/login/login.dart';
 import 'package:provider/provider.dart';
 
+import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
+import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
+import 'package:lensfolio_mobile_app/utils/flash.dart';
 
 part '_state.dart';
+part 'listeners/_init.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final cubit = UserCubit.c(context);
+    Future.delayed(500.milliseconds, () => cubit.init());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +45,14 @@ class _Body extends StatelessWidget {
     App.init(context);
 
     return Screen(
-      keyboardHandler: true,
+      belowBuilders: const [_InitListener()],
       child: SafeArea(
         child: Center(
-          child: FlutterLogo(
-            size: SpaceToken.t100,
+          child: Hero(
+            tag: 'APP_ICON',
+            child: Assets.app.icon.image(
+              height: 150,
+            ),
           ),
         ),
       ),

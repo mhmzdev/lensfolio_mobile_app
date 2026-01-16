@@ -15,7 +15,10 @@ class UserRepo {
 
   /// --- repo functions --- ///
 
+  Future<UserData> fetch(int id) => _UserProvider.fetch(id);
+
   Future<UserData> register() => _UserProvider.register();
 
-  Future<UserData> login(Map<String, dynamic> values) => _UserProvider.login(values);
+  Future<UserData> login(Map<String, dynamic> values) =>
+      _UserProvider.login(values);
 }

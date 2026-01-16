@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/repos/user/user_repo.dart';
+import 'package:lensfolio_mobile_app/services/cache/app_cache.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 
 import 'package:flutter/material.dart';
@@ -18,6 +19,64 @@ class UserCubit extends Cubit<UserState> {
 
   UserCubit() : super(UserState.def());
 
+  Future<void> fetch(int id) async {
+    emit(
+      state.copyWith(
+        fetch: state.fetch.toLoading(),
+      ),
+    );
+    try {
+      final data = await UserRepo.ins.fetch(id)
+        ..toCache();
+      emit(
+        state.copyWith(
+          fetch: state.fetch.toSuccess(data: data),
+          userData: data,
+        ),
+      );
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          fetch: state.fetch.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
+  Future<void> init() async {
+    emit(
+      state.copyWith(
+        init: state.init.toLoading(),
+      ),
+    );
+    try {
+      final cachedUser = AppCache.ins.user;
+      if (cachedUser != null) {
+        final data = await UserRepo.ins.fetch(cachedUser.id)
+          ..toCache();
+        emit(
+          state.copyWith(
+            init: state.init.toSuccess(data: data),
+            userData: data,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            init: state.init.toSuccess(data: null),
+            userData: null,
+          ),
+        );
+      }
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          init: state.init.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
   Future<void> register() async {
     emit(
       state.copyWith(
@@ -25,10 +84,13 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
     try {
-      final data = await UserRepo.ins.register();
+      final data = await UserRepo.ins.register()
+        ..toCache();
+
       emit(
         state.copyWith(
           register: state.register.toSuccess(data: data),
+          userData: data,
         ),
       );
     } on Fault catch (e) {
@@ -47,10 +109,13 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
     try {
-      final data = await UserRepo.ins.login(values);
+      final data = await UserRepo.ins.login(values)
+        ..toCache();
+
       emit(
         state.copyWith(
           login: state.login.toSuccess(data: data),
+          userData: data,
         ),
       );
     } on Fault catch (e) {

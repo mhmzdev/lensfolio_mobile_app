@@ -55,8 +55,11 @@ class _Body extends StatelessWidget {
           padding: Space.a.t20,
           crossAxisAlignment: .stretch,
           children: [
-            Assets.app.icon.image(
-              height: 120,
+            Hero(
+              tag: 'APP_ICON',
+              child: Assets.app.icon.image(
+                height: 100,
+              ),
             ),
             Space.y.t24,
             Text(

@@ -227,8 +227,8 @@ return $default(_that.id,_that.fullName,_that.email,_that.designation,_that.city
 /// @nodoc
 @JsonSerializable()
 
-class _UserData implements UserData {
-  const _UserData({required this.id, required this.fullName, required this.email, this.designation, this.cityState, this.resumeUrl, this.profilePicture, this.about, this.website, this.details, final  List<String> skills = const [], final  List<UserTechStack> techStack = const [], final  List<String> preferredRoles = const [], required this.createdAt}): _skills = skills,_techStack = techStack,_preferredRoles = preferredRoles;
+class _UserData extends UserData {
+   _UserData({required this.id, required this.fullName, required this.email, this.designation, this.cityState, this.resumeUrl, this.profilePicture, this.about, this.website, this.details, final  List<String> skills = const [], final  List<UserTechStack> techStack = const [], final  List<String> preferredRoles = const [], required this.createdAt}): _skills = skills,_techStack = techStack,_preferredRoles = preferredRoles,super._();
   factory _UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 
 @override final  int id;

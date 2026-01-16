@@ -15,10 +15,17 @@ class BottomBar extends StatelessWidget {
     final currentPath = context.currentPath;
 
     return Container(
-      padding: Space.z.sb(8).t(8),
+      padding: Space.z.sb().t(8),
       decoration: BoxDecoration(
-        color: AppTheme.c.background,
-        // boxShadow: [AppProps.sectionShadow.first],
+        gradient: LinearGradient(
+          begin: .centerRight,
+          end: .centerLeft,
+          colors: [
+            AppTheme.c.primary.addOpacity(.1),
+            Colors.transparent,
+            AppTheme.c.primary.addOpacity(.1),
+          ],
+        ),
       ),
       child: Material(
         color: Colors.transparent,
@@ -26,13 +33,12 @@ class BottomBar extends StatelessWidget {
           children: _tabs.map((tab) {
             final isActive = tab.path == currentPath;
             final color = isActive
-                ? AppTheme.c.text
-                : AppTheme.c.subText;
+                ? AppTheme.c.primary
+                : AppTheme.c.subText.addOpacity(.5);
 
             return Expanded(
               child: InkWell(
                 onTap: () {
-                  /// If the tab is already active, do nothing.
                   if (isActive) return;
                   tab.path.pushReplace(context);
                 },
@@ -41,7 +47,10 @@ class BottomBar extends StatelessWidget {
                     Space.y.t04,
                     Icon(tab.icon, color: color),
                     Space.y.t04,
-                    Text(tab.label, style: AppText.b1 + color),
+                    Text(
+                      tab.label,
+                      style: AppText.b2b + color,
+                    ),
                   ],
                 ),
               ),

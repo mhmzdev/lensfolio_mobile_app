@@ -20,7 +20,7 @@ extension SuperString<T> on String {
     context,
     PageRouteBuilder(
       settings: RouteSettings(name: this),
-      transitionDuration: transitionDuration ?? 2.seconds,
+      transitionDuration: transitionDuration ?? 1.seconds,
       pageBuilder: (context, animation, secondaryAnimation) => screen,
       transitionsBuilder: (context, animation, secondaryAnimation, child) =>
           FadeTransition(opacity: animation, child: child),
