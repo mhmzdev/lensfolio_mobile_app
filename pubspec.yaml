@@ -90,11 +90,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+  # lints
   flutter_lints: 6.0.0
 
   # code gen
@@ -103,10 +99,20 @@ dev_dependencies:
   json_serializable: 6.11.2
   flutter_gen_runner: 5.12.0
 
-  flutter_flavorizr: 2.4.1
+  # flutter_flavorizr: 2.4.1
+  # flutter_launcher_icons: 0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+# flutter_launcher_icons:
+#   android: "ic_launcher"
+#   adaptive_icon_background: "assets/app/app_icon.png"
+#   adaptive_icon_foreground: "assets/app/app_icon.png"
+#   ios: true
+#   remove_alpha_ios: true
+#   image_path: "assets/app/app_icon.png"
+#   min_sdk_android: 21
 
 flutter_gen:
   output: lib/gen/assets/ # Optional (default: lib/gen/)
@@ -127,6 +133,7 @@ flutter:
   assets:
     - creds.json
     - assets/
+    - assets/app/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
