@@ -1,0 +1,22 @@
+{
+    "stage": {
+        "supabase": {
+            "url": "<url-of-stage-project>",
+            "anon_key": "<anon-key-of-stage-project>"
+        }
+    },
+    "qa": {
+        // NOTE: QA is production env. just with logs.
+        // Hence, values should be same as prod.
+        "supabase": {
+            "url": "<url-of-prod-project>",
+            "anon_key": "<anon-key-of-prod-project>"
+        }
+    },
+    "prod": {
+        "supabase": {
+            "url": "<url-of-prod-project>",
+            "anon_key": "<anon-key-of-prod-project>"
+        }
+    }
+}
