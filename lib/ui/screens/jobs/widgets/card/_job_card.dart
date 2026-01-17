@@ -1,4 +1,4 @@
-part of '../jobs.dart';
+part of '../../jobs.dart';
 
 class _JobCard extends StatelessWidget {
   const _JobCard({required this.job});
@@ -121,11 +121,9 @@ class _JobCard extends StatelessWidget {
           ),
           if (job.description.available) ...[
             Space.y.t12,
-            Text(
-              job.description!,
-              style: AppText.b1 + AppTheme.c.subText,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            _ExpandableDescription(
+              description: job.description!,
+              url: job.url,
             ),
           ],
           if (job.tags.available) ...[
@@ -150,9 +148,7 @@ class _JobCard extends StatelessWidget {
             icon: LucideIcons.external_link,
             label: 'Apply Now',
             mainAxisSize: .max,
-            onTap: () {
-              // TODO: Open job.url in browser
-            },
+            onTap: () => LauncherHelper.url(job.url),
           ),
         ],
       ),

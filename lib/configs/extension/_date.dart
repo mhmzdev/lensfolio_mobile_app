@@ -47,59 +47,23 @@ extension SuperDate on DateTime {
 
   String get timeAgo {
     final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final yesterday = today.subtract(1.days);
     final date = now.today;
 
-    if (date == today) {
+    final diff = now.difference(date);
+
+    if (diff.inDays == 0) {
       return 'Today';
-    } else if (date == yesterday) {
+    } else if (diff.inDays == 1) {
       return 'Yesterday';
+    } else if (diff.inDays < 7) {
+      return '${diff.inDays} days ago';
+    } else if (diff.inDays < 30) {
+      final weeks = (diff.inDays / 7).floor();
+      return '$weeks ${weeks == 1 ? 'week' : 'weeks'} ago';
     } else {
-      return DateFormat('EEEE').format(this).toUpperCase();
+      final months = (diff.inDays / 30).floor();
+      return '$months ${months == 1 ? 'month' : 'months'} ago';
     }
-  }
-
-  bool get isToday {
-    final today = DateTime.now();
-    return year == today.year && month == today.month && day == today.day;
-  }
-
-  bool isSameDate(DateTime other) {
-    return day == other.day && month == other.month && year == other.year;
-  }
-
-  DateTime get dateOnly => DateTime(year, month, day);
-
-  String get timeAgoShort {
-    final now = DateTime.now();
-    final difference = now.difference(this);
-
-    if (difference.inSeconds < 60) {
-      return '${difference.inSeconds} secs ago';
-    }
-
-    if (difference.inMinutes < 60) {
-      return '${difference.inMinutes} mins ago';
-    }
-
-    if (difference.inHours < 24) {
-      return '${difference.inHours}h ago';
-    }
-
-    if (difference.inDays < 7) {
-      return '${difference.inDays}d ago';
-    }
-
-    if (difference.inDays < 30) {
-      return '${(difference.inDays / 7).floor()} weeks ago';
-    }
-
-    if (difference.inDays < 365) {
-      return '${(difference.inDays / 30).floor()} months ago';
-    }
-
-    return '${(difference.inDays / 365).floor()} years ago';
   }
 }
 

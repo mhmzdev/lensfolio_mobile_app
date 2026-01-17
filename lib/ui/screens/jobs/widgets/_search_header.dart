@@ -17,10 +17,13 @@ class _SearchHeader extends StatelessWidget {
             style: AppText.h1b,
           ),
           Space.y.t08,
-          const AppFormTextInput(
+          AppFormTextInput(
             name: 'search',
             placeholder: 'Search jobs, companies, etc.',
             textInputAction: TextInputAction.search,
+            onFieldSubmitted: (query) {
+              JobsCubit.c(context).fetch(search: query);
+            },
           ),
         ],
       ),

@@ -18,14 +18,18 @@ class JobsCubit extends Cubit<JobsState> {
 
   JobsCubit() : super(JobsState.def());
 
-  Future<void> fetch() async {
+  Future<void> fetch({
+    String? search,
+    String? category,
+    int? limit,
+  }) async {
     emit(
       state.copyWith(
         fetch: state.fetch.toLoading(),
       ),
     );
     try {
-      final data = await JobsRepo.ins.fetch();
+      final data = await JobsRepo.ins.fetch(search, category, limit);
       emit(
         state.copyWith(
           fetch: state.fetch.toSuccess(data: data),

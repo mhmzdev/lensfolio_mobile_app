@@ -15,7 +15,13 @@ class _Filters extends StatelessWidget {
           final isSelected = screenState.getFiltersType == f;
 
           return GestureDetector(
-            onTap: () => screenState.setFiltersType(f),
+            onTap: () {
+              screenState.setFiltersType(f);
+
+              JobsCubit.c(context).fetch(
+                category: isSelected ? null : f.slug,
+              );
+            },
             child: AnimatedContainer(
               duration: AppProps.medium,
               margin: Space.r.t08,

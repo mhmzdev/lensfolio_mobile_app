@@ -19,22 +19,26 @@ class _ScreenState extends ChangeNotifier {
 }
 
 enum _FiltersType {
-  softwareDevelopment,
-  customerService,
-  design,
-  marketing,
-  salesBusiness,
-  product,
-  projectManagement,
-  aiMl,
-  dataAnalysis,
-  devopsSysadmin,
-  finance,
-  humanResources,
-  qa,
-  writing,
-  legal,
-  medical,
-  education,
-  allOthers,
+  softwareDevelopment(slug: 'software-development'),
+  customerService(slug: 'customer-service'),
+  design(slug: 'design'),
+  marketing(slug: 'marketing'),
+  salesBusiness(slug: 'sales-business'),
+  product(slug: 'product'),
+  projectManagement(slug: 'project-management'),
+  aiMl(slug: 'ai-ml'),
+  dataAnalysis(slug: 'data-analysis'),
+  devopsSysadmin(slug: 'devops-sysadmin'),
+  finance(slug: 'finance'),
+  humanResources(slug: 'human-resources'),
+  qa(slug: 'qa'),
+  writing(slug: 'writing'),
+  legal(slug: 'legal'),
+  medical(slug: 'medical'),
+  education(slug: 'education'),
+  allOthers(slug: 'all-others')
+  ;
+
+  const _FiltersType({required this.slug});
+  final String slug;
 }
