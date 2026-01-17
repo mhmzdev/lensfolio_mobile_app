@@ -73,6 +73,6 @@ class AppFlavor {
   static bool get isStage => flavor.isStage;
   static bool get isQa => flavor.isQa;
   static bool get isProd => flavor.isProd;
-  static bool get isProduction => flavor.isProduction;
+  static bool get isProduction => flavor.isProduction || flavor.isQa;
   static bool get isProdRelease => flavor.isProd && kReleaseMode;
 }
