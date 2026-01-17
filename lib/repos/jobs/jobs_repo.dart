@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:lensfolio_mobile_app/models/job/job.dart';
+import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/models/job/job_fetch_respnose.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 
 part 'jobs_mocks.dart';
@@ -14,5 +15,5 @@ class JobsRepo {
 
   /// --- repo functions --- ///
 
-  Future<Job> fetch() => _JobsProvider.fetch();
+  Future<JobFetchRespnose> fetch() => _JobsProvider.fetch();
 }

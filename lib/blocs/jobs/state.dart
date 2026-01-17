@@ -3,23 +3,28 @@ part of 'cubit.dart';
 @immutable
 class JobsState extends Equatable {
   // --- nested states --- //
-  final BlocState<Job> fetch;
+  final BlocState<JobFetchRespnose> fetch;
 
   // --- state data --- //
+  final JobFetchRespnose? jobs;
 
   const JobsState({
     required this.fetch,
+    this.jobs,
   });
 
   JobsState.def()
     : // root-def-constructor
-      fetch = BlocState();
+      fetch = BlocState(),
+      jobs = null;
 
   JobsState copyWith({
-    BlocState<Job>? fetch,
+    BlocState<JobFetchRespnose>? fetch,
+    JobFetchRespnose? jobs,
   }) {
     return JobsState(
       fetch: fetch ?? this.fetch,
+      jobs: jobs ?? this.jobs,
     );
   }
 
@@ -27,5 +32,6 @@ class JobsState extends Equatable {
   List<Object?> get props => [
     // root-state-props
     fetch,
+    jobs,
   ];
 }

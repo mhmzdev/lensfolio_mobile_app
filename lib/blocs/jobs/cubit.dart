@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:lensfolio_mobile_app/configs/configs.dart';
-import 'package:lensfolio_mobile_app/models/job/job.dart';
+import 'package:lensfolio_mobile_app/models/job/job_fetch_respnose.dart';
 import 'package:lensfolio_mobile_app/repos/jobs/jobs_repo.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 
@@ -29,6 +29,7 @@ class JobsCubit extends Cubit<JobsState> {
       emit(
         state.copyWith(
           fetch: state.fetch.toSuccess(data: data),
+          jobs: data,
         ),
       );
     } on Fault catch (e) {

@@ -11,7 +11,6 @@ import 'package:lensfolio_mobile_app/gen/assets/fonts.gen.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
-import 'package:supercharged/supercharged.dart';
 
 export 'package:recase/recase.dart';
 export 'package:supercharged/supercharged.dart';
