@@ -66,9 +66,7 @@ class AppFormContainedDateInput extends FormBuilderField<dynamic> {
                            Space.x.t08,
                            Text(
                              label,
-                             style: AppText.b2
-                                 .cl(AppTheme.c.text)
-                                 .sfPro,
+                             style: AppText.b2.cl(AppTheme.c.text),
                            ),
                          ],
                        ],

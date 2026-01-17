@@ -67,14 +67,14 @@ class _AppFormBaseState extends State<AppFormBase> {
             widget.heading!,
             style: AppText.b1b
                 .cl(widget.error != null ? data.errorText : data.label)
-                .sfPro,
+                ,
           ),
         if (widget.subHeading != null)
           Text(
             widget.subHeading!,
             style: AppText.b2
                 .cl(widget.error != null ? data.errorText : data.label)
-                .sfPro,
+                ,
           ),
         if (widget.heading != null || widget.subHeading != null) Space.y.t04,
         AnimatedContainer(
@@ -172,7 +172,7 @@ class _AppFormBaseState extends State<AppFormBase> {
                     Flexible(
                       child: Text(
                         widget.error!,
-                        style: AppText.b2.cl(data.errorText).sfPro,
+                        style: AppText.b2.cl(data.errorText),
                       ),
                     ),
                   ],
@@ -193,7 +193,7 @@ class _AppFormBaseState extends State<AppFormBase> {
               Expanded(
                 child: Text(
                   widget.helper!,
-                  style: AppText.b2.cl(data.helper).sfPro,
+                  style: AppText.b2.cl(data.helper),
                 ),
               ),
             ],
