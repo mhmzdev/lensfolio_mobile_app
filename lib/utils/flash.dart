@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class UIFlash {
-  static final iconLeft = -SpaceToken.t28;
+  static final iconLeft = -SpaceToken.t20;
 
   static void info(
     BuildContext context,
@@ -18,8 +19,8 @@ class UIFlash {
         message: message,
         backgroundColor: AppTheme.c.secondary, //
         icon: Icon(
-          Icons.note_outlined,
-          color: AppTheme.c.secondary.withValues(alpha: 0.5),
+          LucideIcons.badge_info,
+          color: AppTheme.c.background,
           size: SpaceToken.t100,
         ),
         iconPositionLeft: iconLeft,
@@ -41,11 +42,11 @@ class UIFlash {
       Overlay.of(context),
       CustomSnackBar.success(
         message: message,
-        textStyle: AppText.h3.cl(AppTheme.c.text).sfPro.w(6),
-        backgroundColor: AppTheme.c.successShade, //
+        textStyle: AppText.h3.cl(AppTheme.c.background).w(6),
+        backgroundColor: AppTheme.c.primary, //
         icon: Icon(
           Icons.check_circle,
-          color: AppTheme.c.successTint,
+          color: AppTheme.c.successBase,
           size: SpaceToken.t100,
         ),
         iconPositionLeft: iconLeft,
