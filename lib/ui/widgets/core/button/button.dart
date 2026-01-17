@@ -107,7 +107,7 @@ class _AppButtonState extends State<AppButton> {
     }
 
     if (widget.size == AppButtonSize.small) {
-      padding = Space.v.t04 + Space.h.t20;
+      padding = Space.v.t12 + Space.h.t16;
     }
 
     final radius = _mapRadiusToBorderRadius()[widget.borderRadius]!;

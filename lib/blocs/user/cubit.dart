@@ -19,6 +19,35 @@ class UserCubit extends Cubit<UserState> {
 
   UserCubit() : super(UserState.def());
 
+  Future<void> udpate(Map<String, dynamic> payload) async {
+    emit(
+      state.copyWith(
+        udpate: state.udpate.toLoading(),
+      ),
+    );
+    try {
+      final values = {
+        'userId': state.userData!.id,
+        ...payload,
+      };
+      final data = await UserRepo.ins.udpate(values)
+        ..toCache();
+
+      emit(
+        state.copyWith(
+          udpate: state.udpate.toSuccess(data: data),
+          userData: data,
+        ),
+      );
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          udpate: state.udpate.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
   Future<void> fetch(int id) async {
     emit(
       state.copyWith(
@@ -122,6 +151,32 @@ class UserCubit extends Cubit<UserState> {
       emit(
         state.copyWith(
           login: state.login.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
+  Future<void> logout() async {
+    emit(
+      state.copyWith(
+        logout: state.logout.toLoading(),
+      ),
+    );
+    try {
+      await AppCache.ins.reset();
+
+      /// TODO: Add when actual DB
+      // await AppSupabase.supabase.auth.signOut();
+
+      emit(
+        state.copyWith(
+          logout: state.logout.toSuccess(),
+        ),
+      );
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          logout: state.logout.toFailed(fault: e),
         ),
       );
     }

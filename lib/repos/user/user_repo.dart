@@ -15,6 +15,9 @@ class UserRepo {
 
   /// --- repo functions --- ///
 
+  Future<UserData> udpate(Map<String, dynamic> values) =>
+      _UserProvider.udpate(values);
+
   Future<UserData> fetch(int id) => _UserProvider.fetch(id);
 
   Future<UserData> register() => _UserProvider.register();

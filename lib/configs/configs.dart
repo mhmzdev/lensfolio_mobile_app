@@ -6,6 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
+import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/gen/assets/fonts.gen.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';

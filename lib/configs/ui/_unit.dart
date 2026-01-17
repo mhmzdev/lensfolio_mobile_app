@@ -132,7 +132,7 @@ class AppUnit {
 
   /// Returns calibrated font size for text elements.
   static double font(num unit) {
-    return ((AppUnit.ratio * unit * 0.125) + (unit * 2.0)) * designCalibration;
+    return ((AppUnit.ratio * unit * 2) + (unit * 2.0)) * designCalibration;
   }
 
   /// Manually sets the design calibration multiplier.

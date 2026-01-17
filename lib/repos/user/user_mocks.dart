@@ -3,6 +3,29 @@
 part of 'user_repo.dart';
 
 class _UserMocks {
+  static Future<Map> logout() {
+    return Future.value({'message': 'mock', 'data': ''});
+  }
+
+  static Future<Map<String, dynamic>> udpate(
+    int userId,
+    Map<String, dynamic> values,
+  ) {
+    final user = _users.firstWhere(
+      (user) => user['id'] == userId,
+      orElse: () => {},
+    );
+    final updatedUser = {
+      ...user,
+      ...values,
+    };
+    return Future.value({
+      'status': 200,
+      'message': 'User data updated successfully!',
+      'data': updatedUser,
+    });
+  }
+
   static Future<Map<String, dynamic>> fetch(int id) {
     return Future.value({
       'status': 200,

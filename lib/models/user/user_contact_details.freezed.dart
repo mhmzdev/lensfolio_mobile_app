@@ -203,8 +203,8 @@ return $default(_that.phoneNumber,_that.address);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _UserContactDetails implements UserContactDetails {
-  const _UserContactDetails({required this.phoneNumber, required this.address});
+class _UserContactDetails extends UserContactDetails {
+  const _UserContactDetails({required this.phoneNumber, required this.address}): super._();
   factory _UserContactDetails.fromJson(Map<String, dynamic> json) => _$UserContactDetailsFromJson(json);
 
 @override final  String phoneNumber;

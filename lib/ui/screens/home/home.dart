@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
-import 'package:lensfolio_mobile_app/ui/widgets/headless/scroll_column_expandable.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/design/avatar/avatar.dart';
 import 'package:provider/provider.dart';
 
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
+
+part 'widgets/_profile_card.dart';
+part 'widgets/_about.dart';
+part 'widgets/_contact.dart';
+part 'widgets/_preferred_roles.dart';
+part 'widgets/_skills.dart';
+part 'widgets/_tech_stack.dart';
 
 part '_state.dart';
 
@@ -19,26 +28,78 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
+class _Body extends StatefulWidget {
   const _Body();
+
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
+  double bottomBarHeight = 80.sp();
 
   @override
   Widget build(BuildContext context) {
     App.init(context);
-
-    final userData = context.userData;
+    final userData = context.userData!;
 
     return Screen(
       keyboardHandler: true,
+      bottomBarHeightChanged: (height) {
+        setState(() {
+          bottomBarHeight = height;
+        });
+      },
       child: SafeArea(
-        child: ScrollColumnExpandable(
-          padding: Space.a.t20,
-          crossAxisAlignment: .stretch,
-          children: [
-            Text(userData!.fullName),
-            Text(userData.email),
-            Text(userData.designation!),
-          ],
+        child: SingleChildScrollView(
+          padding: Space.a.t16,
+          child: Column(
+            crossAxisAlignment: .stretch,
+            children: [
+              const _ProfileCard(),
+              if (userData.inCompleteProfile) ...[
+                Space.y.t12,
+                AppButton(
+                  style: .primaryBorder,
+                  icon: LucideIcons.circle_alert,
+                  label: 'Complete Profile',
+                  onTap: () {},
+                ),
+              ] else ...[
+                Row(
+                  children: [
+                    Expanded(
+                      child: AppButton(
+                        icon: LucideIcons.upload,
+                        label: 'Upload Resume',
+                        onTap: () {},
+                      ),
+                    ),
+                    Space.x.t08,
+                    Expanded(
+                      child: AppButton(
+                        style: .blackBorder,
+                        icon: LucideIcons.download,
+                        label: 'Download CV',
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+              Space.y.t16,
+              const _AboutCard(),
+              Space.y.t16,
+              const _ContactCard(),
+              Space.y.t16,
+              const _SkillsCard(),
+              Space.y.t16,
+              const _TechStackCard(),
+              Space.y.t16,
+              const _PreferredRolesCard(),
+              SizedBox(height: bottomBarHeight),
+            ],
+          ),
         ),
       ),
     );

@@ -7,4 +7,9 @@ abstract class AppProps {
   static final normal = 500.milliseconds;
 
   static const radiusTop = BorderRadius.vertical(top: Radius.circular(8));
+
+  static BoxDecoration get softBoxDecoration => BoxDecoration(
+    color: AppTheme.c.primary.addOpacity(.05),
+    borderRadius: 8.radius(),
+  );
 }

@@ -15,7 +15,7 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
     ),
     .primaryBorder: _AppButtonModel(
       surface: {
-        .def: AppTheme.c.background,
+        .def: Colors.transparent,
         .disabled: AppTheme.c.primary.addOpacity(.1),
       },
       border: {
@@ -53,7 +53,7 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
     ),
     .blackBorder: _AppButtonModel(
       surface: {
-        .def: AppTheme.c.background,
+        .def: Colors.transparent,
         .disabled: AppTheme.c.text.withValues(alpha: 0.1),
       },
       border: {

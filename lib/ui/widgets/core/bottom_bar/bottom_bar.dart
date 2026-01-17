@@ -14,21 +14,22 @@ class BottomBar extends StatelessWidget {
     App.init(context);
     final currentPath = context.currentPath;
 
-    return Container(
-      padding: Space.z.sb().t(8),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: .centerRight,
-          end: .centerLeft,
-          colors: [
-            AppTheme.c.primary.addOpacity(.1),
-            Colors.transparent,
-            AppTheme.c.primary.addOpacity(.1),
-          ],
+    return Material(
+      color: AppTheme.c.background,
+      elevation: 0,
+      child: Container(
+        padding: Space.z.sb().t(8),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: .centerRight,
+            end: .centerLeft,
+            colors: [
+              AppTheme.c.primary.addOpacity(.1),
+              Colors.transparent,
+              AppTheme.c.primary.addOpacity(.1),
+            ],
+          ),
         ),
-      ),
-      child: Material(
-        color: Colors.transparent,
         child: Row(
           children: _tabs.map((tab) {
             final isActive = tab.path == currentPath;

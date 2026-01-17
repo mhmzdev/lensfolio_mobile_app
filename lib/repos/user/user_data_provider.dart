@@ -1,6 +1,22 @@
 part of 'user_repo.dart';
 
 class _UserProvider {
+  static Future<UserData> udpate(Map<String, dynamic> values) async {
+    try {
+      final userId = values['userId'] as int;
+      final updatedUser = await _UserMocks.udpate(userId, values);
+      await 1.seconds.delay;
+
+      final raw = updatedUser['data'] as Map<String, dynamic>;
+      return UserData.fromJson(raw);
+    } catch (e, st) {
+      if (e is DioException) {
+        throw HttpFault.fromDioException(e, st);
+      }
+      throw UnknownFault('Something went wrong!', st);
+    }
+  }
+
   static Future<UserData> fetch(int id) async {
     try {
       final response = await _UserMocks.fetch(id);
