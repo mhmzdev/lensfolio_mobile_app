@@ -13,6 +13,7 @@ class _ProfileCard extends StatelessWidget {
         crossAxisAlignment: .start,
         children: [
           Row(
+            crossAxisAlignment: .start,
             children: [
               AppAvatar(
                 showEditBadge: true,
@@ -51,6 +52,18 @@ class _ProfileCard extends StatelessWidget {
                         ),
                       ),
                   ],
+                ),
+              ),
+              Space.x.t08,
+              Align(
+                alignment: .topCenter,
+                child: AppTouch(
+                  onTap: () => UserCubit.c(context).logout(),
+                  child: Icon(
+                    LucideIcons.power,
+                    size: SpaceToken.t24,
+                    color: AppTheme.c.dangerBase,
+                  ),
                 ),
               ),
             ],

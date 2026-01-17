@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:lensfolio_mobile_app/router/routes.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
+import 'package:provider/provider.dart';
+
 import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/avatar/avatar.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/skeleton/skeleton.dart';
-import 'package:provider/provider.dart';
-
-import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
-
-part 'widgets/_profile_card.dart';
-part 'widgets/_about.dart';
-part 'widgets/_contact.dart';
-part 'widgets/_preferred_roles.dart';
-part 'widgets/_skills.dart';
-part 'widgets/_tech_stack.dart';
-part 'widgets/_placeholder.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/headless/app_touch.dart';
+import 'package:lensfolio_mobile_app/utils/flash.dart';
 
 part '_state.dart';
+
+part 'listeners/_logout.dart';
+
+part 'widgets/_about.dart';
+part 'widgets/_contact.dart';
+part 'widgets/_placeholder.dart';
+part 'widgets/_preferred_roles.dart';
+part 'widgets/_profile_card.dart';
+part 'widgets/_skills.dart';
+part 'widgets/_tech_stack.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -51,6 +58,7 @@ class _BodyState extends State<_Body> {
 
     return Screen(
       keyboardHandler: true,
+      overlayBuilders: const [_LogoutListener()],
       bottomBarHeightChanged: (height) {
         setState(() {
           bottomBarHeight = height;

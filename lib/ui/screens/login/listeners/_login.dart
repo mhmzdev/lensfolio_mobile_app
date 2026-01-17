@@ -13,7 +13,6 @@ class _LoginListener extends StatelessWidget {
         }
         if (state.login.isSuccess) {
           AppRoutes.home.pushReplace(context);
-          UIFlash.success(context, 'User logged in successfully');
         }
       },
       child: const SizedBox.shrink(),
