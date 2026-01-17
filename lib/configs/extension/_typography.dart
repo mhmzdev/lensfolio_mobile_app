@@ -1,10 +1,6 @@
 part of '../configs.dart';
 
 extension SuperAppText on TextStyle {
-  TextStyle get sfPro => copyWith(
-    fontFamily: FontFamily.nunito,
-  );
-
   /// Set custom font size
   TextStyle fs(double size) => copyWith(
     fontSize: size,
