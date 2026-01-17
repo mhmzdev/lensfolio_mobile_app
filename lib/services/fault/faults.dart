@@ -21,6 +21,9 @@ sealed class Fault<T> {
         final Error err => ErrorFault(err, stackTrace),
         _ => UnknownFault(object.toString(), stackTrace),
       };
+
+  @override
+  String toString() => message;
 }
 
 /// Represents a fault caused by a http calls
@@ -29,24 +32,64 @@ final class HttpFault<T> extends Fault<T> {
   const HttpFault(this.body, StackTrace stackTrace)
     : super._internal(stackTrace);
 
+  /// Creates an [HttpFault] from a [DioException] by parsing the response data
+  /// and extracting relevant error information.
   factory HttpFault.fromDioException(DioException ex, StackTrace stackTrace) {
-    ex.response?.data.toString().appLog(
+    final errorData = ex.response?.data;
+    final statusCode = ex.response?.statusCode;
+
+    final HttpFailure httpFailure = switch (errorData) {
+      // Handle String responses
+      final String message => (
+        message: message,
+        data: {'message': message},
+        status: statusCode,
+      ),
+
+      // Handle Map responses with nested 'data' field
+      final Map<String, dynamic> map when map.containsKey('data') => (
+        message: _extractMessage(map),
+        data: map['data'] as Map<String, dynamic>?,
+        status: statusCode,
+      ),
+
+      // Handle Map responses with 'message' field
+      final Map<String, dynamic> map when map.containsKey('message') => (
+        message: map['message']?.toString() ?? 'UNKNOWN-ERROR',
+        data: {'message': map['message']},
+        status: statusCode,
+      ),
+
+      // Handle generic Map responses
+      final Map<String, dynamic> map => (
+        message: _extractMessage(map),
+        data: map,
+        status: statusCode,
+      ),
+
+      // Handle invalid or null error data
+      _ => (
+        message: 'Invalid error response format',
+        data: <String, dynamic>{},
+        status: statusCode,
+      ),
+    };
+
+    httpFailure.appLog(
       level: AppLogLevel.error,
       tag: 'HttpFault',
     );
 
-    final errorData = ex.response?.data;
-
-    final httpFailure = (
-      message: errorData?['message'] as String? ?? 'UNKNOWN-ERROR',
-      data: errorData is String
-          ? {'message': errorData}
-          : errorData?['data'] is Map<String, dynamic>?
-          ? (errorData?['data'] as Map<String, dynamic>?) ?? {}
-          : null,
-      status: ex.response?.statusCode,
-    );
     return HttpFault(httpFailure, stackTrace);
+  }
+
+  /// Extracts a meaningful error message from the response map.
+  /// Checks common error message fields in order of priority.
+  static String _extractMessage(Map<String, dynamic> map) {
+    return map['message']?.toString() ??
+        map['error']?.toString() ??
+        map['detail']?.toString() ??
+        'UNKNOWN-ERROR';
   }
 }
 
