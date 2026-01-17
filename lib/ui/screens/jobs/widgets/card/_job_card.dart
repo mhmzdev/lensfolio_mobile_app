@@ -29,7 +29,6 @@ class _JobCard extends StatelessWidget {
         children: [
           // Header row: Title + Bookmark
           Row(
-            crossAxisAlignment: .start,
             children: [
               Expanded(
                 child: Text(
@@ -39,14 +38,10 @@ class _JobCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Space.x.t08,
-              AppTouch(
-                onTap: () {},
-                child: Icon(
-                  LucideIcons.bookmark,
-                  size: SpaceToken.t24,
-                  color: AppTheme.c.subText,
-                ),
+              Space.x.t04,
+              Text(
+                _formatDate(job.publicationDate),
+                style: AppText.b2 + AppTheme.c.subText,
               ),
             ],
           ),
@@ -107,16 +102,6 @@ class _JobCard extends StatelessWidget {
                 ),
                 Space.x.t16,
               ],
-              Icon(
-                LucideIcons.clock,
-                size: 14,
-                color: AppTheme.c.subText,
-              ),
-              Space.x.t04,
-              Text(
-                _formatDate(job.publicationDate),
-                style: AppText.b2 + AppTheme.c.subText,
-              ),
             ],
           ),
           if (job.description.available) ...[
@@ -152,7 +137,7 @@ class _JobCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ).withBottomAnimation();
   }
 
   String _formatDate(DateTime date) {

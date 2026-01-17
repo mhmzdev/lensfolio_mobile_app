@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/ui/animations/animations/bottom_animation.dart';
 
 part '_enums.dart';
 part '_model.dart';
@@ -151,7 +152,7 @@ class _AppButtonState extends State<AppButton> {
                   style: textStyle + text + FontWeight.w500,
                 ),
             ],
-          ),
+          ).withBottomAnimation(),
         ),
       ),
     );

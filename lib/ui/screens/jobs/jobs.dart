@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
+import 'package:lensfolio_mobile_app/ui/animations/animations/bottom_animation.dart';
 import 'package:provider/provider.dart';
 
 import 'package:lensfolio_mobile_app/utils/html_parser.dart';
@@ -15,7 +17,6 @@ import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/floating_loader.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/skeleton/skeleton.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
-import 'package:lensfolio_mobile_app/ui/widgets/headless/app_touch.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
 
 part '_state.dart';
@@ -90,17 +91,26 @@ class _BodyState extends State<_Body> {
           child: jobsState.fetch.isLoading && jobs == null
               ? const _Placeholder()
               : Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: .stretch,
                   children: [
                     const _SearchHeader(),
                     Space.y.t08,
                     const _Filters(),
                     Space.y.t16,
                     if (!jobsState.fetch.isFailed && list.isEmpty) ...[
-                      Space.y.t16,
-                      Text(
-                        'No jobs found',
-                        style: AppText.l1,
+                      Column(
+                        children: [
+                          Space.y.t100,
+                          Assets.images.noResults.image(
+                            height: 250,
+                          ),
+                          Space.y.t16,
+                          Text(
+                            'No jobs found.\nTry again with different filters.',
+                            style: AppText.b1b,
+                            textAlign: .center,
+                          ),
+                        ],
                       ),
                     ] else
                       ...list.map(

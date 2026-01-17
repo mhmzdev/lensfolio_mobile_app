@@ -18,7 +18,7 @@ class _ProfileCard extends StatelessWidget {
               AppAvatar(
                 showEditBadge: true,
                 onEditTap: () {},
-              ),
+              ).withScaleAnimation(),
               Space.x.t12,
               Expanded(
                 child: Column(

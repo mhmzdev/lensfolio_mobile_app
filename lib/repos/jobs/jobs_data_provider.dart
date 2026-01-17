@@ -1,7 +1,9 @@
 part of 'jobs_repo.dart';
 
 class _JobsProvider {
-  static Future<JobFetchRespnose> fetch(Map<String, dynamic>? queryParam) async {
+  static Future<JobFetchRespnose> fetch(
+    Map<String, dynamic>? queryParam,
+  ) async {
     try {
       final resp = await AppApi().ins.get(
         '/remote-jobs',

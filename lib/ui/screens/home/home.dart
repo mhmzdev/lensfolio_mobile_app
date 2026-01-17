@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
+import 'package:lensfolio_mobile_app/ui/animations/animations/scale_animation.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 import 'package:provider/provider.dart';
 
