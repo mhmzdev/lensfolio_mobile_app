@@ -64,7 +64,7 @@ class _ProjectsMocks {
   static final List<Map<String, dynamic>> _projects = [
     {
       'id': 1,
-      'uid': 1,
+      'uid': 2,
       'title': 'Lensfolio',
       'description':
           'A portfolio app for photographers and developers to showcase their work. Built with Flutter and Supabase for seamless cross-platform experience.',

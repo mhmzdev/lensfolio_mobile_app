@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/repos/user/user_repo.dart';
+import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/cache/app_cache.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 
@@ -75,6 +76,10 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> init() async {
+    'Init function was called'.appLog(
+      tag: 'USER_CUBIT: init()',
+      toCrashlytics: true,
+    );
     emit(
       state.copyWith(
         init: state.init.toLoading(),
@@ -83,6 +88,10 @@ class UserCubit extends Cubit<UserState> {
     try {
       final cachedUser = AppCache.ins.user;
       if (cachedUser != null) {
+        'User is cached'.appLog(
+          tag: 'USER_CUBIT: init()',
+          toCrashlytics: true,
+        );
         final data = await UserRepo.ins.fetch(cachedUser.email)
           ..toCache();
         emit(
@@ -92,6 +101,10 @@ class UserCubit extends Cubit<UserState> {
           ),
         );
       } else {
+        'User is not cached'.appLog(
+          tag: 'USER_CUBIT: init()',
+          toCrashlytics: true,
+        );
         emit(
           state.copyWith(
             init: state.init.toSuccess(data: null),
@@ -109,6 +122,10 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> register(Map<String, dynamic> values) async {
+    'Register function was called'.appLog(
+      tag: 'USER_CUBIT: register()',
+      toCrashlytics: true,
+    );
     emit(
       state.copyWith(
         register: state.register.toLoading(),
@@ -119,6 +136,11 @@ class UserCubit extends Cubit<UserState> {
       final user = authResponse.user;
       final userData = await UserRepo.ins.fetch(user!.email!)
         ..toCache();
+
+      'User registered successfully'.appLog(
+        tag: 'USER_CUBIT: register()',
+        toCrashlytics: true,
+      );
 
       emit(
         state.copyWith(
@@ -138,6 +160,10 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> login(Map<String, dynamic> values) async {
+    'Login function was called'.appLog(
+      tag: 'USER_CUBIT: login()',
+      toCrashlytics: true,
+    );
     emit(
       state.copyWith(
         login: state.login.toLoading(),
@@ -149,6 +175,11 @@ class UserCubit extends Cubit<UserState> {
 
       final userData = await UserRepo.ins.fetch(user!.email!)
         ..toCache();
+
+      'User logged in successfully'.appLog(
+        tag: 'USER_CUBIT: login()',
+        toCrashlytics: true,
+      );
 
       emit(
         state.copyWith(
@@ -174,8 +205,27 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
     try {
-      await AppCache.ins.reset();
-      await AppSupabase.supabase.auth.signOut();
+      try {
+        await AppCache.ins.reset();
+      } catch (e) {
+        'Error resetting app cache: $e'.appLog(
+          tag: 'USER_CUBIT: logout()',
+          level: AppLogLevel.error,
+        );
+      }
+      try {
+        await AppSupabase.supabase.auth.signOut();
+      } catch (e) {
+        'Error signing out user: $e'.appLog(
+          tag: 'USER_CUBIT: logout()',
+          level: AppLogLevel.error,
+        );
+      }
+
+      'User logged out successfully'.appLog(
+        tag: 'USER_CUBIT: logout()',
+        toCrashlytics: true,
+      );
 
       emit(
         state.copyWith(

@@ -51,6 +51,10 @@ logs/
 .cursor/
 .vscode/
 .firebase/
+# Firebase configuration files
+**/google-services.json
+**/GoogleService-Info.plist
+
 
 # secrets
 creds.json

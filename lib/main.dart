@@ -1,14 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lensfolio_mobile_app/services/cache/app_cache.dart';
-import 'package:lensfolio_mobile_app/services/flavor/flavor.dart';
-import 'package:lensfolio_mobile_app/services/supabase/supabase.dart';
+
 import 'app.dart';
+
+import 'services/cache/app_cache.dart';
+import 'services/firebase/crash/crashlytics.dart';
+import 'services/firebase/performance/performance.dart';
+import 'services/flavor/flavor.dart';
+import 'services/supabase/supabase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   await AppFlavor.init();
   await AppSupabase.init();
+
+  await EnhancedCrashlytics.ins.init();
+  await AppPerformance.ins.init();
 
   await AppCache.ins.init();
 

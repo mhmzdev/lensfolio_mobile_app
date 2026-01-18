@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
+import 'package:lensfolio_mobile_app/services/firebase/crash/crashlytics.dart';
 
 part '_data.dart';
 part '_model.dart';
@@ -42,6 +43,9 @@ class BottomBar extends StatelessWidget {
                 onTap: () {
                   if (isActive) return;
                   tab.path.pushReplace(context);
+                  ''.trackUserAction(
+                    'bottom_bar_tapped ${tab.path}',
+                  );
                 },
                 child: Column(
                   children: [

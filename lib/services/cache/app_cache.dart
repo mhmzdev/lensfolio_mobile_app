@@ -23,10 +23,18 @@ class AppCache {
 
   /// Sets current user object to cache
   Future<void> setUser(UserData user) async {
-    'User cached'.appLog(
-      tag: 'APP_CACHE: setUser()',
-    );
-    await _prefs!.setString(_userKey, jsonEncode(user.toJson()));
+    try {
+      'User cached'.appLog(
+        tag: 'APP_CACHE: setUser()',
+        toCrashlytics: true,
+      );
+      await _prefs!.setString(_userKey, jsonEncode(user.toJson()));
+    } catch (e) {
+      'Error caching user: $e'.appLog(
+        tag: 'APP_CACHE: setUser()',
+        level: AppLogLevel.error,
+      );
+    }
   }
 
   /// Gets current user object from cache

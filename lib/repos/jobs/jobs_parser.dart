@@ -7,9 +7,19 @@ class _JobsParser {
     String? search,
     String? category,
     int? limit,
-  ) => {
-    if (search.available) 'search': search,
-    if (category.available) 'category': category,
-    if (limit != null) 'limit': limit,
-  };
+  ) {
+    try {
+      return {
+        if (search.available) 'search': search,
+        if (category.available) 'category': category,
+        if (limit != null) 'limit': limit,
+      };
+    } catch (e) {
+      'Error parsing jobs query parameters: $e'.appLog(
+        tag: 'JOBS_PARSER: fetch()',
+        level: AppLogLevel.error,
+      );
+      return {};
+    }
+  }
 }

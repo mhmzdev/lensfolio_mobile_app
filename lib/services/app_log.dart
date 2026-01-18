@@ -41,10 +41,10 @@ extension LogExtension on Object {
     }
 
     if (level == AppLogLevel.error) {
-      // final callerInfo = _getCallerInfo();
-      // final callerSection = callerInfo.isNotEmpty ? ' $callerInfo' : '';
-      // final messageWithCaller = '[$tag:$callerSection] $now $this';
-      // messageWithCaller.flog();
+      final callerInfo = _getCallerInfo();
+      final callerSection = callerInfo.isNotEmpty ? ' $callerInfo' : '';
+      final messageWithCaller = '[$tag:$callerSection] $now $this';
+      messageWithCaller.flog();
     }
   }
 

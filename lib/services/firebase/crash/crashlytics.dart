@@ -227,19 +227,9 @@ class EnhancedCrashlytics {
 
   Future<void> setUserContext({
     String? userId,
-    String? userRole,
-    List<String>? userTypes,
   }) async {
     if (userId != null) {
       await _firebaseCrashlytics.setUserIdentifier(userId);
-    }
-
-    if (userRole != null) {
-      setCustomKey('user_role', userRole);
-    }
-
-    if (userTypes != null) {
-      setCustomKey('user_types', userTypes.join(', '));
     }
   }
 

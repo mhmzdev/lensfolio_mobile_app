@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/project/project.dart';
 import 'package:lensfolio_mobile_app/repos/projects/projects_repo.dart';
+import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 
 import 'package:flutter/material.dart';
@@ -25,10 +26,10 @@ class ProjectsCubit extends Cubit<ProjectsState> {
       ),
     );
     try {
-      final data = await ProjectsRepo.ins.delete(id);
+      await ProjectsRepo.ins.delete(id);
       emit(
         state.copyWith(
-          delete: state.delete.toSuccess(data: data),
+          delete: state.delete.toSuccess(),
         ),
       );
     } on Fault catch (e) {
@@ -63,6 +64,10 @@ class ProjectsCubit extends Cubit<ProjectsState> {
   }
 
   Future<void> fetchAll(int uid) async {
+    'Fetch all projects function was called'.appLog(
+      tag: 'PROJECTS_CUBIT: fetchAll()',
+      toCrashlytics: true,
+    );
     emit(
       state.copyWith(
         fetchAll: state.fetchAll.toLoading(),
@@ -70,6 +75,10 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     );
     try {
       final data = await ProjectsRepo.ins.fetchAll(uid);
+      'Projects fetched successfully'.appLog(
+        tag: 'PROJECTS_CUBIT: fetchAll()',
+        toCrashlytics: true,
+      );
       emit(
         state.copyWith(
           fetchAll: state.fetchAll.toSuccess(data: data),
@@ -108,6 +117,10 @@ class ProjectsCubit extends Cubit<ProjectsState> {
   }
 
   Future<void> create(int uid, Map<String, dynamic> payload) async {
+    'Create project function was called'.appLog(
+      tag: 'PROJECTS_CUBIT: create()',
+      toCrashlytics: true,
+    );
     emit(
       state.copyWith(
         create: state.create.toLoading(),
@@ -115,6 +128,10 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     );
     try {
       final data = await ProjectsRepo.ins.create(uid, payload);
+      'Project created successfully'.appLog(
+        tag: 'PROJECTS_CUBIT: create()',
+        toCrashlytics: true,
+      );
       emit(
         state.copyWith(
           create: state.create.toSuccess(data: data),

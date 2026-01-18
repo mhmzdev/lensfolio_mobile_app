@@ -57,6 +57,8 @@ class _BodyState extends State<_Body> {
         userCubit.state.fetch.isLoading || userCubit.state.udpate.isLoading;
     final userData = userCubit.state.userData;
 
+    if (userData == null) return const SizedBox.shrink();
+
     return Screen(
       keyboardHandler: true,
       overlayBuilders: const [_LogoutListener()],
@@ -68,13 +70,13 @@ class _BodyState extends State<_Body> {
       child: SafeArea(
         child: SingleChildScrollView(
           padding: Space.a.t16,
-          child: userData == null && isFetching
+          child: isFetching
               ? const _Placeholder()
               : Column(
                   crossAxisAlignment: .stretch,
                   children: [
                     const _ProfileCard(),
-                    if (userData!.inCompleteProfile) ...[
+                    if (userData.inCompleteProfile) ...[
                       Space.y.t12,
                       AppButton(
                         style: .primaryBorder,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/job/job_fetch_respnose.dart';
 import 'package:lensfolio_mobile_app/repos/jobs/jobs_repo.dart';
+import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class JobsCubit extends Cubit<JobsState> {
     String? category,
     int? limit,
   }) async {
+    'Fetch function was called'.appLog(
+      tag: 'JOBS_CUBIT: fetch()',
+      toCrashlytics: true,
+    );
     emit(
       state.copyWith(
         fetch: state.fetch.toLoading(),
@@ -30,6 +35,10 @@ class JobsCubit extends Cubit<JobsState> {
     );
     try {
       final data = await JobsRepo.ins.fetch(search, category, limit);
+      'Jobs fetched successfully'.appLog(
+        tag: 'JOBS_CUBIT: fetch()',
+        toCrashlytics: true,
+      );
       emit(
         state.copyWith(
           fetch: state.fetch.toSuccess(data: data),
