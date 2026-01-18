@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lensfolio_mobile_app/services/supabase/supabase.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'state.dart';
 
@@ -27,7 +29,7 @@ class UserCubit extends Cubit<UserState> {
     );
     try {
       final values = {
-        'userId': state.userData!.id,
+        'id': state.userData!.id,
         ...payload,
       };
       final data = await UserRepo.ins.udpate(values)
@@ -48,14 +50,14 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> fetch(int id) async {
+  Future<void> fetch(String email) async {
     emit(
       state.copyWith(
         fetch: state.fetch.toLoading(),
       ),
     );
     try {
-      final data = await UserRepo.ins.fetch(id)
+      final data = await UserRepo.ins.fetch(email)
         ..toCache();
       emit(
         state.copyWith(
@@ -81,7 +83,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       final cachedUser = AppCache.ins.user;
       if (cachedUser != null) {
-        final data = await UserRepo.ins.fetch(cachedUser.id)
+        final data = await UserRepo.ins.fetch(cachedUser.email)
           ..toCache();
         emit(
           state.copyWith(
@@ -106,20 +108,24 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> register() async {
+  Future<void> register(Map<String, dynamic> values) async {
     emit(
       state.copyWith(
         register: state.register.toLoading(),
       ),
     );
     try {
-      final data = await UserRepo.ins.register()
+      final authResponse = await UserRepo.ins.register(values);
+      final user = authResponse.user;
+      final userData = await UserRepo.ins.fetch(user!.email!)
         ..toCache();
 
       emit(
         state.copyWith(
-          register: state.register.toSuccess(data: data),
-          userData: data,
+          register: state.register.toSuccess(data: userData),
+          user: user,
+          userData: userData,
+          authResponse: authResponse,
         ),
       );
     } on Fault catch (e) {
@@ -138,13 +144,18 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
     try {
-      final data = await UserRepo.ins.login(values)
+      final authResponse = await UserRepo.ins.login(values);
+      final user = authResponse.user;
+
+      final userData = await UserRepo.ins.fetch(user!.email!)
         ..toCache();
 
       emit(
         state.copyWith(
-          login: state.login.toSuccess(data: data),
-          userData: data,
+          login: state.login.toSuccess(data: userData),
+          userData: userData,
+          authResponse: authResponse,
+          user: user,
         ),
       );
     } on Fault catch (e) {
@@ -164,15 +175,14 @@ class UserCubit extends Cubit<UserState> {
     );
     try {
       await AppCache.ins.reset();
-
-      /// TODO: Add when actual DB
-      // await AppSupabase.supabase.auth.signOut();
+      await AppSupabase.supabase.auth.signOut();
 
       emit(
         state.copyWith(
           logout: state.logout.toSuccess(),
         ),
       );
+      reset();
     } on Fault catch (e) {
       emit(
         state.copyWith(

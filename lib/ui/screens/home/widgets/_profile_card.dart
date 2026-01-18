@@ -17,7 +17,7 @@ class _ProfileCard extends StatelessWidget {
             children: [
               AppAvatar(
                 showEditBadge: true,
-                onEditTap: () {},
+                onEditTap: () => AppRoutes.editProfile.pushReplace(context),
               ).withScaleAnimation(),
               Space.x.t12,
               Expanded(

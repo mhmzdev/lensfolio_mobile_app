@@ -7,8 +7,8 @@ class _FormData {
     }
 
     return {
-      _FormKeys.email: 'john.doe@example.com',
-      _FormKeys.password: 'password123',
+      _FormKeys.email: 'john.doe@gmail.com',
+      _FormKeys.password: 'Password@123',
     };
   }
 }

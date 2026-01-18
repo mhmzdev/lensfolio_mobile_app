@@ -7,6 +7,9 @@ class _ContactCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final userData = context.userData!;
 
+    final contactDetails = userData.contactDetails;
+    if (contactDetails == null) return const SizedBox.shrink();
+
     return Container(
       padding: Space.a.t16,
       decoration: AppProps.softBoxDecoration,
@@ -17,40 +20,45 @@ class _ContactCard extends StatelessWidget {
             'Contact',
             style: AppText.h2b,
           ),
-          Space.y.t08,
-          Row(
-            children: [
-              Icon(
-                LucideIcons.phone,
-                size: SpaceToken.t16,
-              ),
-              Space.x.t08,
-              Text(userData.details!.phoneNumber),
-            ],
-          ),
-
-          Space.y.t08,
-          Row(
-            children: [
-              Icon(
-                LucideIcons.globe,
-                size: SpaceToken.t16,
-              ),
-              Space.x.t08,
-              Text(userData.website!),
-            ],
-          ),
-          Space.y.t08,
-          Row(
-            children: [
-              Icon(
-                LucideIcons.map_pin,
-                size: SpaceToken.t16,
-              ),
-              Space.x.t08,
-              Text(userData.details!.address),
-            ],
-          ),
+          if (userData.contactDetails!.phoneNumber.available) ...[
+            Space.y.t08,
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.phone,
+                  size: SpaceToken.t16,
+                ),
+                Space.x.t08,
+                Text(userData.contactDetails!.phoneNumber),
+              ],
+            ),
+          ],
+          if (userData.contactDetails!.address.available) ...[
+            Space.y.t08,
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.map_pin,
+                  size: SpaceToken.t16,
+                ),
+                Space.x.t08,
+                Text(userData.contactDetails!.address),
+              ],
+            ),
+          ],
+          if (userData.website.available) ...[
+            Space.y.t08,
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.globe,
+                  size: SpaceToken.t16,
+                ),
+                Space.x.t08,
+                Text(userData.website!),
+              ],
+            ),
+          ],
         ],
       ),
     );

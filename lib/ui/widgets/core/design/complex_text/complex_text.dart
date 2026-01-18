@@ -34,7 +34,6 @@ class ComplexText extends StatelessWidget {
       }
     }
     return RichText(
-      textAlign: TextAlign.center,
       text: TextSpan(
         style: TextStyle(
           color: AppTheme.c.text,

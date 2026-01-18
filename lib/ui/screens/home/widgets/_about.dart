@@ -6,6 +6,8 @@ class _AboutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userData = context.userData!;
+    final about = userData.about;
+    if (about == null) return const SizedBox.shrink();
 
     return Container(
       padding: Space.a.t16,

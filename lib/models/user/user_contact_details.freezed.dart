@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserContactDetails {
 
- String get phoneNumber; String get address;
+@JsonKey(name: 'phone_number') String get phoneNumber; String get address;
 /// Create a copy of UserContactDetails
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserContactDetailsCopyWith<$Res>  {
   factory $UserContactDetailsCopyWith(UserContactDetails value, $Res Function(UserContactDetails) _then) = _$UserContactDetailsCopyWithImpl;
 @useResult
 $Res call({
- String phoneNumber, String address
+@JsonKey(name: 'phone_number') String phoneNumber, String address
 });
 
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String phoneNumber,  String address)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'phone_number')  String phoneNumber,  String address)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserContactDetails() when $default != null:
 return $default(_that.phoneNumber,_that.address);case _:
@@ -172,7 +172,7 @@ return $default(_that.phoneNumber,_that.address);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String phoneNumber,  String address)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'phone_number')  String phoneNumber,  String address)  $default,) {final _that = this;
 switch (_that) {
 case _UserContactDetails():
 return $default(_that.phoneNumber,_that.address);}
@@ -189,7 +189,7 @@ return $default(_that.phoneNumber,_that.address);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String phoneNumber,  String address)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'phone_number')  String phoneNumber,  String address)?  $default,) {final _that = this;
 switch (_that) {
 case _UserContactDetails() when $default != null:
 return $default(_that.phoneNumber,_that.address);case _:
@@ -204,10 +204,10 @@ return $default(_that.phoneNumber,_that.address);case _:
 @JsonSerializable()
 
 class _UserContactDetails extends UserContactDetails {
-  const _UserContactDetails({required this.phoneNumber, required this.address}): super._();
+  const _UserContactDetails({@JsonKey(name: 'phone_number') required this.phoneNumber, required this.address}): super._();
   factory _UserContactDetails.fromJson(Map<String, dynamic> json) => _$UserContactDetailsFromJson(json);
 
-@override final  String phoneNumber;
+@override@JsonKey(name: 'phone_number') final  String phoneNumber;
 @override final  String address;
 
 /// Create a copy of UserContactDetails
@@ -243,7 +243,7 @@ abstract mixin class _$UserContactDetailsCopyWith<$Res> implements $UserContactD
   factory _$UserContactDetailsCopyWith(_UserContactDetails value, $Res Function(_UserContactDetails) _then) = __$UserContactDetailsCopyWithImpl;
 @override @useResult
 $Res call({
- String phoneNumber, String address
+@JsonKey(name: 'phone_number') String phoneNumber, String address
 });
 
 

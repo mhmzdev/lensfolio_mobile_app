@@ -8,12 +8,12 @@ part of 'user_contact_details.dart';
 
 _UserContactDetails _$UserContactDetailsFromJson(Map<String, dynamic> json) =>
     _UserContactDetails(
-      phoneNumber: json['phoneNumber'] as String,
+      phoneNumber: json['phone_number'] as String,
       address: json['address'] as String,
     );
 
 Map<String, dynamic> _$UserContactDetailsToJson(_UserContactDetails instance) =>
     <String, dynamic>{
-      'phoneNumber': instance.phoneNumber,
+      'phone_number': instance.phoneNumber,
       'address': instance.address,
     };

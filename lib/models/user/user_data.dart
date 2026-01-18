@@ -12,20 +12,29 @@ sealed class UserData with _$UserData {
   const UserData._();
 
   factory UserData({
+    /// 'id' is the user's id in the database. We'll use this
+    /// to do operations related to the user's data.
     required int id,
-    required String fullName,
+
+    /// 'uuid' is the user's uuid created by SupebaseAuth.
+    /// We'll use this to do operations related to the user's
+    /// account.
+    ///
+    /// String uuid, // THIS IS NOT IN USER_DATA but in USER from SupabaseAuth
+    ///
+    @JsonKey(name: 'full_name') required String fullName,
     required String email,
     String? designation,
-    String? cityState,
-    String? resumeUrl,
-    String? profilePicture,
+    @JsonKey(name: 'city_state') String? cityState,
+    @JsonKey(name: 'resume_url') String? resumeUrl,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
     String? about,
     String? website,
-    UserContactDetails? details,
+    @JsonKey(name: 'contact_details') UserContactDetails? contactDetails,
     @Default([]) List<String> skills,
-    @Default([]) List<UserTechStack> techStack,
-    @Default([]) List<String> preferredRoles,
-    required DateTime createdAt,
+    @JsonKey(name: 'tech_stack') @Default([]) List<UserTechStack> techStack,
+    @JsonKey(name: 'preferred_roles') @Default([]) List<String> preferredRoles,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, Object?> json) =>
@@ -43,7 +52,7 @@ sealed class UserData with _$UserData {
       skills.available ||
       techStack.available ||
       preferredRoles.available ||
-      details?.inComplete == true ||
+      contactDetails?.inComplete == true ||
       skills.available ||
       techStack.available ||
       preferredRoles.available;

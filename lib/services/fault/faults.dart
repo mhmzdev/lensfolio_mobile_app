@@ -1,12 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Represents the body and status code of a HTTP response that failed
 typedef HttpFailure = ({
   Map<String, dynamic>? data,
   int? status,
   String? message,
+});
+
+/// Represents Supabase Postgres error details
+typedef PostgresFailure = ({
+  String message,
+  String? code,
+  String? details,
+  String? hint,
 });
 
 /// [Fault] is a sealed class that represents a fault in the system.
@@ -134,6 +143,153 @@ final class FirebaseFault<T> extends Fault<T> {
   }
 }
 
+/// Represents a fault caused by Supabase Auth
+final class SupaAuthFault<T> extends Fault<T> {
+  final String errorMessage;
+  const SupaAuthFault(this.errorMessage, StackTrace stackTrace)
+    : super._internal(stackTrace);
+
+  factory SupaAuthFault.fromAuthApiException(
+    AuthApiException ex,
+    StackTrace stackTrace,
+  ) {
+    ex.message.appLog(level: AppLogLevel.error, tag: 'SupaAuthFault');
+
+    final code = ex.code;
+
+    return switch (code) {
+      // Email related
+      'email_exists' => SupaAuthFault(
+        'This email is already registered. Please sign in instead.',
+        stackTrace,
+      ),
+      'email_not_confirmed' => SupaAuthFault(
+        'Please verify your email address before signing in.',
+        stackTrace,
+      ),
+      'email_provider_disabled' => SupaAuthFault(
+        'Email sign up is currently disabled.',
+        stackTrace,
+      ),
+      'email_address_invalid' => SupaAuthFault(
+        'Please enter a valid email address.',
+        stackTrace,
+      ),
+      'email_address_not_authorized' => SupaAuthFault(
+        'This email address is not authorized for sign up.',
+        stackTrace,
+      ),
+
+      // Credentials & validation
+      'invalid_credentials' => SupaAuthFault(
+        'Invalid email or password. Please try again.',
+        stackTrace,
+      ),
+      'weak_password' => SupaAuthFault(
+        'Password is too weak. Use at least 8 characters with letters and numbers.',
+        stackTrace,
+      ),
+      'same_password' => SupaAuthFault(
+        'New password must be different from your current password.',
+        stackTrace,
+      ),
+      'validation_failed' => SupaAuthFault(
+        'Please check your input and try again.',
+        stackTrace,
+      ),
+
+      // User related
+      'user_not_found' => SupaAuthFault(
+        'No account found with this email.',
+        stackTrace,
+      ),
+      'user_already_exists' => SupaAuthFault(
+        'An account with this email already exists.',
+        stackTrace,
+      ),
+      'user_banned' => SupaAuthFault(
+        'Your account has been suspended. Please contact support.',
+        stackTrace,
+      ),
+      'signup_disabled' => SupaAuthFault(
+        'New account registration is currently disabled.',
+        stackTrace,
+      ),
+
+      // Session & auth
+      'session_expired' => SupaAuthFault(
+        'Your session has expired. Please sign in again.',
+        stackTrace,
+      ),
+      'session_not_found' => SupaAuthFault(
+        'Session not found. Please sign in again.',
+        stackTrace,
+      ),
+      'refresh_token_not_found' ||
+      'refresh_token_already_used' => SupaAuthFault(
+        'Your session is invalid. Please sign in again.',
+        stackTrace,
+      ),
+
+      // Rate limiting
+      'over_request_rate_limit' => SupaAuthFault(
+        'Too many requests. Please wait a moment and try again.',
+        stackTrace,
+      ),
+      'over_email_send_rate_limit' => SupaAuthFault(
+        'Too many emails sent. Please wait a few minutes.',
+        stackTrace,
+      ),
+
+      // Server errors
+      'unexpected_failure' => SupaAuthFault(
+        'Something went wrong. Please try again later.',
+        stackTrace,
+      ),
+      'request_timeout' => SupaAuthFault(
+        'Request timed out. Please check your connection.',
+        stackTrace,
+      ),
+      'conflict' => SupaAuthFault(
+        'Request conflict. Please try again.',
+        stackTrace,
+      ),
+
+      // Default fallback
+      _ => SupaAuthFault(
+        ex.message,
+        stackTrace,
+      ),
+    };
+  }
+}
+
+/// Represents a fault caused by Supabase Postgres operations
+final class SupaPostgresFault<T> extends Fault<T> {
+  final PostgresFailure failure;
+  const SupaPostgresFault(this.failure, StackTrace stackTrace)
+    : super._internal(stackTrace);
+
+  factory SupaPostgresFault.fromPostgrestException(
+    PostgrestException ex,
+    StackTrace stackTrace,
+  ) {
+    final failure = (
+      message: ex.message,
+      code: ex.code,
+      details: ex.details?.toString() ?? 'UNKNOWN-ERROR',
+      hint: ex.hint?.toString() ?? 'UNKNOWN-ERROR',
+    );
+
+    failure.appLog(level: AppLogLevel.error, tag: 'SupaPostgresFault');
+
+    return SupaPostgresFault(failure, stackTrace);
+  }
+
+  /// Returns the user-facing error message (details or fallback to message).
+  String get errorMessage => failure.details ?? failure.message;
+}
+
 /// Represents a fault caused by an exception
 final class ExceptionFault<T> extends Fault<T> {
   final Exception exception;
@@ -179,6 +335,8 @@ extension FaultExtension on Fault {
     final FirebaseFault firebaseFault => firebaseFault.errorMessage.splitError,
     final NetworkFault networkFault => networkFault.text.splitError,
     final HttpFault httpFault => httpFault.body.message.toString(),
+    final SupaAuthFault supaAuthFault => supaAuthFault.errorMessage.splitError,
+    final SupaPostgresFault supaPostgresFault => supaPostgresFault.errorMessage,
   };
 }
 

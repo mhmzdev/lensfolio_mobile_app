@@ -1,7 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
-import 'package:supercharged/supercharged.dart';
+import 'package:lensfolio_mobile_app/services/supabase/supabase.dart';
+import 'package:lensfolio_mobile_app/services/supabase/tables.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'user_mocks.dart';
 part 'user_parser.dart';
@@ -18,10 +19,11 @@ class UserRepo {
   Future<UserData> udpate(Map<String, dynamic> values) =>
       _UserProvider.udpate(values);
 
-  Future<UserData> fetch(int id) => _UserProvider.fetch(id);
+  Future<UserData> fetch(String email) => _UserProvider.fetch(email);
 
-  Future<UserData> register() => _UserProvider.register();
+  Future<AuthResponse> register(Map<String, dynamic> values) =>
+      _UserProvider.register(values);
 
-  Future<UserData> login(Map<String, dynamic> values) =>
+  Future<AuthResponse> login(Map<String, dynamic> values) =>
       _UserProvider.login(values);
 }

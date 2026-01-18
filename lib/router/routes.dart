@@ -1,4 +1,5 @@
 abstract class AppRoutes {
+  static const editProfile = '/edit-profile';
   static const letters = '/letters';
   static const projects = '/projects';
   static const jobs = '/jobs';

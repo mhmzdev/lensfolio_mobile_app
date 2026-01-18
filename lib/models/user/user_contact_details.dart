@@ -9,7 +9,7 @@ sealed class UserContactDetails with _$UserContactDetails {
   const UserContactDetails._();
 
   const factory UserContactDetails({
-    required String phoneNumber,
+    @JsonKey(name: 'phone_number') required String phoneNumber,
     required String address,
   }) = _UserContactDetails;
 

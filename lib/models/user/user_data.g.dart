@@ -8,46 +8,48 @@ part of 'user_data.dart';
 
 _UserData _$UserDataFromJson(Map<String, dynamic> json) => _UserData(
   id: (json['id'] as num).toInt(),
-  fullName: json['fullName'] as String,
+  fullName: json['full_name'] as String,
   email: json['email'] as String,
   designation: json['designation'] as String?,
-  cityState: json['cityState'] as String?,
-  resumeUrl: json['resumeUrl'] as String?,
-  profilePicture: json['profilePicture'] as String?,
+  cityState: json['city_state'] as String?,
+  resumeUrl: json['resume_url'] as String?,
+  profilePicture: json['profile_picture'] as String?,
   about: json['about'] as String?,
   website: json['website'] as String?,
-  details: json['details'] == null
+  contactDetails: json['contact_details'] == null
       ? null
-      : UserContactDetails.fromJson(json['details'] as Map<String, dynamic>),
+      : UserContactDetails.fromJson(
+          json['contact_details'] as Map<String, dynamic>,
+        ),
   skills:
       (json['skills'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
   techStack:
-      (json['techStack'] as List<dynamic>?)
+      (json['tech_stack'] as List<dynamic>?)
           ?.map((e) => UserTechStack.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
   preferredRoles:
-      (json['preferredRoles'] as List<dynamic>?)
+      (json['preferred_roles'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList() ??
       const [],
-  createdAt: DateTime.parse(json['createdAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
 );
 
 Map<String, dynamic> _$UserDataToJson(_UserData instance) => <String, dynamic>{
   'id': instance.id,
-  'fullName': instance.fullName,
+  'full_name': instance.fullName,
   'email': instance.email,
   'designation': instance.designation,
-  'cityState': instance.cityState,
-  'resumeUrl': instance.resumeUrl,
-  'profilePicture': instance.profilePicture,
+  'city_state': instance.cityState,
+  'resume_url': instance.resumeUrl,
+  'profile_picture': instance.profilePicture,
   'about': instance.about,
   'website': instance.website,
-  'details': instance.details?.toJson(),
+  'contact_details': instance.contactDetails?.toJson(),
   'skills': instance.skills,
-  'techStack': instance.techStack.map((e) => e.toJson()).toList(),
-  'preferredRoles': instance.preferredRoles,
-  'createdAt': instance.createdAt.toIso8601String(),
+  'tech_stack': instance.techStack.map((e) => e.toJson()).toList(),
+  'preferred_roles': instance.preferredRoles,
+  'created_at': instance.createdAt.toIso8601String(),
 };
