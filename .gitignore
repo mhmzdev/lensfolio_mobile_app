@@ -50,6 +50,7 @@ prompts/
 logs/
 .cursor/
 .vscode/
+.firebase/
 
 # secrets
 creds.json

@@ -176,21 +176,33 @@ flavorizr:
         name: 'Lens-Stage'
       android:
         applicationId: 'dev.mhmz.lensfolio.stage'
+        firebase:
+          config: '.firebase/stage/google-services.json'
       ios:
         bundleId: 'dev.mhmz.lensfolio.stage'
+        firebase:
+          config: '.firebase/stage/GoogleService-Info.plist'
 
     qa:
       app:
         name: 'Lens-QA'
       android:
         applicationId: 'dev.mhmz.lensfolio.qa'
+        firebase:
+          config: '.firebase/qa/google-services.json'
       ios:
         bundleId: 'dev.mhmz.lensfolio.qa'
+        firebase:
+          config: '.firebase/qa/GoogleService-Info.plist'
 
     prod:
       app:
         name: 'Lensfolio'
       android:
         applicationId: 'dev.mhmz.lensfolio'
+        firebase:
+          config: '.firebase/prod/google-services.json'
       ios:
         bundleId: 'dev.mhmz.lensfolio'
+        firebase:
+          config: '.firebase/prod/GoogleService-Info.plist'
