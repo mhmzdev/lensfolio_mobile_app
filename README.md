@@ -1,4 +1,4 @@
-# Lensfolio Mobile App
+# Lensfolio Mobile App - In Progress at [flutterkaro](https://flutterkaro.mhmz.dev)
 
 A Flutter mobile application built with clean architecture, layer-first structure, and best practices.
 
@@ -13,79 +13,12 @@ A Flutter mobile application built with clean architecture, layer-first structur
 
 ---
 
-## 🗂️ Project Structure
+## 👀 Look'n Feel
+This is a little glimpse of Lensfolio:
 
-This project uses a **layer-first architecture** where code is organized by technical layer rather than by feature:
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062434-1794ef64-6af8-4261-b68f-a645ef39efea.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065005Z&X-Amz-Expires=300&X-Amz-Signature=33ad101832b23835e23c13d7b8475d10611465ba79e62bf9d67719293bb8a2ec&X-Amz-SignedHeaders=host" height="580"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062561-0035b2da-d998-40ab-9d8b-bc7aa808f729.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065214Z&X-Amz-Expires=300&X-Amz-Signature=912ff6b66e24e5e7fcfecd05634fbe73ffdf58944800660adbc902d92a12adc3&X-Amz-SignedHeaders=host" height="580"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062560-7c416971-cf53-4d98-9f33-b41f7c9b1866.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065237Z&X-Amz-Expires=300&X-Amz-Signature=0f2d536b52fb42a60d4e3367809a7525dc732e2c06118db3cb502629577fb3e6&X-Amz-SignedHeaders=host" height="580"> 
 
-```
-lib/
-├── blocs/                # All Cubits (state management)
-│   ├── user/
-│   │   ├── cubit.dart
-│   │   └── state.dart
-│   └── jobs/
-│       ├── cubit.dart
-│       └── state.dart
-│
-├── repos/                # All Repositories (data layer)
-│   ├── user/
-│   │   ├── user_repo.dart
-│   │   ├── user_data_provider.dart
-│   │   ├── user_mocks.dart
-│   │   └── user_parser.dart
-│   └── jobs/
-│       └── ...
-│
-├── models/               # All Data Models
-│   ├── user/
-│   │   ├── user_data.dart
-│   │   ├── user_data.freezed.dart
-│   │   └── user_data.g.dart
-│   └── job/
-│       └── ...
-│
-├── ui/                   # All UI (screens and widgets)
-│   ├── screens/
-│   │   ├── splash/
-│   │   │   ├── splash.dart
-│   │   │   └── _state.dart
-│   │   ├── login/
-│   │   │   ├── login.dart
-│   │   │   ├── _state.dart
-│   │   │   └── widgets/
-│   │   │       └── ...
-│   │   └── home/
-│   │       └── ...
-│   └── widgets/          # Shared widgets across the app
-│       ├── buttons/
-│       ├── cards/
-│       └── ...
-│
-├── services/             # App-wide services (Singleton pattern)
-│   ├── app_log.dart
-│   ├── fault/
-│   ├── firebase/
-│   ├── flavor/
-│   └── route_logger/
-│
-├── configs/              # Configuration files
-│   ├── theme/
-│   ├── extension/
-│   ├── bloc/
-│   ├── space/
-│   └── ui/
-│
-├── providers/            # Global providers
-│   └── app.dart
-│
-├── router/               # Navigation
-│   ├── router.dart
-│   └── routes.dart
-│
-├── helpers/              # Helper functions and utilities
-│
-└── main.dart
-```
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062562-1827abec-3419-4cb4-8639-fb1d3a4db4ad.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065258Z&X-Amz-Expires=300&X-Amz-Signature=d62a5cf4893cb2ba142f9c12d2e8bcde6f72e3c16f3092676c0d0423586848fb&X-Amz-SignedHeaders=host" height="580"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062563-e3027ec0-1c0d-4d15-878f-8a0850941198.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065326Z&X-Amz-Expires=300&X-Amz-Signature=5374e8d34096501de78e7a22535f2991030a2a90abe992ddfb5aece31531072e&X-Amz-SignedHeaders=host" height="580">
 
 ## 🚀 Getting Started
 
@@ -143,160 +76,6 @@ For detailed architecture documentation, see [Architecture.md](Architecture.md)
 
 ---
 
-## 🎯 State Management
-
-### Two-Layer State Management
-
-This project uses a hybrid approach:
-- **Cubit** for app-level state and business logic
-- **Provider** for ephemeral UI state
-
-### Cubit (App Layer - Business Logic)
-
-**Used for**: App-level state and business logic
-
-- Located in `lib/blocs/{cubit_name}/`
-- All external dependencies, API calls, and business logic
-- Uses Cubit pattern with direct method calls (no events)
-- **Inline state emissions** (no separate emitter methods)
-- Service locator pattern: `Cubit.c(context)` for easy access
-
-**Structure:**
-```
-lib/blocs/user/
-├── cubit.dart           # User cubit with inline emissions
-└── state.dart           # User state (for nested cubits)
-```
-
-**Example - Nested Cubit:**
-```dart
-// lib/blocs/user/cubit.dart
-class UserCubit extends Cubit<UserState> {
-  static UserCubit c(BuildContext context, [bool listen = false]) =>
-      BlocProvider.of<UserCubit>(context, listen: listen);
-
-  UserCubit() : super(UserState.def());
-
-  Future<void> login() async {
-    emit(
-      state.copyWith(
-        login: state.login.toLoading(),
-      ),
-    );
-    try {
-      final data = await UserRepo.ins.login();
-      emit(
-        state.copyWith(
-          login: state.login.toSuccess(data: data),
-        ),
-      );
-    } on Fault catch (e) {
-      emit(
-        state.copyWith(
-          login: state.login.toFailed(fault: e),
-        ),
-      );
-    }
-  }
-
-  void reset() => emit(UserState.def());
-}
-```
-
-**BlocState Shorthands:**
-```dart
-state.toLoading()              // Loading state
-state.toSuccess(data: data)    // Success with data
-state.toFailed(fault: e)       // Failed with fault
-state.toInit({meta})           // Initialization state
-state.toPreparing({meta})      // Preparing state
-state.toCancelled()            // Cancelled state
-```
-
-**Usage in UI:**
-```dart
-// Call cubit methods (read)
-UserCubit.c(context).login();
-
-// Watch cubit state (reactive)
-final state = UserCubit.c(context, true).state;
-
-// BlocBuilder
-BlocBuilder<UserCubit, UserState>(
-  builder: (context, state) {
-    return state.login.when(
-      loading: () => CircularProgressIndicator(),
-      success: () => Text('Logged in!'),
-      failed: () => ErrorView(fault: state.login.fault),
-    );
-  },
-)
-```
-
-### Provider (UI Layer - Ephemeral State)
-
-**Used for**: Ephemeral (screen-specific) state
-
-- Located in `lib/ui/screens/{screen_name}/_state.dart`
-- Screen-level state management only
-- Extends `ChangeNotifier`
-- **Do not** use for business logic, API calls, or Firebase
-- Use Provider to **invoke Cubits** for data operations
-
-**Example:**
-```dart
-// lib/ui/screens/login/_state.dart
-class _LoginState extends ChangeNotifier {
-  bool _isPasswordVisible = false;
-  
-  bool get isPasswordVisible => _isPasswordVisible;
-  
-  void togglePasswordVisibility() {
-    _isPasswordVisible = !_isPasswordVisible;
-    notifyListeners();
-  }
-  
-  // Invoke cubit for business logic
-  void login(BuildContext context) {
-    UserCubit.c(context).login();
-  }
-}
-```
-
-**Usage in Screen:**
-```dart
-class Login extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => _LoginState(),
-      child: Consumer<_LoginState>(
-        builder: (context, state, _) {
-          return TextField(
-            obscureText: !state.isPasswordVisible,
-            // ...
-          );
-        },
-      ),
-    );
-  }
-}
-```
-
-### When to Use What?
-
-| Use Case | Use | Example |
-|----------|-----|---------|
-| API calls | **Cubit** | Fetch user data |
-| Firebase operations | **Cubit** | Upload to Firestore |
-| App-wide state | **Cubit** | User authentication |
-| Business logic | **Cubit** | Data transformation |
-| Screen visibility toggle | **Provider** | Show/hide password |
-| Form field state | **Provider** | Text field focus |
-| Local UI animation | **Provider** | Expand/collapse panel |
-
----
-
 ## ⚡ Code Generation
 
 This project uses **Hygen** for boilerplate code generation. Templates are located in `_templates/`.
@@ -309,110 +88,29 @@ For comprehensive guides, see:
 - [Cubit Update Template](_templates/cubit/update/README.md) - Update existing cubits with new operations
 - [Screen Template](_templates/screen/README.md) - Screen generation guide
 
-### Available Templates
-
-#### 1. Cubit Nested (Complex State)
-
-Creates a cubit with nested states for multiple operations.
-
-```bash
-hygen cubit nested <cubit_name>
-```
-
-**What Gets Generated:**
-- Cubit in `lib/blocs/{cubit_name}/`
-  - `cubit.dart` - Main cubit with inline emissions
-  - `state.dart` - State class for nested operations
-- Repository in `lib/repos/{cubit_name}/`
-  - `{cubit_name}_repo.dart` - Main repository class
-  - `{cubit_name}_data_provider.dart` - API/Firebase calls
-  - `{cubit_name}_mocks.dart` - Mock data
-  - `{cubit_name}_parser.dart` - Data parsing
-- Auto-imports and initializes in `lib/app.dart`
-
-
-#### 2. Cubit Simple (Simple State)
-
-Creates a lightweight cubit for simple operations.
-
-```bash
-hygen cubit simple <cubit_name>
-```
-
-**What Gets Generated:**
-- Simple cubit in `lib/blocs/{cubit_name}/cubit.dart`
-- Repository in `lib/repos/{cubit_name}/`
-- Auto-imports and initializes in `lib/app.dart`
-
-
-#### 3. Cubit Update
-
-Updates an existing cubit with new operations.
-
-```bash
-hygen cubit update <existing_cubit_name>
-```
-
-**What It Does:**
-- Adds new operations to existing cubit
-- Updates state class
-- Updates repository
-- Adds new methods to parser and mocks
-
-
-#### 4. Screen Generator
-
-Generates new screens with state management.
-
-```bash
-hygen screen new <screen_name>
-```
-
-**What Gets Generated:**
-- Screen file: `lib/ui/screens/{screen_name}/{screen_name}.dart`
-- State file: `lib/ui/screens/{screen_name}/_state.dart`
-- Optional widgets folder
-
-**Example:**
-```bash
-hygen screen new profile
-```
-
-#### 5. Provider Generator
-
-Generates new providers.
-
-```bash
-hygen provider new <provider_name>
-```
-
-**What Gets Generated:**
-- Provider file in `lib/providers/{provider_name}.dart`
-
-### Code Generation Best Practices
-
-1. **Always use Hygen** for creating cubits, screens, and providers
-2. **Follow naming conventions**: lowercase_with_underscores
-3. **Use nested cubit** for complex state with multiple operations
-4. **Use simple cubit** for basic fetch/reset operations
-5. **Check `lib/app.dart`** after generation to ensure proper injection
-
-### Freezed Code Generation
-
-For models, run build_runner:
-
-```bash
-# One-time generation
-flutter pub run build_runner build --delete-conflicting-outputs
-
-# Watch mode (during development)
-flutter pub run build_runner watch --delete-conflicting-outputs
-```
-
 ---
 
 ## 🤝 Contributing
 
 For development workflow, coding conventions, and contribution guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
 
----
+## ⭐️ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mhmzdev/lensfolio_mobile_app&type=Date)](https://www.star-history.com/#mhmzdev/lensfolio_mobile_app&Date)
+
+## 🔑 License
+- This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details
+
+## 🧑 Author
+
+#### Muhammad Hamza
+[![LinkedIn Link](https://img.shields.io/badge/Connect-Hamza-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
+)](https://www.linkedin.com/in/mhmzdev)
+
+You can also follow my GitHub Profile to stay updated about my latest projects:
+
+[![GitHub Follow](https://img.shields.io/badge/Connect-Hamza-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/m-hamzashakeel)
+
+If you liked the repo then kindly support it by giving it a star ⭐!
+
+Copyright (c) 2026 MUHAMMAD HAMZA
