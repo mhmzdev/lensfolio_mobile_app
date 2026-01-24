@@ -12,6 +12,7 @@ _CoverLetter _$CoverLetterFromJson(Map<String, dynamic> json) => _CoverLetter(
   companyName: json['company_name'] as String,
   position: json['position'] as String,
   jobDescription: json['job_description'] as String?,
+  letterBody: json['letter_body'] as String,
   createdAt: DateTime.parse(json['created_at'] as String),
   updatedAt: DateTime.parse(json['updated_at'] as String),
 );
@@ -23,6 +24,7 @@ Map<String, dynamic> _$CoverLetterToJson(_CoverLetter instance) =>
       'company_name': instance.companyName,
       'position': instance.position,
       'job_description': instance.jobDescription,
+      'letter_body': instance.letterBody,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
     };

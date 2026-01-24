@@ -11,6 +11,7 @@ sealed class CoverLetter with _$CoverLetter {
     @JsonKey(name: 'company_name') required String companyName,
     @JsonKey(name: 'position') required String position,
     @JsonKey(name: 'job_description') String? jobDescription,
+    @JsonKey(name: 'letter_body') required String letterBody,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
   }) = _CoverLetter;
