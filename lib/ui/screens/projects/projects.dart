@@ -92,19 +92,9 @@ class _BodyState extends State<_Body> {
                     // Header
                     Padding(
                       padding: Space.a.t16,
-                      child: Row(
-                        children: [
-                          Text(
-                            'My Projects',
-                            style: AppText.h1b,
-                          ),
-                          const Spacer(),
-                          if (projects != null)
-                            Text(
-                              '${projects.length} projects',
-                              style: AppText.b2 + AppTheme.c.subText,
-                            ),
-                        ],
+                      child: Text(
+                        'My Projects',
+                        style: AppText.h1b,
                       ),
                     ),
                     Space.y.t08,
