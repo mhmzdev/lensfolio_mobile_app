@@ -65,8 +65,8 @@ class ProjectsCubit extends Cubit<ProjectsState> {
 
   Future<void> fetchAll(int uid) async {
     'Fetch all projects function was called'.appLog(
+      level: .info,
       tag: 'PROJECTS_CUBIT: fetchAll()',
-      toCrashlytics: true,
     );
     emit(
       state.copyWith(
@@ -76,8 +76,8 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     try {
       final data = await ProjectsRepo.ins.fetchAll(uid);
       'Projects fetched successfully'.appLog(
+        level: .info,
         tag: 'PROJECTS_CUBIT: fetchAll()',
-        toCrashlytics: true,
       );
       emit(
         state.copyWith(
@@ -118,8 +118,8 @@ class ProjectsCubit extends Cubit<ProjectsState> {
 
   Future<void> create(int uid, Map<String, dynamic> payload) async {
     'Create project function was called'.appLog(
+      level: .info,
       tag: 'PROJECTS_CUBIT: create()',
-      toCrashlytics: true,
     );
     emit(
       state.copyWith(
@@ -129,8 +129,8 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     try {
       final data = await ProjectsRepo.ins.create(uid, payload);
       'Project created successfully'.appLog(
+        level: .info,
         tag: 'PROJECTS_CUBIT: create()',
-        toCrashlytics: true,
       );
       emit(
         state.copyWith(

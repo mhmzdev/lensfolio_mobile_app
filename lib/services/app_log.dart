@@ -26,6 +26,7 @@ extension LogExtension on Object {
     bool toCrashlytics = false,
   }) {
     final now = DateTime.now().toIso8601String();
+    toCrashlytics = toCrashlytics || level != AppLogLevel.debug;
 
     final color = (enableColors && _supportsAnsiColors) ? level.colorCode : '';
     final reset = (enableColors && _supportsAnsiColors) ? '\x1B[0m' : '';

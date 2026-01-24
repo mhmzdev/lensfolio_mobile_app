@@ -40,6 +40,7 @@ dependencies:
   firebase_performance: 0.11.1+2
   firebase_crashlytics: 5.0.5
   firebase_remote_config: 6.1.1
+  firebase_ai: 3.6.0
 
   # backend
   supabase_flutter: 2.12.0

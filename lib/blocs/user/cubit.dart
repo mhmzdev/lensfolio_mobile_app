@@ -78,7 +78,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> init() async {
     'Init function was called'.appLog(
       tag: 'USER_CUBIT: init()',
-      toCrashlytics: true,
+      level: .info,
     );
     emit(
       state.copyWith(
@@ -90,7 +90,7 @@ class UserCubit extends Cubit<UserState> {
       if (cachedUser != null) {
         'User is cached'.appLog(
           tag: 'USER_CUBIT: init()',
-          toCrashlytics: true,
+          level: .info,
         );
         final data = await UserRepo.ins.fetch(cachedUser.email)
           ..toCache();
@@ -103,7 +103,7 @@ class UserCubit extends Cubit<UserState> {
       } else {
         'User is not cached'.appLog(
           tag: 'USER_CUBIT: init()',
-          toCrashlytics: true,
+          level: .info,
         );
         emit(
           state.copyWith(
@@ -124,7 +124,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> register(Map<String, dynamic> values) async {
     'Register function was called'.appLog(
       tag: 'USER_CUBIT: register()',
-      toCrashlytics: true,
+      level: .info,
     );
     emit(
       state.copyWith(
@@ -139,7 +139,7 @@ class UserCubit extends Cubit<UserState> {
 
       'User registered successfully'.appLog(
         tag: 'USER_CUBIT: register()',
-        toCrashlytics: true,
+        level: .info,
       );
 
       emit(
@@ -162,7 +162,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> login(Map<String, dynamic> values) async {
     'Login function was called'.appLog(
       tag: 'USER_CUBIT: login()',
-      toCrashlytics: true,
+      level: .info,
     );
     emit(
       state.copyWith(
@@ -178,7 +178,7 @@ class UserCubit extends Cubit<UserState> {
 
       'User logged in successfully'.appLog(
         tag: 'USER_CUBIT: login()',
-        toCrashlytics: true,
+        level: .info,
       );
 
       emit(
@@ -224,7 +224,7 @@ class UserCubit extends Cubit<UserState> {
 
       'User logged out successfully'.appLog(
         tag: 'USER_CUBIT: logout()',
-        toCrashlytics: true,
+        level: .info,
       );
 
       emit(

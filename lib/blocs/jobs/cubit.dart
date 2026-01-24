@@ -25,8 +25,8 @@ class JobsCubit extends Cubit<JobsState> {
     int? limit,
   }) async {
     'Fetch function was called'.appLog(
+      level: .info,
       tag: 'JOBS_CUBIT: fetch()',
-      toCrashlytics: true,
     );
     emit(
       state.copyWith(
@@ -36,8 +36,8 @@ class JobsCubit extends Cubit<JobsState> {
     try {
       final data = await JobsRepo.ins.fetch(search, category, limit);
       'Jobs fetched successfully'.appLog(
+        level: .info,
         tag: 'JOBS_CUBIT: fetch()',
-        toCrashlytics: true,
       );
       emit(
         state.copyWith(
