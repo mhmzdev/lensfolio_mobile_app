@@ -2,17 +2,6 @@
 
 A Flutter mobile application built with clean architecture, layer-first structure, and best practices.
 
-## 📋 Table of Contents
-
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Architecture](#architecture)
-- [State Management](#state-management)
-- [Code Generation](#code-generation)
-- [Contributing](#contributing)
-
----
-
 ## 👀 Look'n Feel
 This is a little glimpse of Lensfolio:
 
