@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CoverLetter {
 
- int get id; int get uid;@JsonKey(name: 'company_name') String get companyName;@JsonKey(name: 'position') String get position;@JsonKey(name: 'job_description') String? get jobDescription;@JsonKey(name: 'letter_body') String get letterBody;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;
+ int get id; int get uid;@JsonKey(name: 'company_name') String get companyName;@JsonKey(name: 'position') String get position;@JsonKey(name: 'job_description') String? get jobDescription;@JsonKey(name: 'letter_body') String? get letterBody;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime? get updatedAt;
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $CoverLetterCopyWith<$Res>  {
   factory $CoverLetterCopyWith(CoverLetter value, $Res Function(CoverLetter) _then) = _$CoverLetterCopyWithImpl;
 @useResult
 $Res call({
- int id, int uid,@JsonKey(name: 'company_name') String companyName,@JsonKey(name: 'position') String position,@JsonKey(name: 'job_description') String? jobDescription,@JsonKey(name: 'letter_body') String letterBody,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt
+ int id, int uid,@JsonKey(name: 'company_name') String companyName,@JsonKey(name: 'position') String position,@JsonKey(name: 'job_description') String? jobDescription,@JsonKey(name: 'letter_body') String? letterBody,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
 });
 
 
@@ -65,17 +65,17 @@ class _$CoverLetterCopyWithImpl<$Res>
 
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? uid = null,Object? companyName = null,Object? position = null,Object? jobDescription = freezed,Object? letterBody = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? uid = null,Object? companyName = null,Object? position = null,Object? jobDescription = freezed,Object? letterBody = freezed,Object? createdAt = null,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
 as int,companyName: null == companyName ? _self.companyName : companyName // ignore: cast_nullable_to_non_nullable
 as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as String,jobDescription: freezed == jobDescription ? _self.jobDescription : jobDescription // ignore: cast_nullable_to_non_nullable
-as String?,letterBody: null == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as String?,letterBody: freezed == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String? letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CoverLetter() when $default != null:
 return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDescription,_that.letterBody,_that.createdAt,_that.updatedAt);case _:
@@ -178,7 +178,7 @@ return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDes
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String? letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _CoverLetter():
 return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDescription,_that.letterBody,_that.createdAt,_that.updatedAt);}
@@ -195,7 +195,7 @@ return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDes
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String? letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _CoverLetter() when $default != null:
 return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDescription,_that.letterBody,_that.createdAt,_that.updatedAt);case _:
@@ -209,8 +209,8 @@ return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDes
 /// @nodoc
 @JsonSerializable()
 
-class _CoverLetter implements CoverLetter {
-  const _CoverLetter({required this.id, required this.uid, @JsonKey(name: 'company_name') required this.companyName, @JsonKey(name: 'position') required this.position, @JsonKey(name: 'job_description') this.jobDescription, @JsonKey(name: 'letter_body') required this.letterBody, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt});
+class _CoverLetter extends CoverLetter {
+   _CoverLetter({required this.id, required this.uid, @JsonKey(name: 'company_name') required this.companyName, @JsonKey(name: 'position') required this.position, @JsonKey(name: 'job_description') this.jobDescription, @JsonKey(name: 'letter_body') this.letterBody, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt}): super._();
   factory _CoverLetter.fromJson(Map<String, dynamic> json) => _$CoverLetterFromJson(json);
 
 @override final  int id;
@@ -218,9 +218,9 @@ class _CoverLetter implements CoverLetter {
 @override@JsonKey(name: 'company_name') final  String companyName;
 @override@JsonKey(name: 'position') final  String position;
 @override@JsonKey(name: 'job_description') final  String? jobDescription;
-@override@JsonKey(name: 'letter_body') final  String letterBody;
+@override@JsonKey(name: 'letter_body') final  String? letterBody;
 @override@JsonKey(name: 'created_at') final  DateTime createdAt;
-@override@JsonKey(name: 'updated_at') final  DateTime updatedAt;
+@override@JsonKey(name: 'updated_at') final  DateTime? updatedAt;
 
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
@@ -255,7 +255,7 @@ abstract mixin class _$CoverLetterCopyWith<$Res> implements $CoverLetterCopyWith
   factory _$CoverLetterCopyWith(_CoverLetter value, $Res Function(_CoverLetter) _then) = __$CoverLetterCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int uid,@JsonKey(name: 'company_name') String companyName,@JsonKey(name: 'position') String position,@JsonKey(name: 'job_description') String? jobDescription,@JsonKey(name: 'letter_body') String letterBody,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt
+ int id, int uid,@JsonKey(name: 'company_name') String companyName,@JsonKey(name: 'position') String position,@JsonKey(name: 'job_description') String? jobDescription,@JsonKey(name: 'letter_body') String? letterBody,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
 });
 
 
@@ -272,17 +272,17 @@ class __$CoverLetterCopyWithImpl<$Res>
 
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? uid = null,Object? companyName = null,Object? position = null,Object? jobDescription = freezed,Object? letterBody = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? uid = null,Object? companyName = null,Object? position = null,Object? jobDescription = freezed,Object? letterBody = freezed,Object? createdAt = null,Object? updatedAt = freezed,}) {
   return _then(_CoverLetter(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
 as int,companyName: null == companyName ? _self.companyName : companyName // ignore: cast_nullable_to_non_nullable
 as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as String,jobDescription: freezed == jobDescription ? _self.jobDescription : jobDescription // ignore: cast_nullable_to_non_nullable
-as String?,letterBody: null == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as String?,letterBody: freezed == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 

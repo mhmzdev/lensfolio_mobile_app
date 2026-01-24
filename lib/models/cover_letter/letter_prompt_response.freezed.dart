@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LetterPromptResponse {
 
- String get prompt; String get response; String? get error;
+@JsonKey(name: 'letter_body') String? get letterBody; String? get error;
 /// Create a copy of LetterPromptResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $LetterPromptResponseCopyWith<LetterPromptResponse> get copyWith => _$LetterProm
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LetterPromptResponse&&(identical(other.prompt, prompt) || other.prompt == prompt)&&(identical(other.response, response) || other.response == response)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LetterPromptResponse&&(identical(other.letterBody, letterBody) || other.letterBody == letterBody)&&(identical(other.error, error) || other.error == error));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,prompt,response,error);
+int get hashCode => Object.hash(runtimeType,letterBody,error);
 
 @override
 String toString() {
-  return 'LetterPromptResponse(prompt: $prompt, response: $response, error: $error)';
+  return 'LetterPromptResponse(letterBody: $letterBody, error: $error)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $LetterPromptResponseCopyWith<$Res>  {
   factory $LetterPromptResponseCopyWith(LetterPromptResponse value, $Res Function(LetterPromptResponse) _then) = _$LetterPromptResponseCopyWithImpl;
 @useResult
 $Res call({
- String prompt, String response, String? error
+@JsonKey(name: 'letter_body') String? letterBody, String? error
 });
 
 
@@ -65,11 +65,10 @@ class _$LetterPromptResponseCopyWithImpl<$Res>
 
 /// Create a copy of LetterPromptResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? prompt = null,Object? response = null,Object? error = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? letterBody = freezed,Object? error = freezed,}) {
   return _then(_self.copyWith(
-prompt: null == prompt ? _self.prompt : prompt // ignore: cast_nullable_to_non_nullable
-as String,response: null == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
-as String,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+letterBody: freezed == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
+as String?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -152,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String prompt,  String response,  String? error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'letter_body')  String? letterBody,  String? error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LetterPromptResponse() when $default != null:
-return $default(_that.prompt,_that.response,_that.error);case _:
+return $default(_that.letterBody,_that.error);case _:
   return orElse();
 
 }
@@ -173,10 +172,10 @@ return $default(_that.prompt,_that.response,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String prompt,  String response,  String? error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'letter_body')  String? letterBody,  String? error)  $default,) {final _that = this;
 switch (_that) {
 case _LetterPromptResponse():
-return $default(_that.prompt,_that.response,_that.error);}
+return $default(_that.letterBody,_that.error);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +189,10 @@ return $default(_that.prompt,_that.response,_that.error);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String prompt,  String response,  String? error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'letter_body')  String? letterBody,  String? error)?  $default,) {final _that = this;
 switch (_that) {
 case _LetterPromptResponse() when $default != null:
-return $default(_that.prompt,_that.response,_that.error);case _:
+return $default(_that.letterBody,_that.error);case _:
   return null;
 
 }
@@ -205,11 +204,10 @@ return $default(_that.prompt,_that.response,_that.error);case _:
 @JsonSerializable()
 
 class _LetterPromptResponse implements LetterPromptResponse {
-  const _LetterPromptResponse({required this.prompt, required this.response, this.error});
+  const _LetterPromptResponse({@JsonKey(name: 'letter_body') this.letterBody, this.error});
   factory _LetterPromptResponse.fromJson(Map<String, dynamic> json) => _$LetterPromptResponseFromJson(json);
 
-@override final  String prompt;
-@override final  String response;
+@override@JsonKey(name: 'letter_body') final  String? letterBody;
 @override final  String? error;
 
 /// Create a copy of LetterPromptResponse
@@ -225,16 +223,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LetterPromptResponse&&(identical(other.prompt, prompt) || other.prompt == prompt)&&(identical(other.response, response) || other.response == response)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LetterPromptResponse&&(identical(other.letterBody, letterBody) || other.letterBody == letterBody)&&(identical(other.error, error) || other.error == error));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,prompt,response,error);
+int get hashCode => Object.hash(runtimeType,letterBody,error);
 
 @override
 String toString() {
-  return 'LetterPromptResponse(prompt: $prompt, response: $response, error: $error)';
+  return 'LetterPromptResponse(letterBody: $letterBody, error: $error)';
 }
 
 
@@ -245,7 +243,7 @@ abstract mixin class _$LetterPromptResponseCopyWith<$Res> implements $LetterProm
   factory _$LetterPromptResponseCopyWith(_LetterPromptResponse value, $Res Function(_LetterPromptResponse) _then) = __$LetterPromptResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String prompt, String response, String? error
+@JsonKey(name: 'letter_body') String? letterBody, String? error
 });
 
 
@@ -262,11 +260,10 @@ class __$LetterPromptResponseCopyWithImpl<$Res>
 
 /// Create a copy of LetterPromptResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? prompt = null,Object? response = null,Object? error = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? letterBody = freezed,Object? error = freezed,}) {
   return _then(_LetterPromptResponse(
-prompt: null == prompt ? _self.prompt : prompt // ignore: cast_nullable_to_non_nullable
-as String,response: null == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
-as String,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+letterBody: freezed == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
+as String?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

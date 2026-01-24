@@ -6,8 +6,7 @@ part 'letter_prompt_response.g.dart';
 @freezed
 sealed class LetterPromptResponse with _$LetterPromptResponse {
   const factory LetterPromptResponse({
-    required String prompt,
-    required String response,
+    @JsonKey(name: 'letter_body') String? letterBody,
     String? error,
   }) = _LetterPromptResponse;
 
