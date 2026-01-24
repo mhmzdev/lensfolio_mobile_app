@@ -129,11 +129,28 @@ class _JobCard extends StatelessWidget {
           ],
           Space.y.t16,
           // Apply Button
-          AppButton(
-            icon: LucideIcons.external_link,
-            label: 'Apply Now',
-            mainAxisSize: .max,
-            onTap: () => LauncherHelper.url(job.url),
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: AppButton(
+                  style: .primaryBorder,
+                  icon: LucideIcons.sparkles,
+                  label: 'Generate Cover Letter',
+                  mainAxisSize: .max,
+                  onTap: () {},
+                ),
+              ),
+              Space.x.t08,
+              Expanded(
+                child: AppButton(
+                  icon: LucideIcons.external_link,
+                  label: 'Apply',
+                  mainAxisSize: .max,
+                  onTap: () => LauncherHelper.url(job.url),
+                ),
+              ),
+            ],
           ),
         ],
       ),

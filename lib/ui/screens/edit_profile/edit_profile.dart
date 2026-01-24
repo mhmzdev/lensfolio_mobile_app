@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/helpers/validators.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/design/complex_text/complex_text.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/scroll_column_expandable.dart';
@@ -56,7 +58,20 @@ class _Body extends StatelessWidget {
           padding: Space.a.t16,
           crossAxisAlignment: .stretch,
           children: [
-            Text('Edit Profile', style: AppText.h1b),
+            Row(
+              children: [
+                AppButton(
+                  style: .primaryBorder,
+                  size: .small,
+                  padding: Space.a.t08,
+                  icon: LucideIcons.arrow_left,
+                  onTap: () => ''.pop(context),
+                ),
+                Space.x.t08,
+                Text('Edit Profile', style: AppText.h1b),
+              ],
+            ),
+            Space.y.t12,
             ComplexText(
               string:
                   'Please ensure that you fill out all the fields below to mark your profile as {\'Completed\'}.',

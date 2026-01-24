@@ -81,6 +81,18 @@ class _BodyState extends State<_Body> {
             message: 'Refreshing projects...',
             bottom: bottomBarHeight + 16.sp(),
           ),
+        Positioned(
+          bottom: bottomBarHeight + 20.sp(),
+          right: SpaceToken.t16,
+          child: FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: AppTheme.c.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: 12.radius(),
+            ),
+            child: const Icon(LucideIcons.plus),
+          ),
+        ),
       ],
       child: SafeArea(
         child: SingleChildScrollView(

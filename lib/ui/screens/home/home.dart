@@ -82,7 +82,7 @@ class _BodyState extends State<_Body> {
                         style: .primaryBorder,
                         icon: LucideIcons.circle_alert,
                         label: 'Complete Profile',
-                        onTap: () {},
+                        onTap: () => AppRoutes.editProfile.push(context),
                       ),
                     ] else ...[
                       Row(
