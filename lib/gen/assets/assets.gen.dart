@@ -39,11 +39,13 @@ class Assets {
   const Assets._();
 
   static const $AssetsAppGen app = $AssetsAppGen();
+  static const String coverLetterSystemPrompt =
+      'assets/cover_letter_system_prompt.md';
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const String creds = 'creds.json';
 
   /// List of all assets
-  static List<String> get values => [creds];
+  static List<String> get values => [coverLetterSystemPrompt, creds];
 }
 
 class AssetGenImage {

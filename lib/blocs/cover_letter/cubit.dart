@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/cover_letter/cover_letter.dart';
+import 'package:lensfolio_mobile_app/models/cover_letter/letter_prompt_response.dart';
 import 'package:lensfolio_mobile_app/repos/cover_letter/cover_letter_repo.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 

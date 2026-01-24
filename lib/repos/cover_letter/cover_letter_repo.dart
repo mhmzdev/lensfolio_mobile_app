@@ -1,7 +1,18 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:firebase_ai/firebase_ai.dart';
+import 'package:flutter/services.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
 import 'package:lensfolio_mobile_app/models/cover_letter/cover_letter.dart';
+import 'package:lensfolio_mobile_app/models/cover_letter/letter_prompt_response.dart';
+import 'package:lensfolio_mobile_app/services/agent_tool.dart';
+import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
+import 'package:lensfolio_mobile_app/services/firebase/remote/remote_configs.dart';
 
 part 'cover_letter_mocks.dart';
 part 'cover_letter_parser.dart';
@@ -17,7 +28,7 @@ class CoverLetterRepo {
 
   Future<List<CoverLetter>> fetch(int uid) => _CoverLetterProvider.fetch(uid);
 
-  Future<CoverLetter> generate(Map<String, dynamic> payload) =>
+  Future<LetterPromptResponse> generate(Map<String, dynamic> payload) =>
       _CoverLetterProvider.generate(payload);
 
   Future<CoverLetter> edit(int id, Map<String, dynamic> payload) =>

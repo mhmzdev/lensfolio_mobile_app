@@ -4,7 +4,7 @@ part of 'cubit.dart';
 class CoverLetterState extends Equatable {
   // --- nested states --- //
   final BlocState<List<CoverLetter>> fetch;
-  final BlocState<CoverLetter> generate;
+  final BlocState<LetterPromptResponse> generate;
   final BlocState<CoverLetter> edit;
   final BlocState<void> delete;
 
@@ -29,7 +29,7 @@ class CoverLetterState extends Equatable {
 
   CoverLetterState copyWith({
     BlocState<List<CoverLetter>>? fetch,
-    BlocState<CoverLetter>? generate,
+    BlocState<LetterPromptResponse>? generate,
     BlocState<CoverLetter>? edit,
     BlocState<void>? delete,
     List<CoverLetter>? coverLetters,

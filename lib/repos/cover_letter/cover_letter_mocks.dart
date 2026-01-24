@@ -12,6 +12,8 @@ class _CoverLetterMocks {
       'position': 'Senior Software Engineer',
       'job_description':
           'We are looking for a Senior Software Engineer to join our team. You will work on developing scalable applications using modern technologies.',
+      'letter_body':
+          'Dear Hiring Manager,\n\nI am writing to express my strong interest in the Senior Software Engineer position at Google. With over 5 years of experience in developing scalable applications and a proven track record of delivering high-quality software solutions, I am excited about the opportunity to contribute to your innovative team.\n\nThroughout my career, I have specialized in building robust backend systems and microservices architectures. My experience with modern technologies including Kubernetes, Docker, and cloud platforms aligns perfectly with Google\'s cutting-edge development environment. I am particularly drawn to Google\'s commitment to pushing the boundaries of technology and solving complex problems at scale.\n\nI would welcome the opportunity to discuss how my technical expertise and passion for innovation can contribute to Google\'s continued success.\n\nThank you for considering my application.\n\nBest regards',
       'created_at': DateTime(2024, 1, 15).toIso8601String(),
       'updated_at': DateTime(2024, 1, 15).toIso8601String(),
     },
@@ -21,6 +23,8 @@ class _CoverLetterMocks {
       'company_name': 'Meta',
       'position': 'Frontend Developer',
       'job_description': null,
+      'letter_body':
+          'Dear Hiring Team,\n\nI am excited to apply for the Frontend Developer position at Meta. As a passionate frontend engineer with extensive experience in React, TypeScript, and modern web technologies, I am eager to contribute to building the next generation of social experiences.\n\nMy expertise includes creating responsive, accessible, and performant user interfaces that delight users. I have a strong understanding of frontend architecture patterns, state management, and optimization techniques that ensure exceptional user experiences across all devices.\n\nI admire Meta\'s mission to bring the world closer together through technology, and I would be thrilled to be part of the team making that vision a reality.\n\nThank you for your time and consideration.\n\nSincerely',
       'created_at': DateTime(2024, 1, 18).toIso8601String(),
       'updated_at': DateTime(2024, 1, 18).toIso8601String(),
     },
@@ -32,6 +36,8 @@ class _CoverLetterMocks {
       'position': 'Full Stack Developer',
       'job_description':
           'Join our team to build innovative e-commerce solutions. Experience with AWS and microservices is a plus.',
+      'letter_body':
+          'Dear Amazon Hiring Team,\n\nI am writing to apply for the Full Stack Developer position. With comprehensive experience in both frontend and backend development, combined with hands-on expertise in AWS services and microservices architecture, I am confident I can make significant contributions to Amazon\'s e-commerce innovations.\n\nMy background includes building scalable web applications, implementing RESTful APIs, and deploying cloud-native solutions on AWS. I have worked extensively with modern frameworks and have a deep understanding of database design, caching strategies, and system optimization.\n\nI am excited about the prospect of joining Amazon and contributing to the platform that millions of customers rely on daily.\n\nThank you for considering my application.\n\nBest regards',
       'created_at': DateTime(2024, 1, 20).toIso8601String(),
       'updated_at': DateTime(2024, 1, 20).toIso8601String(),
     },
@@ -41,6 +47,8 @@ class _CoverLetterMocks {
       'company_name': 'Microsoft',
       'position': 'Cloud Solutions Architect',
       'job_description': null,
+      'letter_body':
+          'Dear Microsoft Recruitment Team,\n\nI am thrilled to submit my application for the Cloud Solutions Architect position at Microsoft. With extensive experience in designing and implementing cloud infrastructure solutions, I am eager to help enterprises leverage the power of Azure to transform their businesses.\n\nMy expertise encompasses cloud architecture design, migration strategies, security best practices, and cost optimization. I have successfully led multiple cloud transformation projects, helping organizations modernize their infrastructure and improve operational efficiency.\n\nMicrosoft\'s leadership in cloud computing and commitment to innovation make this an ideal opportunity for me to apply my skills and continue growing as a cloud architect.\n\nI look forward to the opportunity to discuss how I can contribute to your team.\n\nSincerely',
       'created_at': DateTime(2024, 1, 22).toIso8601String(),
       'updated_at': DateTime(2024, 1, 22).toIso8601String(),
     },
@@ -52,6 +60,8 @@ class _CoverLetterMocks {
       'position': 'iOS Developer',
       'job_description':
           'Build exceptional user experiences for millions of users. Strong knowledge of Swift and UIKit required.',
+      'letter_body':
+          'Dear Apple Hiring Manager,\n\nI am excited to apply for the iOS Developer position at Apple. As a dedicated iOS developer with deep expertise in Swift, UIKit, and SwiftUI, I am passionate about crafting elegant user experiences that Apple is renowned for.\n\nMy experience includes developing performant, accessible iOS applications following Apple\'s Human Interface Guidelines. I have a strong understanding of iOS frameworks, design patterns like MVVM and Clean Architecture, and performance optimization techniques.\n\nApple\'s commitment to excellence and user privacy aligns perfectly with my values as a developer. I would be honored to contribute to products that touch millions of lives every day.\n\nThank you for considering my application.\n\nBest regards',
       'created_at': DateTime(2024, 1, 25).toIso8601String(),
       'updated_at': DateTime(2024, 1, 25).toIso8601String(),
     },
@@ -61,6 +71,8 @@ class _CoverLetterMocks {
       'company_name': 'Netflix',
       'position': 'Backend Engineer',
       'job_description': null,
+      'letter_body':
+          'Dear Netflix Engineering Team,\n\nI am writing to express my interest in the Backend Engineer position at Netflix. With strong experience in building distributed systems and streaming technologies, I am excited about the opportunity to work on the infrastructure that powers entertainment for millions globally.\n\nMy background includes developing high-performance backend services, implementing efficient data pipelines, and optimizing system reliability. I have experience with microservices architecture, message queues, and designing systems for scale and resilience.\n\nNetflix\'s engineering culture of freedom and responsibility, combined with the technical challenges of streaming at scale, makes this an ideal opportunity for me to contribute and grow.\n\nI look forward to discussing this opportunity further.\n\nSincerely',
       'created_at': DateTime(2024, 1, 28).toIso8601String(),
       'updated_at': DateTime(2024, 1, 28).toIso8601String(),
     },
@@ -71,6 +83,8 @@ class _CoverLetterMocks {
       'position': 'Mobile Developer',
       'job_description':
           'Create amazing music streaming experiences. Experience with Flutter or React Native preferred.',
+      'letter_body':
+          'Dear Spotify Team,\n\nI am thrilled to apply for the Mobile Developer position at Spotify. With extensive experience in Flutter development and a passion for music technology, I am eager to contribute to creating exceptional mobile experiences that connect millions of users with the music they love.\n\nMy expertise includes building cross-platform mobile applications, implementing real-time features, offline capabilities, and smooth animations. I have a strong understanding of mobile architecture patterns and performance optimization techniques essential for media streaming applications.\n\nSpotify\'s mission to unlock the potential of human creativity resonates deeply with me, and I would be honored to help shape the future of music streaming.\n\nThank you for your consideration.\n\nBest regards',
       'created_at': DateTime(2024, 1, 30).toIso8601String(),
       'updated_at': DateTime(2024, 1, 30).toIso8601String(),
     },
@@ -81,6 +95,8 @@ class _CoverLetterMocks {
       'company_name': 'Tesla',
       'position': 'Software Engineer',
       'job_description': null,
+      'letter_body':
+          'Dear Tesla Hiring Team,\n\nI am excited to apply for the Software Engineer position at Tesla. With a strong foundation in software development and a passion for sustainable technology, I am eager to contribute to Tesla\'s mission of accelerating the world\'s transition to sustainable energy.\n\nMy experience includes developing embedded systems, working with real-time data processing, and building robust software solutions. I thrive in fast-paced environments where innovation and technical excellence are paramount.\n\nTesla\'s groundbreaking work in electric vehicles and energy solutions represents the future I want to help build. I would be honored to bring my skills and dedication to your team.\n\nThank you for considering my application.\n\nBest regards',
       'created_at': DateTime(2024, 2, 1).toIso8601String(),
       'updated_at': DateTime(2024, 2, 1).toIso8601String(),
     },
@@ -91,6 +107,8 @@ class _CoverLetterMocks {
       'position': 'Product Engineer',
       'job_description':
           'Help build the future of travel. You will work on features that impact millions of hosts and guests worldwide.',
+      'letter_body':
+          'Dear Airbnb Team,\n\nI am writing to express my strong interest in the Product Engineer position at Airbnb. With experience in full-stack development and a user-centric approach to building products, I am excited about the opportunity to help shape the future of travel and create meaningful experiences for hosts and guests worldwide.\n\nMy background combines technical expertise with a deep understanding of user needs. I have worked on features from conception to launch, collaborating closely with designers and product managers to deliver solutions that delight users and drive business value.\n\nAirbnb\'s mission to create a world where anyone can belong anywhere deeply resonates with me, and I would be thrilled to contribute to that vision.\n\nThank you for your time and consideration.\n\nSincerely',
       'created_at': DateTime(2024, 2, 3).toIso8601String(),
       'updated_at': DateTime(2024, 2, 3).toIso8601String(),
     },
@@ -102,6 +120,8 @@ class _CoverLetterMocks {
       'position': 'Mobile Engineer',
       'job_description':
           'Build scalable mobile applications used by millions. Strong knowledge of mobile architecture patterns required.',
+      'letter_body':
+          'Dear Uber Engineering Team,\n\nI am excited to apply for the Mobile Engineer position at Uber. With extensive experience in building scalable mobile applications and a strong command of mobile architecture patterns, I am eager to contribute to the platform that connects millions of riders and drivers every day.\n\nMy expertise includes developing high-performance mobile apps, implementing clean architecture patterns, and ensuring exceptional user experiences across different devices and network conditions. I have worked on location-based features, real-time tracking, and optimizing apps for reliability and performance at scale.\n\nUber\'s impact on urban mobility and commitment to solving complex technical challenges makes this an ideal opportunity for me to apply my skills and grow as an engineer.\n\nThank you for considering my application.\n\nBest regards',
       'created_at': DateTime(2024, 2, 5).toIso8601String(),
       'updated_at': DateTime(2024, 2, 5).toIso8601String(),
     },
@@ -111,6 +131,8 @@ class _CoverLetterMocks {
       'company_name': 'Stripe',
       'position': 'Senior Backend Developer',
       'job_description': null,
+      'letter_body':
+          'Dear Stripe Team,\n\nI am writing to apply for the Senior Backend Developer position at Stripe. With deep expertise in building secure, scalable backend systems and a passion for financial technology, I am excited about the opportunity to work on the infrastructure that powers internet commerce.\n\nMy experience includes designing and implementing RESTful APIs, working with payment systems, ensuring data security and compliance, and building systems that handle high transaction volumes with reliability. I have a strong understanding of distributed systems, database optimization, and microservices architecture.\n\nStripe\'s mission to increase the GDP of the internet and commitment to developer experience aligns perfectly with my values and aspirations as an engineer.\n\nI look forward to the opportunity to discuss how I can contribute to your team.\n\nSincerely',
       'created_at': DateTime(2024, 2, 7).toIso8601String(),
       'updated_at': DateTime(2024, 2, 7).toIso8601String(),
     },
@@ -128,18 +150,45 @@ class _CoverLetterMocks {
 
   /// Generate a new cover letter
   static Future<Map<String, dynamic>> generate(Map<String, dynamic> payload) {
+    final companyName = payload['company_name'] as String;
+    final position = payload['position'] as String;
+    final jobDescription = payload['job_description'] as String?;
+
+    // Generate a basic letter body
+    final letterBody = _generateLetterBody(companyName, position, jobDescription);
+
     final newLetter = {
       'id': _nextId++,
       'uid': payload['uid'] as int,
-      'company_name': payload['company_name'] as String,
-      'position': payload['position'] as String,
-      'job_description': payload['job_description'] as String?,
+      'company_name': companyName,
+      'position': position,
+      'job_description': jobDescription,
+      'letter_body': letterBody,
       'created_at': DateTime.now().toIso8601String(),
       'updated_at': DateTime.now().toIso8601String(),
     };
 
     _mockLetters.add(newLetter);
     return Future.value(newLetter);
+  }
+
+  /// Generate a basic cover letter body
+  static String _generateLetterBody(
+    String companyName,
+    String position,
+    String? jobDescription,
+  ) {
+    final hasJobDescription = jobDescription != null && jobDescription.isNotEmpty;
+
+    return 'Dear $companyName Hiring Team,\n\n'
+        'I am writing to express my strong interest in the $position position at $companyName. '
+        '${hasJobDescription ? 'I was excited to learn about this opportunity and believe my skills and experience align well with the requirements. ' : ''}'
+        'With my background in software development and passion for creating innovative solutions, I am confident I can make valuable contributions to your team.\n\n'
+        'Throughout my career, I have developed strong technical skills and a proven track record of delivering high-quality results. '
+        'I am particularly drawn to $companyName\'s commitment to excellence and innovation in the industry.\n\n'
+        'I would welcome the opportunity to discuss how my experience and enthusiasm can contribute to $companyName\'s continued success.\n\n'
+        'Thank you for considering my application.\n\n'
+        'Best regards';
   }
 
   /// Edit an existing cover letter
@@ -160,6 +209,8 @@ class _CoverLetterMocks {
       if (payload.containsKey('position')) 'position': payload['position'],
       if (payload.containsKey('job_description'))
         'job_description': payload['job_description'],
+      if (payload.containsKey('letter_body'))
+        'letter_body': payload['letter_body'],
       'updated_at': DateTime.now().toIso8601String(),
     };
 
