@@ -66,7 +66,8 @@ class _LetterCard extends StatelessWidget {
                   'Created ${_formatDate(letter.createdAt)}',
                   style: AppText.b2 + AppTheme.c.subText,
                 ),
-                if (letter.createdAt != letter.updatedAt) ...[
+                if (letter.updatedAt != null &&
+                    letter.createdAt != letter.updatedAt) ...[
                   Space.x.t08,
                   Text(
                     '•',
@@ -74,7 +75,7 @@ class _LetterCard extends StatelessWidget {
                   ),
                   Space.x.t08,
                   Text(
-                    'Updated ${_formatDate(letter.updatedAt)}',
+                    'Updated ${_formatDate(letter.updatedAt!)}',
                     style: AppText.b2 + AppTheme.c.subText,
                   ),
                 ],

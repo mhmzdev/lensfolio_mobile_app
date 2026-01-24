@@ -12,6 +12,7 @@ import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/floati
 import 'package:lensfolio_mobile_app/ui/widgets/design/skeleton/skeleton.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:flutter/foundation.dart';
@@ -29,6 +30,7 @@ part 'widgets/_placeholder.dart';
 part 'widgets/_letter_card.dart';
 
 part 'listeners/_fetch.dart';
+part 'listeners/_generate.dart';
 
 class LettersScreen extends StatefulWidget {
   const LettersScreen({super.key});
@@ -82,11 +84,19 @@ class _BodyState extends State<_Body> {
           bottomBarHeight = height;
         });
       },
-      belowBuilders: const [_FetchListener()],
+      belowBuilders: const [
+        _FetchListener(),
+        _GenerateListener(),
+      ],
       overlayBuilders: [
         if (letters.isNotEmpty && coverLetterState.fetch.isLoading)
           FloatingLoader(
             message: 'Refreshing letters...',
+            bottom: bottomBarHeight + 16.sp(),
+          ),
+        if (coverLetterState.generate.isLoading)
+          FloatingLoader(
+            message: 'Generating cover letter...',
             bottom: bottomBarHeight + 16.sp(),
           ),
       ],

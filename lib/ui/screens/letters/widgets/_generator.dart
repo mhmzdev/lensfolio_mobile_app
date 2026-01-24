@@ -5,6 +5,8 @@ class _LetterGenerator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenState = _ScreenState.s(context);
+
     return Container(
       padding: Space.a.t20,
       decoration: AppProps.softBoxDecoration,
@@ -44,7 +46,7 @@ class _LetterGenerator extends StatelessWidget {
           ),
           Space.y.t16,
           const AppFormTextInput(
-            name: _FormKeys.description,
+            name: _FormKeys.jobDescription,
             placeholder:
                 'e.g. We are seeking a talented Flutter Developer to join our dynamic team. The ideal candidate will have experience building cross-platform mobile applications using Flutter and Dart. You will be responsible for developing high-quality mobile apps, collaborating with cross-functional teams, and ensuring optimal performance across iOS and Android platforms. Strong knowledge of state management, RESTful APIs, and modern development practices is required.',
             heading: 'Job Description (Optional)',
@@ -55,7 +57,7 @@ class _LetterGenerator extends StatelessWidget {
             label: 'Generate Letter',
             icon: LucideIcons.sparkles,
             style: .primary,
-            onTap: () {},
+            onTap: () => screenState.generateCoverLetter(context),
           ),
         ],
       ),
