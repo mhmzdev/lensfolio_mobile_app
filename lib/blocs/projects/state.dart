@@ -11,6 +11,7 @@ class ProjectsState extends Equatable {
 
   // --- state data --- //
   final List<Project>? projects;
+  final int uid;
 
   const ProjectsState({
     required this.delete,
@@ -19,6 +20,7 @@ class ProjectsState extends Equatable {
     required this.fetchById,
     required this.create,
     this.projects,
+    required this.uid,
   });
 
   ProjectsState.def()
@@ -28,7 +30,8 @@ class ProjectsState extends Equatable {
       fetchAll = BlocState(),
       fetchById = BlocState(),
       create = BlocState(),
-      projects = null;
+      projects = null,
+      uid = 0;
 
   ProjectsState copyWith({
     BlocState<void>? delete,
@@ -37,6 +40,7 @@ class ProjectsState extends Equatable {
     BlocState<Project>? fetchById,
     BlocState<Project>? create,
     List<Project>? projects,
+    int? uid,
   }) {
     return ProjectsState(
       delete: delete ?? this.delete,
@@ -45,6 +49,7 @@ class ProjectsState extends Equatable {
       fetchById: fetchById ?? this.fetchById,
       create: create ?? this.create,
       projects: projects ?? this.projects,
+      uid: uid ?? this.uid,
     );
   }
 
@@ -57,5 +62,6 @@ class ProjectsState extends Equatable {
     fetchById,
     create,
     projects,
+    uid,
   ];
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
 import 'package:lensfolio_mobile_app/ui/screens/login/login.dart';
+import 'package:lensfolio_mobile_app/utils/setup_cubit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';

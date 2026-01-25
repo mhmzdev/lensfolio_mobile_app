@@ -17,17 +17,20 @@ class _ScreenState extends ChangeNotifier {
       final user = cubit.state.userData!;
 
       final formData = form.value;
+      final tools = user.techStack.map((t) => t.technologies);
+      final flatTools = tools.expand((t) => t).toList();
       final payload = {
         ...formData,
         'candidate_name': user.fullName,
         'candidate_location': user.cityState,
         'target_seniority': user.preferredRoles,
         'skills': user.skills,
-        'tools': user.techStack.map((e) => e.technologies).toList(),
+        'tools': flatTools,
         'portfolio_url': user.website,
         'tone': 'warm',
         'length': 'standard',
       };
+
       CoverLetterCubit.c(context).generate(payload);
     } catch (e) {
       UIFlash.error(

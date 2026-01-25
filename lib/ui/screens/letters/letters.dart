@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -29,8 +30,7 @@ part 'widgets/_generator.dart';
 part 'widgets/_placeholder.dart';
 part 'widgets/_letter_card.dart';
 
-part 'listeners/_fetch.dart';
-part 'listeners/_generate.dart';
+part 'listeners/_letter_crud.dart';
 
 class LettersScreen extends StatefulWidget {
   const LettersScreen({super.key});
@@ -43,9 +43,7 @@ class _LettersScreenState extends State<LettersScreen> {
   @override
   void initState() {
     super.initState();
-    final cubit = UserCubit.c(context);
-    final user = cubit.state.userData!;
-    CoverLetterCubit.c(context).fetch(user.id);
+    CoverLetterCubit.c(context).fetch();
   }
 
   @override
@@ -85,8 +83,7 @@ class _BodyState extends State<_Body> {
         });
       },
       belowBuilders: const [
-        _FetchListener(),
-        _GenerateListener(),
+        _LetterCRUD(),
       ],
       overlayBuilders: [
         if (letters.isNotEmpty && coverLetterState.fetch.isLoading)
@@ -94,77 +91,77 @@ class _BodyState extends State<_Body> {
             message: 'Refreshing letters...',
             bottom: bottomBarHeight + 16.sp(),
           ),
-        if (coverLetterState.generate.isLoading)
-          FloatingLoader(
-            message: 'Generating cover letter...',
-            bottom: bottomBarHeight + 16.sp(),
-          ),
       ],
       child: SafeArea(
-        child: SingleChildScrollView(
-          child: coverLetterState.fetch.isLoading && letters.isEmpty
-              ? const _Placeholder()
-              : Column(
-                  crossAxisAlignment: .stretch,
-                  children: [
-                    // Header
-                    Padding(
-                      padding: Space.a.t16,
-                      child: Column(
-                        crossAxisAlignment: .stretch,
-                        children: [
-                          Text(
-                            'Cover Letters',
-                            style: AppText.h1b,
-                          ),
-                          Space.y.t04,
-                          Text(
-                            'Generate and manage your cover letters with ease.',
-                            style: AppText.b1 + AppTheme.c.subText,
-                          ),
-                        ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await coverLetterCubit.fetch();
+          },
+          child: SingleChildScrollView(
+            child: coverLetterState.fetch.isLoading && letters.isEmpty
+                ? const _Placeholder()
+                : Column(
+                    crossAxisAlignment: .stretch,
+                    children: [
+                      // Header
+                      Padding(
+                        padding: Space.a.t16,
+                        child: Column(
+                          crossAxisAlignment: .stretch,
+                          children: [
+                            Text(
+                              'Cover Letters',
+                              style: AppText.h1b,
+                            ),
+                            Space.y.t04,
+                            Text(
+                              'Generate and manage your cover letters with ease.',
+                              style: AppText.b1 + AppTheme.c.subText,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Space.y.t16,
-                    // Generator
-                    Padding(
-                      padding: Space.h.t16,
-                      child: const _LetterGenerator(),
-                    ),
-                    Space.y.t20,
-                    // Saved Letters Section
-                    Padding(
-                      padding: Space.h.t16,
-                      child: Text(
-                        'Saved Letters (${letters.length})',
-                        style: AppText.h2b,
+                      Space.y.t16,
+                      // Generator
+                      Padding(
+                        padding: Space.h.t16,
+                        child: const _LetterGenerator(),
                       ),
-                    ),
-                    Space.y.t12,
-                    // Empty state
-                    if (!coverLetterState.fetch.isFailed &&
-                        letters.isEmpty) ...[
-                      Column(
-                        children: [
-                          Space.y.t60,
-                          Assets.images.noResults.image(
-                            height: 200,
-                          ),
-                          Space.y.t16,
-                          Text(
-                            'No cover letters yet.\nGenerate your first one above!',
-                            style: AppText.b1b,
-                            textAlign: .center,
-                          ),
-                        ],
+                      Space.y.t20,
+                      // Saved Letters Section
+                      Padding(
+                        padding: Space.h.t16,
+                        child: Text(
+                          'Saved Letters (${letters.length})',
+                          style: AppText.h2b,
+                        ),
                       ),
-                    ] else
-                      ...letters.map(
-                        (letter) => _LetterCard(letter: letter),
-                      ),
-                    SizedBox(height: bottomBarHeight),
-                  ],
-                ),
+                      Space.y.t12,
+                      // Empty state
+                      if (!coverLetterState.fetch.isFailed &&
+                          letters.isEmpty) ...[
+                        Column(
+                          children: [
+                            Space.y.t60,
+                            Assets.images.noResults.image(
+                              height: 200,
+                            ),
+                            Space.y.t16,
+                            Text(
+                              'No cover letters yet.\nGenerate your first one above!',
+                              style: AppText.b1b,
+                              textAlign: .center,
+                            ),
+                          ],
+                        ),
+                      ] else
+                        ...letters.map(
+                          (letter) => _LetterCard(letter: letter),
+                        ),
+                      SizedBox(height: bottomBarHeight),
+                    ],
+                  ),
+          ),
         ),
       ),
     );

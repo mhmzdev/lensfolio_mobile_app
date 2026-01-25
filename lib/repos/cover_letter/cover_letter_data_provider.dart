@@ -1,17 +1,32 @@
 part of 'cover_letter_repo.dart';
 
 class _CoverLetterProvider {
+  static Future<CoverLetter> save(Map<String, dynamic> payload) async {
+    try {
+      final resp = await AppSupabase.supabase
+          .from(SupaTables.coverLetters)
+          .insert(payload)
+          .select()
+          .single();
+      return CoverLetter.fromJson(resp);
+    } catch (e, st) {
+      if (e is PostgrestException) {
+        throw SupaPostgresFault.fromPostgrestException(e, st);
+      }
+      throw UnknownFault('Something went wrong while saving the letter!', st);
+    }
+  }
+
   static Future<List<CoverLetter>> fetch(int uid) async {
     try {
-      final resp = await _CoverLetterMocks.fetch(uid);
-      await 1.seconds.delay;
-      final raw = resp as List<dynamic>;
-      return raw
-          .map((e) => CoverLetter.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final resp = await AppSupabase.supabase
+          .from(SupaTables.coverLetters)
+          .select()
+          .eq('uid', uid);
+      return resp.map((e) => CoverLetter.fromJson(e)).toList();
     } catch (e, st) {
-      if (e is DioException) {
-        throw HttpFault.fromDioException(e, st);
+      if (e is PostgrestException) {
+        throw SupaPostgresFault.fromPostgrestException(e, st);
       }
       throw UnknownFault('Something went wrong!', st);
     }
@@ -65,9 +80,13 @@ class _CoverLetterProvider {
 
       final raw = response.text;
       final cleaned = raw!.extractJsonFromResponse;
-      final parsed = jsonDecode(cleaned) as Map<String, dynamic>;
 
-      return LetterPromptResponse.fromJson(parsed);
+      final parsed = jsonDecode(cleaned) as Map<String, dynamic>;
+      final map = {
+        ...parsed,
+        ...data,
+      };
+      return LetterPromptResponse.fromJson(map);
     } catch (e, st) {
       if (e is ServerException) {
         throw UnknownFault(e.message, st);
@@ -97,11 +116,13 @@ class _CoverLetterProvider {
 
   static Future<void> delete(int id) async {
     try {
-      await _CoverLetterMocks.delete(id);
-      await 1.seconds.delay;
+      await AppSupabase.supabase
+          .from(SupaTables.coverLetters)
+          .delete()
+          .eq('id', id);
     } catch (e, st) {
-      if (e is DioException) {
-        throw HttpFault.fromDioException(e, st);
+      if (e is PostgrestException) {
+        throw SupaPostgresFault.fromPostgrestException(e, st);
       }
       throw UnknownFault('Something went wrong!', st);
     }

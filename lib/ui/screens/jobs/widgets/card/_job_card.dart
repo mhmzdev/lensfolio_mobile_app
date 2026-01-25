@@ -7,6 +7,8 @@ class _JobCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenState = _ScreenState.s(context);
+
     return Container(
       margin: Space.h.t16 + Space.b.t12,
       padding: Space.a.t16,
@@ -133,12 +135,20 @@ class _JobCard extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: AppButton(
-                  style: .primaryBorder,
-                  icon: LucideIcons.sparkles,
-                  label: 'Generate Cover Letter',
-                  mainAxisSize: .max,
-                  onTap: () {},
+                child: BlocBuilder<CoverLetterCubit, CoverLetterState>(
+                  buildWhen: (prev, curr) => prev.generate != curr.generate,
+                  builder: (context, state) {
+                    final loading = state.generate.isLoading;
+                    return AppButton(
+                      style: .primaryBorder,
+                      icon: LucideIcons.sparkles,
+                      label: 'Generate Cover Letter',
+                      mainAxisSize: .max,
+                      state: loading ? .disabled : .def,
+                      onTap: () =>
+                          screenState.onGenerateCoverLetter(context, job),
+                    );
+                  },
                 ),
               ),
               Space.x.t08,

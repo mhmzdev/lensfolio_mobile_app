@@ -38,6 +38,7 @@ class AppProvider extends ChangeNotifier {
 
     final cachedTheme = _cache.get(Cache.theme.toString());
     themeMode = cachedTheme == null ? themeMode : themeMap[cachedTheme]!;
+    themeMode = ThemeMode.dark;
 
     final hasOpened = _cache.get(Cache.firstOpen.toString());
     firstOpen = hasOpened == null;

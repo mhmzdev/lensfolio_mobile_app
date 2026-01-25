@@ -74,13 +74,6 @@ class _BodyState extends State<_Body> {
       },
       belowBuilders: const [_FetchListener()],
       overlayBuilders: [
-        if (projects != null &&
-            projects.isNotEmpty &&
-            projectsState.fetchAll.isLoading)
-          FloatingLoader(
-            message: 'Refreshing projects...',
-            bottom: bottomBarHeight + 16.sp(),
-          ),
         Positioned(
           bottom: bottomBarHeight + 20.sp(),
           right: SpaceToken.t16,
@@ -93,6 +86,13 @@ class _BodyState extends State<_Body> {
             child: const Icon(LucideIcons.plus),
           ),
         ),
+        if (projects != null &&
+            projects.isNotEmpty &&
+            projectsState.fetchAll.isLoading)
+          FloatingLoader(
+            message: 'Refreshing projects...',
+            bottom: bottomBarHeight + 16.sp(),
+          ),
       ],
       child: SafeArea(
         child: SingleChildScrollView(

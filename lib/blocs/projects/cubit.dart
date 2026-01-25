@@ -146,5 +146,8 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     }
   }
 
+  void setupUid(int uid) => emit(state.copyWith(uid: uid));
+  void resetUid() => emit(state.copyWith(uid: 0));
+
   void reset() => emit(ProjectsState.def());
 }

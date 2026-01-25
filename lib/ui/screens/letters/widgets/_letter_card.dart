@@ -28,11 +28,11 @@ class _LetterCard extends StatelessWidget {
                   crossAxisAlignment: .start,
                   children: [
                     Text(
-                      letter.companyName,
+                      letter.letter.companyName ?? '',
                       style: AppText.h3b,
                     ),
                     Text(
-                      letter.position,
+                      letter.letter.position ?? '',
                       style: AppText.b2 + AppTheme.c.subText,
                     ),
                   ],
@@ -41,12 +41,12 @@ class _LetterCard extends StatelessWidget {
             ),
 
             // Job description (if available)
-            if (letter.jobDescription != null) ...[
+            if (letter.letter.letterBody != null) ...[
               Space.y.t12,
               Text(
-                letter.jobDescription!,
+                letter.letter.letterBody!,
                 style: AppText.b2,
-                maxLines: 3,
+                maxLines: 4,
                 overflow: .ellipsis,
               ),
             ],
@@ -105,15 +105,29 @@ class _LetterCard extends StatelessWidget {
                     icon: LucideIcons.copy,
                     mainAxisSize: .max,
                     size: .small,
-                    onTap: () {},
+                    onTap: () async {
+                      await Clipboard.setData(
+                        ClipboardData(text: letter.letter.letterBody!),
+                      );
+                      if (!context.mounted) return;
+                      UIFlash.success(context, 'Letter copied to clipboard');
+                    },
                   ),
                 ),
                 Space.x.t08,
-                AppButton(
-                  style: .error,
-                  icon: LucideIcons.trash_2,
-                  size: .small,
-                  onTap: () {},
+                BlocBuilder<CoverLetterCubit, CoverLetterState>(
+                  buildWhen: (prev, curr) => prev.delete != curr.delete,
+                  builder: (context, state) {
+                    final loading = state.delete.isLoading;
+                    return AppButton(
+                      style: .error,
+                      icon: LucideIcons.trash_2,
+                      size: .small,
+                      state: loading ? .disabled : .def,
+                      onTap: () =>
+                          CoverLetterCubit.c(context).delete(letter.id),
+                    );
+                  },
                 ),
               ],
             ),

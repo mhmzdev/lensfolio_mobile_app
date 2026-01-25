@@ -19,14 +19,36 @@ class CoverLetterCubit extends Cubit<CoverLetterState> {
 
   CoverLetterCubit() : super(CoverLetterState.def());
 
-  Future<void> fetch(int uid) async {
+  Future<void> save(LetterPromptResponse letter) async {
+    emit(
+      state.copyWith(
+        save: state.save.toLoading(),
+      ),
+    );
+    try {
+      final data = await CoverLetterRepo.ins.save(letter, state.uid);
+      emit(
+        state.copyWith(
+          save: state.save.toSuccess(data: data),
+        ),
+      );
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          save: state.save.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
+  Future<void> fetch() async {
     emit(
       state.copyWith(
         fetch: state.fetch.toLoading(),
       ),
     );
     try {
-      final data = await CoverLetterRepo.ins.fetch(uid);
+      final data = await CoverLetterRepo.ins.fetch(state.uid);
       emit(
         state.copyWith(
           fetch: state.fetch.toSuccess(data: data),
@@ -107,6 +129,9 @@ class CoverLetterCubit extends Cubit<CoverLetterState> {
       );
     }
   }
+
+  void setupUid(int uid) => emit(state.copyWith(uid: uid));
+  void resetUid() => emit(state.copyWith(uid: 0));
 
   void reset() => emit(CoverLetterState.def());
 }

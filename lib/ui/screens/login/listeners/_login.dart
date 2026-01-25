@@ -12,6 +12,8 @@ class _LoginListener extends StatelessWidget {
           UIFlash.error(context, state.login.errorMessage);
         }
         if (state.login.isSuccess) {
+          final user = state.userData!;
+          SetupCubit.setupCubit(context, user.id);
           AppRoutes.home.pushReplace(context);
         }
       },

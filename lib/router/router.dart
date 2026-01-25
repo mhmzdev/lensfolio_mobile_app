@@ -1,3 +1,4 @@
+import 'package:lensfolio_mobile_app/ui/screens/generated_letter/generated_letter.dart';
 import 'package:lensfolio_mobile_app/ui/screens/edit_profile/edit_profile.dart';
 import 'package:lensfolio_mobile_app/ui/screens/letters/letters.dart';
 import 'package:lensfolio_mobile_app/ui/screens/projects/projects.dart';
@@ -12,6 +13,7 @@ import 'routes.dart';
 final navigator = GlobalKey<NavigatorState>();
 
 final appRoutes = <String, WidgetBuilder>{
+  AppRoutes.generatedLetter: (_) => const GeneratedLetterScreen(),
   AppRoutes.editProfile: (_) => const EditProfileScreen(),
   AppRoutes.login: (_) => const LoginScreen(),
   AppRoutes.splash: (_) => const SplashScreen(),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:lensfolio_mobile_app/blocs/cover_letter/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/bottom_bar/bottom_bar.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/floating_loader.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/focus_handler.dart';
 
 class Screen extends StatefulWidget {
@@ -165,7 +168,21 @@ class _ScreenState extends State<Screen> {
                   bottom: 0,
                   child: const BottomBar(),
                 ),
+
               if (widget.overlayBuilders != null) ...widget.overlayBuilders!,
+
+              BlocBuilder<CoverLetterCubit, CoverLetterState>(
+                buildWhen: (a, b) => a.generate != b.generate,
+                builder: (context, state) {
+                  if (state.generate.isLoading) {
+                    return FloatingLoader(
+                      message: 'Generating cover letter...',
+                      bottom: context.bottomSafe() + 90.sp(),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
             ],
           ),
         ),

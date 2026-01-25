@@ -13,6 +13,9 @@ import 'package:lensfolio_mobile_app/services/agent_tool.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 import 'package:lensfolio_mobile_app/services/firebase/remote/remote_configs.dart';
+import 'package:lensfolio_mobile_app/services/supabase/supabase.dart';
+import 'package:lensfolio_mobile_app/services/supabase/tables.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'cover_letter_mocks.dart';
 part 'cover_letter_parser.dart';
@@ -25,6 +28,11 @@ class CoverLetterRepo {
   static CoverLetterRepo get ins => _instance;
 
   /// --- repo functions --- ///
+
+  Future<CoverLetter> save(LetterPromptResponse letter, int uid) {
+    final payload = _CoverLetterParser.save(letter, uid);
+    return _CoverLetterProvider.save(payload);
+  }
 
   Future<List<CoverLetter>> fetch(int uid) => _CoverLetterProvider.fetch(uid);
 

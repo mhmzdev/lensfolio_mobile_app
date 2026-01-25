@@ -118,6 +118,7 @@ class UserCubit extends Cubit<UserState> {
           init: state.init.toFailed(fault: e),
         ),
       );
+      await logout();
     }
   }
 

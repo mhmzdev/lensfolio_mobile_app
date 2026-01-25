@@ -16,6 +16,39 @@ class _ScreenState extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void onGenerateCoverLetter(BuildContext context, Job job) {
+    try {
+      final cubit = UserCubit.c(context);
+      final user = cubit.state.userData!;
+
+      final tools = user.techStack.map((t) => t.technologies);
+      final flatTools = tools.expand((t) => t).toList();
+
+      final payload = {
+        'company_name': job.companyName,
+        'position': job.title,
+        'job_description': HtmlParser.parse(
+          job.description ?? 'No description available',
+        ),
+        'candidate_name': user.fullName,
+        'candidate_location': user.cityState,
+        'target_seniority': user.preferredRoles,
+        'skills': user.skills,
+        'tools': flatTools,
+        'portfolio_url': user.website,
+        'tone': 'warm',
+        'length': 'standard',
+      };
+
+      CoverLetterCubit.c(context).generate(payload);
+    } catch (e) {
+      UIFlash.error(
+        context,
+        'Something went wrong in while generating the cover letter!',
+      );
+    }
+  }
 }
 
 enum _FiltersType {

@@ -12,6 +12,7 @@ class _LogoutListener extends StatelessWidget {
           UIFlash.error(context, state.logout.errorMessage);
         }
         if (state.logout.isSuccess) {
+          SetupCubit.resetCubit(context);
           AppRoutes.login.pushReplace(context);
         }
       },

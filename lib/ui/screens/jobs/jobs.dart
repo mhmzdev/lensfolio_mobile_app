@@ -2,33 +2,31 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
-import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
-import 'package:lensfolio_mobile_app/ui/animations/animations/bottom_animation.dart';
 import 'package:provider/provider.dart';
 
-import 'package:lensfolio_mobile_app/utils/html_parser.dart';
-
+import 'package:lensfolio_mobile_app/blocs/cover_letter/cubit.dart';
 import 'package:lensfolio_mobile_app/blocs/jobs/cubit.dart';
+import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
 import 'package:lensfolio_mobile_app/helpers/launcher.dart';
 import 'package:lensfolio_mobile_app/models/job/job.dart';
+import 'package:lensfolio_mobile_app/ui/animations/animations/bottom_animation.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/floating_loader.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/skeleton/skeleton.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
+import 'package:lensfolio_mobile_app/utils/html_parser.dart';
 
 part '_state.dart';
-
 part 'listeners/_fetch.dart';
-
-part 'widgets/card/_job_card.dart';
-part 'widgets/card/_expandable_desc.dart';
-
 part 'widgets/_filters.dart';
 part 'widgets/_placeholder.dart';
 part 'widgets/_search_header.dart';
+part 'widgets/card/_expandable_desc.dart';
+part 'widgets/card/_job_card.dart';
 
 class JobsScreen extends StatefulWidget {
   const JobsScreen({super.key});

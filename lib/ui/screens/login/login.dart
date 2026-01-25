@@ -11,6 +11,7 @@ import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/app_touch.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/scroll_column_expandable.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
+import 'package:lensfolio_mobile_app/utils/setup_cubit.dart';
 
 import 'package:provider/provider.dart';
 

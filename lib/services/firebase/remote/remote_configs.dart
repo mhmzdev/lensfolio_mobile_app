@@ -20,7 +20,7 @@ class FireRemoteConfig {
       await FirebaseRemoteConfig.instance.setConfigSettings(
         RemoteConfigSettings(
           fetchTimeout: 60.seconds,
-          minimumFetchInterval: 0.seconds,
+          minimumFetchInterval: 1.minutes,
         ),
       );
 
