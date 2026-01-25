@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CoverLetter {
 
- int get id; int get uid;@JsonKey(name: 'company_name') String get companyName;@JsonKey(name: 'position') String get position;@JsonKey(name: 'job_description') String? get jobDescription;@JsonKey(name: 'letter_body') String? get letterBody;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime? get updatedAt;
+ int get id; int get uid;@JsonKey(name: 'letter') LetterPromptResponse get letter;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime? get updatedAt;
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CoverLetterCopyWith<CoverLetter> get copyWith => _$CoverLetterCopyWithImpl<Cove
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CoverLetter&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.position, position) || other.position == position)&&(identical(other.jobDescription, jobDescription) || other.jobDescription == jobDescription)&&(identical(other.letterBody, letterBody) || other.letterBody == letterBody)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CoverLetter&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.letter, letter) || other.letter == letter)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,uid,companyName,position,jobDescription,letterBody,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,uid,letter,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'CoverLetter(id: $id, uid: $uid, companyName: $companyName, position: $position, jobDescription: $jobDescription, letterBody: $letterBody, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'CoverLetter(id: $id, uid: $uid, letter: $letter, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $CoverLetterCopyWith<$Res>  {
   factory $CoverLetterCopyWith(CoverLetter value, $Res Function(CoverLetter) _then) = _$CoverLetterCopyWithImpl;
 @useResult
 $Res call({
- int id, int uid,@JsonKey(name: 'company_name') String companyName,@JsonKey(name: 'position') String position,@JsonKey(name: 'job_description') String? jobDescription,@JsonKey(name: 'letter_body') String? letterBody,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
+ int id, int uid,@JsonKey(name: 'letter') LetterPromptResponse letter,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
 });
 
 
-
+$LetterPromptResponseCopyWith<$Res> get letter;
 
 }
 /// @nodoc
@@ -65,20 +65,26 @@ class _$CoverLetterCopyWithImpl<$Res>
 
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? uid = null,Object? companyName = null,Object? position = null,Object? jobDescription = freezed,Object? letterBody = freezed,Object? createdAt = null,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? uid = null,Object? letter = null,Object? createdAt = null,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
-as int,companyName: null == companyName ? _self.companyName : companyName // ignore: cast_nullable_to_non_nullable
-as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as String,jobDescription: freezed == jobDescription ? _self.jobDescription : jobDescription // ignore: cast_nullable_to_non_nullable
-as String?,letterBody: freezed == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int,letter: null == letter ? _self.letter : letter // ignore: cast_nullable_to_non_nullable
+as LetterPromptResponse,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }
-
+/// Create a copy of CoverLetter
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LetterPromptResponseCopyWith<$Res> get letter {
+  
+  return $LetterPromptResponseCopyWith<$Res>(_self.letter, (value) {
+    return _then(_self.copyWith(letter: value));
+  });
+}
 }
 
 
@@ -157,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String? letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'letter')  LetterPromptResponse letter, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CoverLetter() when $default != null:
-return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDescription,_that.letterBody,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.uid,_that.letter,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -178,10 +184,10 @@ return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDes
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String? letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int uid, @JsonKey(name: 'letter')  LetterPromptResponse letter, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _CoverLetter():
-return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDescription,_that.letterBody,_that.createdAt,_that.updatedAt);}
+return $default(_that.id,_that.uid,_that.letter,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,10 +201,10 @@ return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDes
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int uid, @JsonKey(name: 'company_name')  String companyName, @JsonKey(name: 'position')  String position, @JsonKey(name: 'job_description')  String? jobDescription, @JsonKey(name: 'letter_body')  String? letterBody, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int uid, @JsonKey(name: 'letter')  LetterPromptResponse letter, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _CoverLetter() when $default != null:
-return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDescription,_that.letterBody,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.uid,_that.letter,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -210,15 +216,12 @@ return $default(_that.id,_that.uid,_that.companyName,_that.position,_that.jobDes
 @JsonSerializable()
 
 class _CoverLetter extends CoverLetter {
-   _CoverLetter({required this.id, required this.uid, @JsonKey(name: 'company_name') required this.companyName, @JsonKey(name: 'position') required this.position, @JsonKey(name: 'job_description') this.jobDescription, @JsonKey(name: 'letter_body') this.letterBody, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt}): super._();
+   _CoverLetter({required this.id, required this.uid, @JsonKey(name: 'letter') required this.letter, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt}): super._();
   factory _CoverLetter.fromJson(Map<String, dynamic> json) => _$CoverLetterFromJson(json);
 
 @override final  int id;
 @override final  int uid;
-@override@JsonKey(name: 'company_name') final  String companyName;
-@override@JsonKey(name: 'position') final  String position;
-@override@JsonKey(name: 'job_description') final  String? jobDescription;
-@override@JsonKey(name: 'letter_body') final  String? letterBody;
+@override@JsonKey(name: 'letter') final  LetterPromptResponse letter;
 @override@JsonKey(name: 'created_at') final  DateTime createdAt;
 @override@JsonKey(name: 'updated_at') final  DateTime? updatedAt;
 
@@ -235,16 +238,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CoverLetter&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.position, position) || other.position == position)&&(identical(other.jobDescription, jobDescription) || other.jobDescription == jobDescription)&&(identical(other.letterBody, letterBody) || other.letterBody == letterBody)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CoverLetter&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.letter, letter) || other.letter == letter)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,uid,companyName,position,jobDescription,letterBody,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,uid,letter,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'CoverLetter(id: $id, uid: $uid, companyName: $companyName, position: $position, jobDescription: $jobDescription, letterBody: $letterBody, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'CoverLetter(id: $id, uid: $uid, letter: $letter, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -255,11 +258,11 @@ abstract mixin class _$CoverLetterCopyWith<$Res> implements $CoverLetterCopyWith
   factory _$CoverLetterCopyWith(_CoverLetter value, $Res Function(_CoverLetter) _then) = __$CoverLetterCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int uid,@JsonKey(name: 'company_name') String companyName,@JsonKey(name: 'position') String position,@JsonKey(name: 'job_description') String? jobDescription,@JsonKey(name: 'letter_body') String? letterBody,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
+ int id, int uid,@JsonKey(name: 'letter') LetterPromptResponse letter,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
 });
 
 
-
+@override $LetterPromptResponseCopyWith<$Res> get letter;
 
 }
 /// @nodoc
@@ -272,21 +275,27 @@ class __$CoverLetterCopyWithImpl<$Res>
 
 /// Create a copy of CoverLetter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? uid = null,Object? companyName = null,Object? position = null,Object? jobDescription = freezed,Object? letterBody = freezed,Object? createdAt = null,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? uid = null,Object? letter = null,Object? createdAt = null,Object? updatedAt = freezed,}) {
   return _then(_CoverLetter(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
-as int,companyName: null == companyName ? _self.companyName : companyName // ignore: cast_nullable_to_non_nullable
-as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as String,jobDescription: freezed == jobDescription ? _self.jobDescription : jobDescription // ignore: cast_nullable_to_non_nullable
-as String?,letterBody: freezed == letterBody ? _self.letterBody : letterBody // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int,letter: null == letter ? _self.letter : letter // ignore: cast_nullable_to_non_nullable
+as LetterPromptResponse,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }
 
-
+/// Create a copy of CoverLetter
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LetterPromptResponseCopyWith<$Res> get letter {
+  
+  return $LetterPromptResponseCopyWith<$Res>(_self.letter, (value) {
+    return _then(_self.copyWith(letter: value));
+  });
+}
 }
 
 // dart format on

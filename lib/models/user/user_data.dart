@@ -16,11 +16,9 @@ sealed class UserData with _$UserData {
     /// to do operations related to the user's data.
     required int id,
 
-    /// 'uuid' is the user's uuid created by SupebaseAuth.
-    /// We'll use this to do operations related to the user's
-    /// account.
-    ///
-    /// String uuid, // THIS IS NOT IN USER_DATA but in USER from SupabaseAuth
+    /// 'uid' is supabase Auth UID, which is used in RLS policies.
+    required String uid,
+
     ///
     @JsonKey(name: 'full_name') required String fullName,
     required String email,
