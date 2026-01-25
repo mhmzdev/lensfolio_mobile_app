@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/global/bloc_sync/bloc_sync.dart';
 
 // ignore: unused_import
 // import 'global/bloc_sync/bloc_sync.dart';
@@ -83,7 +84,7 @@ class _LensfolioState extends State<Lensfolio> {
             navigatorObservers: [RouteLogger()],
             onGenerateRoute: onGenerateRoutes,
             initialRoute: AppRoutes.splash,
-            // builder: (context, child) => BlocSync(child: child!),
+            builder: (context, child) => BlocSync(body: child!),
           );
         },
       ),
