@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
+import 'package:lensfolio_mobile_app/services/flavor/flavor.dart';
+import 'package:lensfolio_mobile_app/services/http/alice.dart';
 
 import 'urls.dart';
 
@@ -21,6 +23,9 @@ abstract class Api {
       ),
     );
     ins.interceptors.add(_RetryInterceptor(ins));
+    if (!AppFlavor.isProdRelease) {
+      ins.interceptors.add(AppAlice.ins.getDioInterceptor());
+    }
   }
 }
 

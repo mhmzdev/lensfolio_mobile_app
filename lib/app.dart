@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/global/bloc_sync/bloc_sync.dart';
+import 'package:lensfolio_mobile_app/services/flavor/flavor.dart';
+import 'package:lensfolio_mobile_app/services/http/alice.dart';
+import 'package:lensfolio_mobile_app/services/notification/local.dart';
 
 // ignore: unused_import
 // import 'global/bloc_sync/bloc_sync.dart';
@@ -38,10 +41,18 @@ class _LensfolioState extends State<Lensfolio> {
   void initState() {
     super.initState();
 
+    if (!AppFlavor.isProdRelease) {
+      AppAlice.ins.setNavigatorKey(navigator);
+    }
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      LocalNotificationHandler.ins.init();
+    });
   }
 
   @override
