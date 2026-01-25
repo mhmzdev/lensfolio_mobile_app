@@ -2,12 +2,18 @@
 
 A Flutter mobile application built with clean architecture, layer-first structure, and best practices.
 
+<img src="showcase/lensfolio_banner.png">
+
 ## 👀 Look'n Feel
 This is a little glimpse of Lensfolio:
 
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062434-1794ef64-6af8-4261-b68f-a645ef39efea.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065005Z&X-Amz-Expires=300&X-Amz-Signature=33ad101832b23835e23c13d7b8475d10611465ba79e62bf9d67719293bb8a2ec&X-Amz-SignedHeaders=host" height="580"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062561-0035b2da-d998-40ab-9d8b-bc7aa808f729.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065214Z&X-Amz-Expires=300&X-Amz-Signature=912ff6b66e24e5e7fcfecd05634fbe73ffdf58944800660adbc902d92a12adc3&X-Amz-SignedHeaders=host" height="580"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062560-7c416971-cf53-4d98-9f33-b41f7c9b1866.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065237Z&X-Amz-Expires=300&X-Amz-Signature=0f2d536b52fb42a60d4e3367809a7525dc732e2c06118db3cb502629577fb3e6&X-Amz-SignedHeaders=host" height="580"> 
+### ☀️ Light Theme
+<img src="showcase/home.png" height="580"> <img src="showcase/jobs.png" height="580">
+<img src="showcase/projects.png" height="580"> <img src="showcase/letters.png" height="580">
 
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062562-1827abec-3419-4cb4-8639-fb1d3a4db4ad.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065258Z&X-Amz-Expires=300&X-Amz-Signature=d62a5cf4893cb2ba142f9c12d2e8bcde6f72e3c16f3092676c0d0423586848fb&X-Amz-SignedHeaders=host" height="580"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/43790152/540062563-e3027ec0-1c0d-4d15-878f-8a0850941198.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260124T065326Z&X-Amz-Expires=300&X-Amz-Signature=5374e8d34096501de78e7a22535f2991030a2a90abe992ddfb5aece31531072e&X-Amz-SignedHeaders=host" height="580">
+### 🌑 Dark Theme
+<img src="showcase/home_d.png" height="580"> <img src="showcase/jobs_d.png" height="580">
+<img src="showcase/projects_d.png" height="580"> <img src="showcase/letters_d.png" height="580">
 
 ## 🚀 Getting Started
 
