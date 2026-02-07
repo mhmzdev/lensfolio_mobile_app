@@ -14,7 +14,7 @@ import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 import 'package:lensfolio_mobile_app/services/firebase/remote/remote_configs.dart';
 import 'package:lensfolio_mobile_app/services/supabase/supabase.dart';
-import 'package:lensfolio_mobile_app/services/supabase/tables.dart';
+import 'package:lensfolio_mobile_app/services/supabase/database.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'cover_letter_mocks.dart';

@@ -78,8 +78,8 @@ class _AvatarCore extends StatelessWidget {
   String? get _effectiveImageUrl {
     // Priority: 1. Param, 2. Current user profile
     if (imageUrl.available) return imageUrl;
-    if (currentUser?.profilePicture.available == true) {
-      return currentUser!.profilePicture;
+    if (currentUser?.profilePictureUrl.available == true) {
+      return currentUser!.profilePictureUrl;
     }
     return null;
   }

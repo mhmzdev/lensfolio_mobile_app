@@ -94,6 +94,8 @@ dependencies:
   connectivity_plus: 7.0.0
   url_launcher: 6.3.2
   html: 0.15.6
+  flutter_keyboard_visibility: 6.0.0
+  file_picker: 10.3.10
 
 dev_dependencies:
   flutter_test:

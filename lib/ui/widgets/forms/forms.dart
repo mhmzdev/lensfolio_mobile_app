@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -20,4 +18,3 @@ part 'text_input/text_input.dart';
 part 'date/date_input.dart';
 
 part 'chips_input/chips_input.dart';
-

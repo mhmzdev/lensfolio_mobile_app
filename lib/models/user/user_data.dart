@@ -26,8 +26,18 @@ sealed class UserData with _$UserData {
     required String email,
     String? designation,
     @JsonKey(name: 'city_state') String? cityState,
+
+    /// 'resume_url' refers to an external link that the user can add
     @JsonKey(name: 'resume_url') String? resumeUrl,
-    @JsonKey(name: 'profile_picture') String? profilePicture,
+
+    /// 'resume_path' refers to the path of the resume in the supabase storage.
+    /// That we'll use to replace/download the resume + This will be updated as well
+    /// if the user has used the 'generate_profile' feature via Resume FILE.
+    @JsonKey(name: 'resume_path') String? resumePath,
+
+    /// 'profile_picture_url' refers to the url of the profile picture in the supabase storage.
+    /// This would be generated via 'getPublicUrl' from Supabase Storage API.
+    @JsonKey(name: 'profile_picture') String? profilePictureUrl,
     String? about,
     String? website,
     @JsonKey(name: 'contact_details') UserContactDetails? contactDetails,

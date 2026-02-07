@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:lensfolio_mobile_app/blocs/file/cubit.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
+import 'package:lensfolio_mobile_app/services/app_log.dart';
 import 'package:lensfolio_mobile_app/ui/animations/animations/scale_animation.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 import 'package:lensfolio_mobile_app/utils/setup_cubit.dart';
@@ -19,6 +24,9 @@ import 'package:lensfolio_mobile_app/utils/flash.dart';
 part '_state.dart';
 
 part 'listeners/_logout.dart';
+part 'listeners/_upload_profile_picture.dart';
+part 'listeners/_download_resume.dart';
+part 'listeners/_upload_resume.dart';
 
 part 'widgets/_about.dart';
 part 'widgets/_contact.dart';
@@ -53,6 +61,7 @@ class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     App.init(context);
+    final screenState = _ScreenState.s(context, true);
     final userCubit = UserCubit.c(context, true);
     final isFetching =
         userCubit.state.fetch.isLoading || userCubit.state.update.isLoading;
@@ -62,7 +71,12 @@ class _BodyState extends State<_Body> {
 
     return Screen(
       keyboardHandler: true,
-      overlayBuilders: const [_LogoutListener()],
+      overlayBuilders: const [
+        _LogoutListener(),
+        _UploadProfilePictureListener(),
+        _UploadResumeListener(),
+        _DownloadResumeListener(),
+      ],
       bottomBarHeightChanged: (height) {
         setState(() {
           bottomBarHeight = height;
@@ -89,19 +103,43 @@ class _BodyState extends State<_Body> {
                       Row(
                         children: [
                           Expanded(
-                            child: AppButton(
-                              icon: LucideIcons.upload,
-                              label: 'Upload Resume',
-                              onTap: () {},
+                            child: BlocBuilder<FileCubit, FileState>(
+                              buildWhen: (a, b) =>
+                                  a.uploadResume != b.uploadResume,
+                              builder: (context, state) {
+                                final loading = state.uploadResume.isLoading;
+                                return Consumer<_ScreenState>(
+                                  builder: (context, state, child) => AppButton(
+                                    icon: LucideIcons.upload,
+                                    label: userData.resumePath.available
+                                        ? 'Replace Resume'
+                                        : 'Upload Resume',
+                                    state: loading || state.pickingFile
+                                        ? .disabled
+                                        : .def,
+                                    onTap: () =>
+                                        screenState.pickResumeFile(context),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                           Space.x.t08,
                           Expanded(
-                            child: AppButton(
-                              style: .blackBorder,
-                              icon: LucideIcons.download,
-                              label: 'Download CV',
-                              onTap: () {},
+                            child: BlocBuilder<FileCubit, FileState>(
+                              buildWhen: (a, b) =>
+                                  a.downloadResume != b.downloadResume,
+                              builder: (context, state) {
+                                final loading = state.downloadResume.isLoading;
+                                return AppButton(
+                                  style: .blackBorder,
+                                  icon: LucideIcons.download,
+                                  label: 'Download Resume',
+                                  state: loading ? .disabled : .def,
+                                  onTap: () =>
+                                      screenState.downloadResume(context),
+                                );
+                              },
                             ),
                           ),
                         ],

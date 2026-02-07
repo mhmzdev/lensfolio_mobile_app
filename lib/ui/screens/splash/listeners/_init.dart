@@ -16,7 +16,7 @@ class _InitListener extends StatelessWidget {
           final isLoggedIn = state.userData != null;
           if (isLoggedIn) {
             final user = state.userData!;
-            SetupCubit.setupCubit(context, user.id);
+            SetupCubit.setupCubit(context, user.id, uuid: user.uid);
             AppRoutes.home.pushReplace(context);
           } else {
             AppRoutes.login.slowHeroPushReplacement(

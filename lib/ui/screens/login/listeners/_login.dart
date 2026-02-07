@@ -13,7 +13,7 @@ class _LoginListener extends StatelessWidget {
         }
         if (state.login.isSuccess) {
           final user = state.userData!;
-          SetupCubit.setupCubit(context, user.id);
+          SetupCubit.setupCubit(context, user.id, uuid: user.uid);
           AppRoutes.home.pushReplace(context);
         }
       },

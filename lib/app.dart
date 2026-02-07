@@ -17,6 +17,7 @@ import 'router/router.dart';
 import 'router/routes.dart';
 
 // bloc-imports-start
+import 'blocs/file/cubit.dart';
 import 'blocs/cover_letter/cubit.dart';
 import 'blocs/projects/cubit.dart';
 import 'blocs/jobs/cubit.dart';
@@ -62,6 +63,7 @@ class _LensfolioState extends State<Lensfolio> {
     return MultiProvider(
       providers: [
         // bloc-initiate-start
+        BlocProvider(create: (_) => FileCubit()),
         BlocProvider(create: (_) => CoverLetterCubit()),
         BlocProvider(create: (_) => ProjectsCubit()),
         BlocProvider(create: (_) => JobsCubit()),
