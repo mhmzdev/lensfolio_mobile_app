@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:lensfolio_mobile_app/configs/configs.dart';
+import 'package:lensfolio_mobile_app/models/user/generated_profile.dart';
 import 'package:lensfolio_mobile_app/models/user/user_data.dart';
 import 'package:lensfolio_mobile_app/repos/user/user_repo.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
@@ -22,10 +24,32 @@ class UserCubit extends Cubit<UserState> {
 
   UserCubit() : super(UserState.def());
 
-  Future<void> udpate(Map<String, dynamic> payload) async {
+  Future<void> generateProfile(File file) async {
     emit(
       state.copyWith(
-        udpate: state.udpate.toLoading(),
+        generateProfile: state.generateProfile.toLoading(),
+      ),
+    );
+    try {
+      final data = await UserRepo.ins.generateProfile(file);
+      emit(
+        state.copyWith(
+          generateProfile: state.generateProfile.toSuccess(data: data),
+        ),
+      );
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          generateProfile: state.generateProfile.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
+  Future<void> update(Map<String, dynamic> payload) async {
+    emit(
+      state.copyWith(
+        update: state.update.toLoading(),
       ),
     );
     try {
@@ -33,32 +57,32 @@ class UserCubit extends Cubit<UserState> {
         'id': state.userData!.id,
         ...payload,
       };
-      final data = await UserRepo.ins.udpate(values)
+      final data = await UserRepo.ins.update(values)
         ..toCache();
 
       emit(
         state.copyWith(
-          udpate: state.udpate.toSuccess(data: data),
+          update: state.update.toSuccess(data: data),
           userData: data,
         ),
       );
     } on Fault catch (e) {
       emit(
         state.copyWith(
-          udpate: state.udpate.toFailed(fault: e),
+          update: state.update.toFailed(fault: e),
         ),
       );
     }
   }
 
-  Future<void> fetch(String email) async {
+  Future<void> fetch() async {
     emit(
       state.copyWith(
         fetch: state.fetch.toLoading(),
       ),
     );
     try {
-      final data = await UserRepo.ins.fetch(email)
+      final data = await UserRepo.ins.fetch(state.userData!.email)
         ..toCache();
       emit(
         state.copyWith(

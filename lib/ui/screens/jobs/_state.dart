@@ -33,12 +33,15 @@ class _ScreenState extends ChangeNotifier {
         ),
         'candidate_name': user.fullName,
         'candidate_location': user.cityState,
-        'target_seniority': user.preferredRoles,
-        'skills': user.skills,
+        if (user.preferredRoles.isAvailable)
+          'target_seniority': user.preferredRoles,
+        if (user.skills.isAvailable) 'skills': user.skills,
         'tools': flatTools,
         'portfolio_url': user.website,
         'tone': 'warm',
         'length': 'standard',
+        if (user.education.isAvailable) 'education': user.education,
+        if (user.experience.isAvailable) 'experience': user.experience,
       };
 
       CoverLetterCubit.c(context).generate(payload);

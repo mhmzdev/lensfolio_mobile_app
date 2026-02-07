@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/user/user_contact_details.dart';
+import 'package:lensfolio_mobile_app/models/user/user_education.dart';
+import 'package:lensfolio_mobile_app/models/user/user_experience.dart';
 import 'package:lensfolio_mobile_app/models/user/user_tech_stack.dart';
 import 'package:lensfolio_mobile_app/services/cache/app_cache.dart';
 
@@ -32,6 +34,8 @@ sealed class UserData with _$UserData {
     @Default([]) List<String> skills,
     @JsonKey(name: 'tech_stack') @Default([]) List<UserTechStack> techStack,
     @JsonKey(name: 'preferred_roles') @Default([]) List<String> preferredRoles,
+    @Default([]) List<UserEducation> education,
+    @Default([]) List<UserExperience> experience,
     @JsonKey(name: 'created_at') required DateTime createdAt,
   }) = _UserData;
 
@@ -41,19 +45,18 @@ sealed class UserData with _$UserData {
   String get initials => fullName.substring(0, 2).toUpperCase();
 
   bool get inCompleteProfile =>
-      designation.available ||
-      cityState.available ||
-      resumeUrl.available ||
-      profilePicture.available ||
-      about.available ||
-      website.available ||
-      skills.available ||
-      techStack.available ||
-      preferredRoles.available ||
+      !designation.available ||
+      !about.available ||
+      !website.available ||
+      !skills.available ||
+      !techStack.available ||
+      !preferredRoles.available ||
       contactDetails?.inComplete == true ||
-      skills.available ||
-      techStack.available ||
-      preferredRoles.available;
+      !skills.available ||
+      !techStack.available ||
+      !preferredRoles.available ||
+      !education.available ||
+      !experience.available;
 
   /// Caching helpers
   UserData? get fromCache => AppCache.ins.user;

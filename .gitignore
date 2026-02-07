@@ -49,6 +49,8 @@ reports/
 prompts/
 logs/
 .cursor/
+.agent/
+CLAUDE.md
 .vscode/
 .firebase/
 # Firebase configuration files

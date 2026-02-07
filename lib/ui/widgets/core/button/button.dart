@@ -114,10 +114,10 @@ class _AppButtonState extends State<AppButton> {
     final radius = _mapRadiusToBorderRadius()[widget.borderRadius]!;
 
     return GestureDetector(
-      onTap: widget.onTap,
-      onTapUp: _onTapUp,
-      onTapDown: _onTapDown,
-      onTapCancel: _onTapCancel,
+      onTap: state.isDisabled ? null : widget.onTap,
+      onTapUp: state.isDisabled ? null : _onTapUp,
+      onTapDown: state.isDisabled ? null : _onTapDown,
+      onTapCancel: state.isDisabled ? null : _onTapCancel,
       child: AnimatedContainer(
         duration: AppProps.medium,
         clipBehavior: Clip.antiAlias,

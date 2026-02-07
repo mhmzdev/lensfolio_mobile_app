@@ -41,7 +41,25 @@ Optional fields (use only if provided; do not ask follow-up questions):
   "tools": ["string"],
   "portfolio_url": "string",
   "tone": "neutral|warm|bold|formal",
-  "length": "short|standard|detailed"
+  "length": "short|standard|detailed",
+  "education": [
+    {
+      "institution": "string",
+      "degree": "string",
+      "fieldOfStudy": "string",
+      "startDate": "YYYY-MM-DD",
+      "endDate": "YYYY-MM-DD | null (if ongoing)"
+    }
+  ],
+  "experience": [
+    {
+      "company": "string",
+      "position": "string",
+      "description": "string",
+      "startDate": "YYYY-MM-DD",
+      "endDate": "YYYY-MM-DD | null (if current)"
+    }
+  ]
 }
 ```
 
@@ -90,7 +108,14 @@ Notes:
 
 - Mention the **company name** and **position** exactly as provided
 - Mirror 3–6 key requirements from the job description (skills, responsibilities, tools)
-- Avoid generic lines like “I’m a hard worker” unless supported by specifics
+- Avoid generic lines like "I'm a hard worker" unless supported by specifics
+
+### Education & Experience (if provided)
+
+- **Education**: If the `education` array is provided, weave relevant degrees or institutions into the letter **only when they strengthen the application** (e.g., a CS degree for a developer role). Do not list all entries—select the most relevant one.
+- **Experience**: If the `experience` array is provided, reference past roles, companies, or responsibilities that directly align with the job requirements. Prioritize recent and relevant positions. Use the `description` field to extract specific accomplishments or duties worth highlighting.
+- Do **not** fabricate details beyond what is provided. If dates or descriptions are sparse, keep references general (e.g., "In my previous role at [Company]…").
+- Integrate education and experience naturally into the letter flow—avoid resume-style bullet dumps.
 
 ### Truthfulness / No Hallucination
 
@@ -142,7 +167,25 @@ If the user/job description requests unethical content (e.g., “fake credential
   "tone": "warm",
   "length": "standard",
   "skills": ["Flutter", "Dart", "Bloc/Cubit", "REST APIs", "Firebase"],
-  "key_achievements": ["Reduced app startup time by optimizing image loading and caching"]
+  "key_achievements": ["Reduced app startup time by optimizing image loading and caching"],
+  "education": [
+    {
+      "institution": "State University",
+      "degree": "Bachelor's",
+      "fieldOfStudy": "Computer Science",
+      "startDate": "2018-09-01",
+      "endDate": "2022-05-15"
+    }
+  ],
+  "experience": [
+    {
+      "company": "TechStartup Inc.",
+      "position": "Mobile Developer",
+      "description": "Built and maintained Flutter apps serving 50k+ users. Led migration from Provider to Bloc architecture.",
+      "startDate": "2022-06-01",
+      "endDate": null
+    }
+  ]
 }
 ```
 
@@ -150,7 +193,7 @@ If the user/job description requests unethical content (e.g., “fake credential
 
 ```json
 {
-  "letter_body": "Dear Hiring Manager,\n\nI’m excited to apply for the Flutter Developer role at Acme Labs. I enjoy building polished, reliable mobile experiences and I’m especially drawn to teams that care about performance, maintainability, and thoughtful engineering tradeoffs.\n\nIn Flutter and Dart, I’ve worked extensively with Bloc/Cubit-style state management to keep UI predictable and scalable. I’m comfortable integrating REST APIs end-to-end—modeling responses, handling edge cases, and building resilient network layers—while keeping the user experience smooth with good loading and error states.\n\nI also prioritize performance and user-perceived speed. For example, I’ve reduced app startup time by optimizing image loading and caching, focusing on practical wins that make the product feel faster without sacrificing code clarity. I’m happy working with Firebase when it’s a fit, and I’m comfortable collaborating on CI/CD and release workflows to keep shipping safe and frequent.\n\nI’d love to bring this approach to Acme Labs and contribute to a high-quality Flutter codebase. Thank you for your time—I'd welcome the chance to discuss how I can help.\n\nBest regards,\n[Your Name]",
+  "letter_body": "Dear Hiring Manager,\n\nI'm excited to apply for the Flutter Developer role at Acme Labs. With a Computer Science background and hands-on experience building Flutter apps at TechStartup Inc., I'm drawn to teams that care about performance, maintainability, and thoughtful engineering tradeoffs.\n\nIn my current role, I've built and maintained Flutter apps serving over 50,000 users and led a migration from Provider to Bloc architecture—giving me deep familiarity with the Bloc/Cubit patterns your team uses. I'm comfortable integrating REST APIs end-to-end—modeling responses, handling edge cases, and building resilient network layers—while keeping the user experience smooth.\n\nI also prioritize performance and user-perceived speed. For example, I've reduced app startup time by optimizing image loading and caching, focusing on practical wins that make the product feel faster without sacrificing code clarity. I'm happy working with Firebase when it's a fit, and I'm comfortable collaborating on CI/CD and release workflows to keep shipping safe and frequent.\n\nI'd love to bring this approach to Acme Labs and contribute to a high-quality Flutter codebase. Thank you for your time—I'd welcome the chance to discuss how I can help.\n\nBest regards,\n[Your Name]",
   "error": null
 }
 ```

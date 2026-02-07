@@ -3,8 +3,9 @@ part of 'cubit.dart';
 @immutable
 class UserState extends Equatable {
   // --- nested states --- //
+  final BlocState<GeneratedProfile> generateProfile;
   final BlocState<void> logout;
-  final BlocState<UserData> udpate;
+  final BlocState<UserData> update;
   final BlocState<UserData> fetch;
   final BlocState<UserData> init;
   final BlocState<UserData> register;
@@ -16,8 +17,10 @@ class UserState extends Equatable {
   final AuthResponse? authResponse;
 
   const UserState({
+    required this.generateProfile,
+
     required this.logout,
-    required this.udpate,
+    required this.update,
     required this.fetch,
     required this.init,
     required this.register,
@@ -29,8 +32,10 @@ class UserState extends Equatable {
 
   UserState.def()
     : // root-def-constructor
+      generateProfile = BlocState(),
+
       logout = BlocState(),
-      udpate = BlocState(),
+      update = BlocState(),
       fetch = BlocState(),
       init = BlocState(),
       register = BlocState(),
@@ -40,8 +45,10 @@ class UserState extends Equatable {
       authResponse = null;
 
   UserState copyWith({
+    BlocState<GeneratedProfile>? generateProfile,
+
     BlocState<void>? logout,
-    BlocState<UserData>? udpate,
+    BlocState<UserData>? update,
     BlocState<UserData>? fetch,
     BlocState<UserData>? init,
     BlocState<UserData>? register,
@@ -51,8 +58,10 @@ class UserState extends Equatable {
     AuthResponse? authResponse,
   }) {
     return UserState(
+      generateProfile: generateProfile ?? this.generateProfile,
+
       logout: logout ?? this.logout,
-      udpate: udpate ?? this.udpate,
+      update: update ?? this.update,
       fetch: fetch ?? this.fetch,
       init: init ?? this.init,
       register: register ?? this.register,
@@ -66,8 +75,9 @@ class UserState extends Equatable {
   @override
   List<Object?> get props => [
     // root-state-props
+    generateProfile,
     logout,
-    udpate,
+    update,
     fetch,
     init,
     register,

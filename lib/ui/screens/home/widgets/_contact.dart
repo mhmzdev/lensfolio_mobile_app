@@ -35,16 +35,17 @@ class _ContactCard extends StatelessWidget {
           ],
           if (userData.contactDetails!.address.available) ...[
             Space.y.t08,
-            Row(
-              children: [
-                Icon(
-                  LucideIcons.map_pin,
-                  size: SpaceToken.t16,
-                ),
-                Space.x.t08,
-                Text(userData.contactDetails!.address),
-              ],
-            ),
+            if (userData.contactDetails!.address.available)
+              Row(
+                children: [
+                  Icon(
+                    LucideIcons.map_pin,
+                    size: SpaceToken.t16,
+                  ),
+                  Space.x.t08,
+                  Text(userData.contactDetails!.address!),
+                ],
+              ),
           ],
           if (userData.website.available) ...[
             Space.y.t08,

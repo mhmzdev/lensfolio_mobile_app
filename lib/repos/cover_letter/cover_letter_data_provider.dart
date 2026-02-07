@@ -61,6 +61,12 @@ class _CoverLetterProvider {
             optionalContent.add(
               Content.text('$key: ${value.map((e) => e.name).join(', ')}'),
             );
+          } else if (value is List<Map<String, dynamic>>) {
+            optionalContent.add(
+              Content.text(
+                '$key: ${value.map((e) => e.toString()).join(', ')}',
+              ),
+            );
           } else {
             optionalContent.add(Content.text('$key: $value'));
           }

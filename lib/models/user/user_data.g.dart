@@ -35,6 +35,16 @@ _UserData _$UserDataFromJson(Map<String, dynamic> json) => _UserData(
           ?.map((e) => e as String)
           .toList() ??
       const [],
+  education:
+      (json['education'] as List<dynamic>?)
+          ?.map((e) => UserEducation.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  experience:
+      (json['experience'] as List<dynamic>?)
+          ?.map((e) => UserExperience.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
   createdAt: DateTime.parse(json['created_at'] as String),
 );
 
@@ -53,5 +63,7 @@ Map<String, dynamic> _$UserDataToJson(_UserData instance) => <String, dynamic>{
   'skills': instance.skills,
   'tech_stack': instance.techStack.map((e) => e.toJson()).toList(),
   'preferred_roles': instance.preferredRoles,
+  'education': instance.education.map((e) => e.toJson()).toList(),
+  'experience': instance.experience.map((e) => e.toJson()).toList(),
   'created_at': instance.createdAt.toIso8601String(),
 };

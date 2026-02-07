@@ -10,11 +10,11 @@ sealed class UserContactDetails with _$UserContactDetails {
 
   const factory UserContactDetails({
     @JsonKey(name: 'phone_number') required String phoneNumber,
-    required String address,
+    String? address,
   }) = _UserContactDetails;
 
   factory UserContactDetails.fromJson(Map<String, Object?> json) =>
       _$UserContactDetailsFromJson(json);
 
-  bool get inComplete => !phoneNumber.available || !address.available;
+  bool get inComplete => !phoneNumber.available || address?.available == true;
 }

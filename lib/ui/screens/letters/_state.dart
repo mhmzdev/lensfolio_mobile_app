@@ -29,6 +29,11 @@ class _ScreenState extends ChangeNotifier {
         'portfolio_url': user.website,
         'tone': 'warm',
         'length': 'standard',
+        if (user.preferredRoles.isAvailable)
+          'target_seniority': user.preferredRoles,
+        if (user.skills.isAvailable) 'skills': user.skills,
+        if (user.education.isAvailable) 'education': user.education,
+        if (user.experience.isAvailable) 'experience': user.experience,
       };
 
       CoverLetterCubit.c(context).generate(payload);

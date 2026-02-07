@@ -19,7 +19,7 @@ mixin _$UserData {
 /// to do operations related to the user's data.
  int get id;/// 'uid' is supabase Auth UID, which is used in RLS policies.
  String get uid;///
-@JsonKey(name: 'full_name') String get fullName; String get email; String? get designation;@JsonKey(name: 'city_state') String? get cityState;@JsonKey(name: 'resume_url') String? get resumeUrl;@JsonKey(name: 'profile_picture') String? get profilePicture; String? get about; String? get website;@JsonKey(name: 'contact_details') UserContactDetails? get contactDetails; List<String> get skills;@JsonKey(name: 'tech_stack') List<UserTechStack> get techStack;@JsonKey(name: 'preferred_roles') List<String> get preferredRoles;@JsonKey(name: 'created_at') DateTime get createdAt;
+@JsonKey(name: 'full_name') String get fullName; String get email; String? get designation;@JsonKey(name: 'city_state') String? get cityState;@JsonKey(name: 'resume_url') String? get resumeUrl;@JsonKey(name: 'profile_picture') String? get profilePicture; String? get about; String? get website;@JsonKey(name: 'contact_details') UserContactDetails? get contactDetails; List<String> get skills;@JsonKey(name: 'tech_stack') List<UserTechStack> get techStack;@JsonKey(name: 'preferred_roles') List<String> get preferredRoles; List<UserEducation> get education; List<UserExperience> get experience;@JsonKey(name: 'created_at') DateTime get createdAt;
 /// Create a copy of UserData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -32,16 +32,16 @@ $UserDataCopyWith<UserData> get copyWith => _$UserDataCopyWithImpl<UserData>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserData&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.email, email) || other.email == email)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.cityState, cityState) || other.cityState == cityState)&&(identical(other.resumeUrl, resumeUrl) || other.resumeUrl == resumeUrl)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.about, about) || other.about == about)&&(identical(other.website, website) || other.website == website)&&(identical(other.contactDetails, contactDetails) || other.contactDetails == contactDetails)&&const DeepCollectionEquality().equals(other.skills, skills)&&const DeepCollectionEquality().equals(other.techStack, techStack)&&const DeepCollectionEquality().equals(other.preferredRoles, preferredRoles)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserData&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.email, email) || other.email == email)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.cityState, cityState) || other.cityState == cityState)&&(identical(other.resumeUrl, resumeUrl) || other.resumeUrl == resumeUrl)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.about, about) || other.about == about)&&(identical(other.website, website) || other.website == website)&&(identical(other.contactDetails, contactDetails) || other.contactDetails == contactDetails)&&const DeepCollectionEquality().equals(other.skills, skills)&&const DeepCollectionEquality().equals(other.techStack, techStack)&&const DeepCollectionEquality().equals(other.preferredRoles, preferredRoles)&&const DeepCollectionEquality().equals(other.education, education)&&const DeepCollectionEquality().equals(other.experience, experience)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,uid,fullName,email,designation,cityState,resumeUrl,profilePicture,about,website,contactDetails,const DeepCollectionEquality().hash(skills),const DeepCollectionEquality().hash(techStack),const DeepCollectionEquality().hash(preferredRoles),createdAt);
+int get hashCode => Object.hash(runtimeType,id,uid,fullName,email,designation,cityState,resumeUrl,profilePicture,about,website,contactDetails,const DeepCollectionEquality().hash(skills),const DeepCollectionEquality().hash(techStack),const DeepCollectionEquality().hash(preferredRoles),const DeepCollectionEquality().hash(education),const DeepCollectionEquality().hash(experience),createdAt);
 
 @override
 String toString() {
-  return 'UserData(id: $id, uid: $uid, fullName: $fullName, email: $email, designation: $designation, cityState: $cityState, resumeUrl: $resumeUrl, profilePicture: $profilePicture, about: $about, website: $website, contactDetails: $contactDetails, skills: $skills, techStack: $techStack, preferredRoles: $preferredRoles, createdAt: $createdAt)';
+  return 'UserData(id: $id, uid: $uid, fullName: $fullName, email: $email, designation: $designation, cityState: $cityState, resumeUrl: $resumeUrl, profilePicture: $profilePicture, about: $about, website: $website, contactDetails: $contactDetails, skills: $skills, techStack: $techStack, preferredRoles: $preferredRoles, education: $education, experience: $experience, createdAt: $createdAt)';
 }
 
 
@@ -52,7 +52,7 @@ abstract mixin class $UserDataCopyWith<$Res>  {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) _then) = _$UserDataCopyWithImpl;
 @useResult
 $Res call({
- int id, String uid,@JsonKey(name: 'full_name') String fullName, String email, String? designation,@JsonKey(name: 'city_state') String? cityState,@JsonKey(name: 'resume_url') String? resumeUrl,@JsonKey(name: 'profile_picture') String? profilePicture, String? about, String? website,@JsonKey(name: 'contact_details') UserContactDetails? contactDetails, List<String> skills,@JsonKey(name: 'tech_stack') List<UserTechStack> techStack,@JsonKey(name: 'preferred_roles') List<String> preferredRoles,@JsonKey(name: 'created_at') DateTime createdAt
+ int id, String uid,@JsonKey(name: 'full_name') String fullName, String email, String? designation,@JsonKey(name: 'city_state') String? cityState,@JsonKey(name: 'resume_url') String? resumeUrl,@JsonKey(name: 'profile_picture') String? profilePicture, String? about, String? website,@JsonKey(name: 'contact_details') UserContactDetails? contactDetails, List<String> skills,@JsonKey(name: 'tech_stack') List<UserTechStack> techStack,@JsonKey(name: 'preferred_roles') List<String> preferredRoles, List<UserEducation> education, List<UserExperience> experience,@JsonKey(name: 'created_at') DateTime createdAt
 });
 
 
@@ -69,7 +69,7 @@ class _$UserDataCopyWithImpl<$Res>
 
 /// Create a copy of UserData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? uid = null,Object? fullName = null,Object? email = null,Object? designation = freezed,Object? cityState = freezed,Object? resumeUrl = freezed,Object? profilePicture = freezed,Object? about = freezed,Object? website = freezed,Object? contactDetails = freezed,Object? skills = null,Object? techStack = null,Object? preferredRoles = null,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? uid = null,Object? fullName = null,Object? email = null,Object? designation = freezed,Object? cityState = freezed,Object? resumeUrl = freezed,Object? profilePicture = freezed,Object? about = freezed,Object? website = freezed,Object? contactDetails = freezed,Object? skills = null,Object? techStack = null,Object? preferredRoles = null,Object? education = null,Object? experience = null,Object? createdAt = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
@@ -85,7 +85,9 @@ as String?,contactDetails: freezed == contactDetails ? _self.contactDetails : co
 as UserContactDetails?,skills: null == skills ? _self.skills : skills // ignore: cast_nullable_to_non_nullable
 as List<String>,techStack: null == techStack ? _self.techStack : techStack // ignore: cast_nullable_to_non_nullable
 as List<UserTechStack>,preferredRoles: null == preferredRoles ? _self.preferredRoles : preferredRoles // ignore: cast_nullable_to_non_nullable
-as List<String>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as List<String>,education: null == education ? _self.education : education // ignore: cast_nullable_to_non_nullable
+as List<UserEducation>,experience: null == experience ? _self.experience : experience // ignore: cast_nullable_to_non_nullable
+as List<UserExperience>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
@@ -180,10 +182,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String uid, @JsonKey(name: 'full_name')  String fullName,  String email,  String? designation, @JsonKey(name: 'city_state')  String? cityState, @JsonKey(name: 'resume_url')  String? resumeUrl, @JsonKey(name: 'profile_picture')  String? profilePicture,  String? about,  String? website, @JsonKey(name: 'contact_details')  UserContactDetails? contactDetails,  List<String> skills, @JsonKey(name: 'tech_stack')  List<UserTechStack> techStack, @JsonKey(name: 'preferred_roles')  List<String> preferredRoles, @JsonKey(name: 'created_at')  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String uid, @JsonKey(name: 'full_name')  String fullName,  String email,  String? designation, @JsonKey(name: 'city_state')  String? cityState, @JsonKey(name: 'resume_url')  String? resumeUrl, @JsonKey(name: 'profile_picture')  String? profilePicture,  String? about,  String? website, @JsonKey(name: 'contact_details')  UserContactDetails? contactDetails,  List<String> skills, @JsonKey(name: 'tech_stack')  List<UserTechStack> techStack, @JsonKey(name: 'preferred_roles')  List<String> preferredRoles,  List<UserEducation> education,  List<UserExperience> experience, @JsonKey(name: 'created_at')  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserData() when $default != null:
-return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,_that.cityState,_that.resumeUrl,_that.profilePicture,_that.about,_that.website,_that.contactDetails,_that.skills,_that.techStack,_that.preferredRoles,_that.createdAt);case _:
+return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,_that.cityState,_that.resumeUrl,_that.profilePicture,_that.about,_that.website,_that.contactDetails,_that.skills,_that.techStack,_that.preferredRoles,_that.education,_that.experience,_that.createdAt);case _:
   return orElse();
 
 }
@@ -201,10 +203,10 @@ return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String uid, @JsonKey(name: 'full_name')  String fullName,  String email,  String? designation, @JsonKey(name: 'city_state')  String? cityState, @JsonKey(name: 'resume_url')  String? resumeUrl, @JsonKey(name: 'profile_picture')  String? profilePicture,  String? about,  String? website, @JsonKey(name: 'contact_details')  UserContactDetails? contactDetails,  List<String> skills, @JsonKey(name: 'tech_stack')  List<UserTechStack> techStack, @JsonKey(name: 'preferred_roles')  List<String> preferredRoles, @JsonKey(name: 'created_at')  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String uid, @JsonKey(name: 'full_name')  String fullName,  String email,  String? designation, @JsonKey(name: 'city_state')  String? cityState, @JsonKey(name: 'resume_url')  String? resumeUrl, @JsonKey(name: 'profile_picture')  String? profilePicture,  String? about,  String? website, @JsonKey(name: 'contact_details')  UserContactDetails? contactDetails,  List<String> skills, @JsonKey(name: 'tech_stack')  List<UserTechStack> techStack, @JsonKey(name: 'preferred_roles')  List<String> preferredRoles,  List<UserEducation> education,  List<UserExperience> experience, @JsonKey(name: 'created_at')  DateTime createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _UserData():
-return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,_that.cityState,_that.resumeUrl,_that.profilePicture,_that.about,_that.website,_that.contactDetails,_that.skills,_that.techStack,_that.preferredRoles,_that.createdAt);}
+return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,_that.cityState,_that.resumeUrl,_that.profilePicture,_that.about,_that.website,_that.contactDetails,_that.skills,_that.techStack,_that.preferredRoles,_that.education,_that.experience,_that.createdAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -218,10 +220,10 @@ return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String uid, @JsonKey(name: 'full_name')  String fullName,  String email,  String? designation, @JsonKey(name: 'city_state')  String? cityState, @JsonKey(name: 'resume_url')  String? resumeUrl, @JsonKey(name: 'profile_picture')  String? profilePicture,  String? about,  String? website, @JsonKey(name: 'contact_details')  UserContactDetails? contactDetails,  List<String> skills, @JsonKey(name: 'tech_stack')  List<UserTechStack> techStack, @JsonKey(name: 'preferred_roles')  List<String> preferredRoles, @JsonKey(name: 'created_at')  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String uid, @JsonKey(name: 'full_name')  String fullName,  String email,  String? designation, @JsonKey(name: 'city_state')  String? cityState, @JsonKey(name: 'resume_url')  String? resumeUrl, @JsonKey(name: 'profile_picture')  String? profilePicture,  String? about,  String? website, @JsonKey(name: 'contact_details')  UserContactDetails? contactDetails,  List<String> skills, @JsonKey(name: 'tech_stack')  List<UserTechStack> techStack, @JsonKey(name: 'preferred_roles')  List<String> preferredRoles,  List<UserEducation> education,  List<UserExperience> experience, @JsonKey(name: 'created_at')  DateTime createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _UserData() when $default != null:
-return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,_that.cityState,_that.resumeUrl,_that.profilePicture,_that.about,_that.website,_that.contactDetails,_that.skills,_that.techStack,_that.preferredRoles,_that.createdAt);case _:
+return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,_that.cityState,_that.resumeUrl,_that.profilePicture,_that.about,_that.website,_that.contactDetails,_that.skills,_that.techStack,_that.preferredRoles,_that.education,_that.experience,_that.createdAt);case _:
   return null;
 
 }
@@ -233,7 +235,7 @@ return $default(_that.id,_that.uid,_that.fullName,_that.email,_that.designation,
 @JsonSerializable()
 
 class _UserData extends UserData {
-   _UserData({required this.id, required this.uid, @JsonKey(name: 'full_name') required this.fullName, required this.email, this.designation, @JsonKey(name: 'city_state') this.cityState, @JsonKey(name: 'resume_url') this.resumeUrl, @JsonKey(name: 'profile_picture') this.profilePicture, this.about, this.website, @JsonKey(name: 'contact_details') this.contactDetails, final  List<String> skills = const [], @JsonKey(name: 'tech_stack') final  List<UserTechStack> techStack = const [], @JsonKey(name: 'preferred_roles') final  List<String> preferredRoles = const [], @JsonKey(name: 'created_at') required this.createdAt}): _skills = skills,_techStack = techStack,_preferredRoles = preferredRoles,super._();
+   _UserData({required this.id, required this.uid, @JsonKey(name: 'full_name') required this.fullName, required this.email, this.designation, @JsonKey(name: 'city_state') this.cityState, @JsonKey(name: 'resume_url') this.resumeUrl, @JsonKey(name: 'profile_picture') this.profilePicture, this.about, this.website, @JsonKey(name: 'contact_details') this.contactDetails, final  List<String> skills = const [], @JsonKey(name: 'tech_stack') final  List<UserTechStack> techStack = const [], @JsonKey(name: 'preferred_roles') final  List<String> preferredRoles = const [], final  List<UserEducation> education = const [], final  List<UserExperience> experience = const [], @JsonKey(name: 'created_at') required this.createdAt}): _skills = skills,_techStack = techStack,_preferredRoles = preferredRoles,_education = education,_experience = experience,super._();
   factory _UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 
 /// 'id' is the user's id in the database. We'll use this
@@ -272,6 +274,20 @@ class _UserData extends UserData {
   return EqualUnmodifiableListView(_preferredRoles);
 }
 
+ final  List<UserEducation> _education;
+@override@JsonKey() List<UserEducation> get education {
+  if (_education is EqualUnmodifiableListView) return _education;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_education);
+}
+
+ final  List<UserExperience> _experience;
+@override@JsonKey() List<UserExperience> get experience {
+  if (_experience is EqualUnmodifiableListView) return _experience;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_experience);
+}
+
 @override@JsonKey(name: 'created_at') final  DateTime createdAt;
 
 /// Create a copy of UserData
@@ -287,16 +303,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserData&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.email, email) || other.email == email)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.cityState, cityState) || other.cityState == cityState)&&(identical(other.resumeUrl, resumeUrl) || other.resumeUrl == resumeUrl)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.about, about) || other.about == about)&&(identical(other.website, website) || other.website == website)&&(identical(other.contactDetails, contactDetails) || other.contactDetails == contactDetails)&&const DeepCollectionEquality().equals(other._skills, _skills)&&const DeepCollectionEquality().equals(other._techStack, _techStack)&&const DeepCollectionEquality().equals(other._preferredRoles, _preferredRoles)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserData&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.email, email) || other.email == email)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.cityState, cityState) || other.cityState == cityState)&&(identical(other.resumeUrl, resumeUrl) || other.resumeUrl == resumeUrl)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.about, about) || other.about == about)&&(identical(other.website, website) || other.website == website)&&(identical(other.contactDetails, contactDetails) || other.contactDetails == contactDetails)&&const DeepCollectionEquality().equals(other._skills, _skills)&&const DeepCollectionEquality().equals(other._techStack, _techStack)&&const DeepCollectionEquality().equals(other._preferredRoles, _preferredRoles)&&const DeepCollectionEquality().equals(other._education, _education)&&const DeepCollectionEquality().equals(other._experience, _experience)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,uid,fullName,email,designation,cityState,resumeUrl,profilePicture,about,website,contactDetails,const DeepCollectionEquality().hash(_skills),const DeepCollectionEquality().hash(_techStack),const DeepCollectionEquality().hash(_preferredRoles),createdAt);
+int get hashCode => Object.hash(runtimeType,id,uid,fullName,email,designation,cityState,resumeUrl,profilePicture,about,website,contactDetails,const DeepCollectionEquality().hash(_skills),const DeepCollectionEquality().hash(_techStack),const DeepCollectionEquality().hash(_preferredRoles),const DeepCollectionEquality().hash(_education),const DeepCollectionEquality().hash(_experience),createdAt);
 
 @override
 String toString() {
-  return 'UserData(id: $id, uid: $uid, fullName: $fullName, email: $email, designation: $designation, cityState: $cityState, resumeUrl: $resumeUrl, profilePicture: $profilePicture, about: $about, website: $website, contactDetails: $contactDetails, skills: $skills, techStack: $techStack, preferredRoles: $preferredRoles, createdAt: $createdAt)';
+  return 'UserData(id: $id, uid: $uid, fullName: $fullName, email: $email, designation: $designation, cityState: $cityState, resumeUrl: $resumeUrl, profilePicture: $profilePicture, about: $about, website: $website, contactDetails: $contactDetails, skills: $skills, techStack: $techStack, preferredRoles: $preferredRoles, education: $education, experience: $experience, createdAt: $createdAt)';
 }
 
 
@@ -307,7 +323,7 @@ abstract mixin class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res>
   factory _$UserDataCopyWith(_UserData value, $Res Function(_UserData) _then) = __$UserDataCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String uid,@JsonKey(name: 'full_name') String fullName, String email, String? designation,@JsonKey(name: 'city_state') String? cityState,@JsonKey(name: 'resume_url') String? resumeUrl,@JsonKey(name: 'profile_picture') String? profilePicture, String? about, String? website,@JsonKey(name: 'contact_details') UserContactDetails? contactDetails, List<String> skills,@JsonKey(name: 'tech_stack') List<UserTechStack> techStack,@JsonKey(name: 'preferred_roles') List<String> preferredRoles,@JsonKey(name: 'created_at') DateTime createdAt
+ int id, String uid,@JsonKey(name: 'full_name') String fullName, String email, String? designation,@JsonKey(name: 'city_state') String? cityState,@JsonKey(name: 'resume_url') String? resumeUrl,@JsonKey(name: 'profile_picture') String? profilePicture, String? about, String? website,@JsonKey(name: 'contact_details') UserContactDetails? contactDetails, List<String> skills,@JsonKey(name: 'tech_stack') List<UserTechStack> techStack,@JsonKey(name: 'preferred_roles') List<String> preferredRoles, List<UserEducation> education, List<UserExperience> experience,@JsonKey(name: 'created_at') DateTime createdAt
 });
 
 
@@ -324,7 +340,7 @@ class __$UserDataCopyWithImpl<$Res>
 
 /// Create a copy of UserData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? uid = null,Object? fullName = null,Object? email = null,Object? designation = freezed,Object? cityState = freezed,Object? resumeUrl = freezed,Object? profilePicture = freezed,Object? about = freezed,Object? website = freezed,Object? contactDetails = freezed,Object? skills = null,Object? techStack = null,Object? preferredRoles = null,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? uid = null,Object? fullName = null,Object? email = null,Object? designation = freezed,Object? cityState = freezed,Object? resumeUrl = freezed,Object? profilePicture = freezed,Object? about = freezed,Object? website = freezed,Object? contactDetails = freezed,Object? skills = null,Object? techStack = null,Object? preferredRoles = null,Object? education = null,Object? experience = null,Object? createdAt = null,}) {
   return _then(_UserData(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
@@ -340,7 +356,9 @@ as String?,contactDetails: freezed == contactDetails ? _self.contactDetails : co
 as UserContactDetails?,skills: null == skills ? _self._skills : skills // ignore: cast_nullable_to_non_nullable
 as List<String>,techStack: null == techStack ? _self._techStack : techStack // ignore: cast_nullable_to_non_nullable
 as List<UserTechStack>,preferredRoles: null == preferredRoles ? _self._preferredRoles : preferredRoles // ignore: cast_nullable_to_non_nullable
-as List<String>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as List<String>,education: null == education ? _self._education : education // ignore: cast_nullable_to_non_nullable
+as List<UserEducation>,experience: null == experience ? _self._experience : experience // ignore: cast_nullable_to_non_nullable
+as List<UserExperience>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }

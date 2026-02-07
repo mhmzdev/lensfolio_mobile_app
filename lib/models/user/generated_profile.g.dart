@@ -1,0 +1,63 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'generated_profile.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_GeneratedProfile _$GeneratedProfileFromJson(Map<String, dynamic> json) =>
+    _GeneratedProfile(
+      fullName: json['full_name'] as String,
+      email: json['email'] as String,
+      designation: json['designation'] as String?,
+      cityState: json['city_state'] as String?,
+      about: json['about'] as String?,
+      website: json['website'] as String?,
+      contactDetails: json['contact_details'] == null
+          ? null
+          : UserContactDetails.fromJson(
+              json['contact_details'] as Map<String, dynamic>,
+            ),
+      skills:
+          (json['skills'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      techStack:
+          (json['tech_stack'] as List<dynamic>?)
+              ?.map((e) => UserTechStack.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      preferredRoles:
+          (json['preferred_roles'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      education:
+          (json['education'] as List<dynamic>?)
+              ?.map((e) => UserEducation.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      experience:
+          (json['experience'] as List<dynamic>?)
+              ?.map((e) => UserExperience.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$GeneratedProfileToJson(_GeneratedProfile instance) =>
+    <String, dynamic>{
+      'full_name': instance.fullName,
+      'email': instance.email,
+      'designation': instance.designation,
+      'city_state': instance.cityState,
+      'about': instance.about,
+      'website': instance.website,
+      'contact_details': instance.contactDetails?.toJson(),
+      'skills': instance.skills,
+      'tech_stack': instance.techStack.map((e) => e.toJson()).toList(),
+      'preferred_roles': instance.preferredRoles,
+      'education': instance.education.map((e) => e.toJson()).toList(),
+      'experience': instance.experience.map((e) => e.toJson()).toList(),
+    };

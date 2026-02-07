@@ -55,7 +55,7 @@ class _BodyState extends State<_Body> {
     App.init(context);
     final userCubit = UserCubit.c(context, true);
     final isFetching =
-        userCubit.state.fetch.isLoading || userCubit.state.udpate.isLoading;
+        userCubit.state.fetch.isLoading || userCubit.state.update.isLoading;
     final userData = userCubit.state.userData;
 
     if (userData == null) return const SizedBox.shrink();

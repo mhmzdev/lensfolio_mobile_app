@@ -41,11 +41,17 @@ class Assets {
   static const $AssetsAppGen app = $AssetsAppGen();
   static const String coverLetterSystemPrompt =
       'assets/cover_letter_system_prompt.md';
+  static const String extractProfileFromResume =
+      'assets/extract_profile_from_resume.md';
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const String creds = 'creds.json';
 
   /// List of all assets
-  static List<String> get values => [coverLetterSystemPrompt, creds];
+  static List<String> get values => [
+    coverLetterSystemPrompt,
+    extractProfileFromResume,
+    creds,
+  ];
 }
 
 class AssetGenImage {

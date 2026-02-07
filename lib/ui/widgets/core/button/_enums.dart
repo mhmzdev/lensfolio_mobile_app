@@ -27,3 +27,7 @@ enum AppButtonState {
   pressed,
   disabled,
 }
+
+extension AppButtonStateExt on AppButtonState {
+  bool get isDisabled => this == AppButtonState.disabled;
+}
