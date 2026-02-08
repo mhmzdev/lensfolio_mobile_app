@@ -89,6 +89,12 @@ class _UserProvider {
         email: values['email'],
         password: values['password'],
       );
+
+      await AppSupabase.supabase.from(SupaTables.users).insert({
+        'full_name': values['full_name'],
+        'email': values['email'],
+      });
+
       return authResponse;
     } catch (e, st) {
       if (e is AuthApiException) {

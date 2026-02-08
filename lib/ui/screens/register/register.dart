@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
@@ -12,22 +13,19 @@ import 'package:lensfolio_mobile_app/ui/widgets/headless/app_touch.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/headless/scroll_column_expandable.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
 import 'package:lensfolio_mobile_app/utils/setup_cubit.dart';
-
 import 'package:provider/provider.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-part 'listeners/_login.dart';
+part 'listeners/_register.dart';
 part 'static/_form_data.dart';
 part 'static/_form_keys.dart';
 
 part '_state.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,29 +48,35 @@ class _Body extends StatelessWidget {
       formKey: screenState.formKey,
       initialFormValue: _FormData.initialValues(),
       keyboardHandler: true,
-      belowBuilders: const [_LoginListener()],
+      belowBuilders: const [_RegisterListener()],
       child: SafeArea(
         child: ScrollColumnExpandable(
           padding: Space.a.t20,
           crossAxisAlignment: .stretch,
           children: [
-            Hero(
-              tag: 'APP_ICON',
-              child: Assets.app.icon.image(
-                height: 100,
-              ),
+            Assets.app.icon.image(
+              height: 100,
             ),
             Space.y.t24,
             Text(
-              'Login',
+              'Create Account',
               style: AppText.h1b,
             ),
             Space.y.t04,
             Text(
-              'Welcome back to Lensfolio. Please enter your email and password to continue.',
+              'Join Lensfolio to build and showcase your professional portfolio.',
               style: AppText.b1,
             ),
             Space.y.t32,
+            AppFormTextInput(
+              name: _FormKeys.fullName,
+              validators: Validators.name(),
+              heading: 'Full Name',
+              placeholder: 'John Doe',
+              keyboardType: TextInputType.name,
+              textCapitalization: TextCapitalization.words,
+            ),
+            Space.y.t20,
             AppFormTextInput(
               name: _FormKeys.email,
               validators: Validators.email(),
@@ -85,30 +89,26 @@ class _Body extends StatelessWidget {
               name: _FormKeys.password,
               heading: 'Password',
               placeholder: 'Enter your password',
+              validators: Validators.password(),
+              obscureText: true,
+            ),
+            Space.y.t20,
+            AppFormTextInput(
+              name: _FormKeys.confirmPassword,
+              heading: 'Confirm Password',
+              placeholder: 'Re-enter your password',
               validators: FormBuilderValidators.required(
-                errorText: 'Password is required',
+                errorText: 'Please confirm your password',
               ),
               obscureText: true,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Forgot Password?',
-                  style:
-                      AppText.b1b.cl(AppTheme.c.primary) +
-                      TextDecoration.underline,
-                ),
-              ),
-            ),
-            Space.y.t12,
+            Space.y.t24,
             BlocBuilder<UserCubit, UserState>(
-              buildWhen: (a, b) => a.login != b.login,
+              buildWhen: (a, b) => a.register != b.register,
               builder: (context, state) {
-                final loading = state.login.isLoading;
+                final loading = state.register.isLoading;
                 return AppButton(
-                  label: 'Login',
+                  label: 'Create Account',
                   onTap: () => screenState.onSubmit(context),
                   state: loading ? .disabled : .def,
                 );
@@ -119,13 +119,13 @@ class _Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Don\'t have an account? ',
+                  'Already have an account? ',
                   style: AppText.b2,
                 ),
                 AppTouch(
-                  onTap: () => AppRoutes.register.push(context),
+                  onTap: () => ''.pop(context),
                   child: Text(
-                    'Register now',
+                    'Login',
                     style: AppText.b2b.cl(AppTheme.c.primary),
                   ),
                 ),

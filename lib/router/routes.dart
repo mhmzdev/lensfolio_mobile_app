@@ -1,4 +1,5 @@
 abstract class AppRoutes {
+  static const register = '/register';
   static const addProject = '/add-project';
   static const generatedLetter = '/generated-letter';
   static const editProfile = '/edit-profile';
