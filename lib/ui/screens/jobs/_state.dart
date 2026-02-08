@@ -22,6 +22,9 @@ class _ScreenState extends ChangeNotifier {
       final cubit = UserCubit.c(context);
       final user = cubit.state.userData!;
 
+      final projectCubit = ProjectsCubit.c(context);
+      final projects = projectCubit.state.projects;
+
       final tools = user.techStack.map((t) => t.technologies);
       final flatTools = tools.expand((t) => t).toList();
 
@@ -40,8 +43,12 @@ class _ScreenState extends ChangeNotifier {
         'portfolio_url': user.website,
         'tone': 'warm',
         'length': 'standard',
-        if (user.education.isAvailable) 'education': user.education,
-        if (user.experience.isAvailable) 'experience': user.experience,
+        if (user.education.isAvailable)
+          'education': user.education.map((e) => e.toJson()).toList(),
+        if (user.experience.isAvailable)
+          'experience': user.experience.map((e) => e.toJson()).toList(),
+        if (projects.available)
+          'projects': projects!.map((e) => e.toJson()).toList(),
       };
 
       CoverLetterCubit.c(context).generate(payload);

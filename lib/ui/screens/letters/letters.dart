@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lensfolio_mobile_app/blocs/cover_letter/cubit.dart';
+import 'package:lensfolio_mobile_app/blocs/projects/cubit.dart';
 import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
