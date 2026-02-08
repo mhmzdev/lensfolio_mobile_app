@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:lensfolio_mobile_app/blocs/file/cubit.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
@@ -19,7 +20,6 @@ import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/avatar/avatar.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/design/skeleton/skeleton.dart';
-import 'package:lensfolio_mobile_app/ui/widgets/headless/app_touch.dart';
 import 'package:lensfolio_mobile_app/utils/flash.dart';
 
 part '_state.dart';
@@ -36,6 +36,8 @@ part 'widgets/_preferred_roles.dart';
 part 'widgets/_profile_card.dart';
 part 'widgets/_skills.dart';
 part 'widgets/_tech_stack.dart';
+
+part 'widgets/_settings.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -118,10 +120,8 @@ class _BodyState extends State<_Body> {
                                     state: loading || state.pickingFile
                                         ? .disabled
                                         : .def,
-                                    onTap: () => screenState.pickResumeFile(
-                                      context,
-                                      exists: userData.resumePath.available,
-                                    ),
+                                    onTap: () =>
+                                        screenState.pickResumeFile(context),
                                   ),
                                 );
                               },

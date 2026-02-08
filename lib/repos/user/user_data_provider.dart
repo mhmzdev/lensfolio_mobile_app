@@ -64,12 +64,12 @@ class _UserProvider {
     }
   }
 
-  static Future<UserData> fetch(String email) async {
+  static Future<UserData> fetch(String uuid) async {
     try {
       final user = await AppSupabase.supabase
           .from(SupaTables.users)
           .select('*')
-          .eq('email', email)
+          .eq('uid', uuid)
           .single();
       return UserData.fromJson(user);
     } catch (e, st) {

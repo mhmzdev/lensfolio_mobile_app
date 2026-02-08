@@ -1,22 +1,15 @@
 part of 'file_repo.dart';
 
 class _FileProvider {
-  static Future<String> uploadResume(
-    File file,
-    String uuid, [
-    bool exists = false,
-  ]) async {
+  static Future<String> uploadResume(File file, String uuid) async {
     try {
-      late String fullPath;
-      if (!exists) {
-        fullPath = await AppSupabase.supabase.storage
-            .from(SupaBuckets.resumes)
-            .upload('$uuid.pdf', file);
-      } else {
-        fullPath = await AppSupabase.supabase.storage
-            .from(SupaBuckets.resumes)
-            .update('$uuid.pdf', file);
-      }
+      final fullPath = await AppSupabase.supabase.storage
+          .from(SupaBuckets.resumes)
+          .update(
+            '$uuid.pdf',
+            file,
+            fileOptions: const FileOptions(upsert: true),
+          );
 
       /// We only want the uuid.pdf to be path, so that in case we changed
       /// our bucket on day we don't want 'resumes' hardcoded in the path.
@@ -57,7 +50,14 @@ class _FileProvider {
 
       await AppSupabase.supabase.storage
           .from(SupaBuckets.profilePictures)
-          .upload(fileName, file);
+          .update(
+            fileName,
+            file,
+            fileOptions: const FileOptions(
+              upsert: true,
+              cacheControl: '300',
+            ),
+          );
 
       final publicPath = AppSupabase.supabase.storage
           .from(SupaBuckets.profilePictures)

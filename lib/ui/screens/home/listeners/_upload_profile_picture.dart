@@ -12,7 +12,14 @@ class _UploadProfilePictureListener extends StatelessWidget {
           UIFlash.error(context, state.uploadProfilePicture.errorMessage);
         }
         if (state.uploadProfilePicture.isSuccess) {
-          UIFlash.success(context, 'Request completed successfully');
+          final payload = {
+            'profile_picture': state.uploadProfilePicture.getData,
+          };
+          UIFlash.success(
+            context,
+            'Profile picture updated. Refreshing in 5 mins.',
+          );
+          _ScreenState.s(context).updateProfile(context, payload: payload);
         }
       },
       child: const SizedBox.shrink(),

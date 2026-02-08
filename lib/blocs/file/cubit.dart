@@ -18,14 +18,14 @@ class FileCubit extends Cubit<FileState> {
 
   FileCubit() : super(FileState.def());
 
-  Future<void> uploadResume(File file, {bool exists = false}) async {
+  Future<void> uploadResume(File file) async {
     emit(
       state.copyWith(
         uploadResume: state.uploadResume.toLoading(),
       ),
     );
     try {
-      final data = await FileRepo.ins.uploadResume(file, state.uuid!, exists);
+      final data = await FileRepo.ins.uploadResume(file, state.uuid!);
       emit(
         state.copyWith(
           uploadResume: state.uploadResume.toSuccess(data: data),

@@ -37,7 +37,7 @@ class UserRepo {
     return _UserProvider.update(payload);
   }
 
-  Future<UserData> fetch(String email) => _UserProvider.fetch(email);
+  Future<UserData> fetch(String uuid) => _UserProvider.fetch(uuid);
 
   Future<AuthResponse> register(Map<String, dynamic> values) =>
       _UserProvider.register(values);

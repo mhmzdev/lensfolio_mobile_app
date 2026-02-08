@@ -15,10 +15,21 @@ class _ProfileCard extends StatelessWidget {
           Row(
             crossAxisAlignment: .start,
             children: [
-              AppAvatar(
-                showEditBadge: true,
-                onEditTap: () => AppRoutes.editProfile.push(context),
-              ).withScaleAnimation(),
+              Consumer<_ScreenState>(
+                builder: (context, value, child) {
+                  return BlocBuilder<FileCubit, FileState>(
+                    buildWhen: (a, b) =>
+                        a.uploadProfilePicture != b.uploadProfilePicture,
+                    builder: (context, state) {
+                      final loading = state.uploadProfilePicture.isLoading;
+                      return AppAvatar(
+                        showEditBadge: !value.pickingFile && !loading,
+                        onEditTap: () => value.pickProfilePicture(context),
+                      );
+                    },
+                  ).withScaleAnimation();
+                },
+              ),
               Space.x.t12,
               Expanded(
                 child: Column(
@@ -55,17 +66,7 @@ class _ProfileCard extends StatelessWidget {
                 ),
               ),
               Space.x.t08,
-              Align(
-                alignment: .topCenter,
-                child: AppTouch(
-                  onTap: () => UserCubit.c(context).logout(),
-                  child: Icon(
-                    LucideIcons.power,
-                    size: SpaceToken.t24,
-                    color: AppTheme.c.dangerBase,
-                  ),
-                ),
-              ),
+              const _Settings(),
             ],
           ),
         ],

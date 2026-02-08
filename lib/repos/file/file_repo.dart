@@ -18,8 +18,8 @@ class FileRepo {
 
   /// --- repo functions --- ///
 
-  Future<String> uploadResume(File file, String uuid, [bool exists = false]) =>
-      _FileProvider.uploadResume(file, uuid, exists);
+  Future<String> uploadResume(File file, String uuid) =>
+      _FileProvider.uploadResume(file, uuid);
 
   Future<File> downloadResume(String filePath) =>
       _FileProvider.downloadResume(filePath);

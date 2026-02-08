@@ -15,7 +15,7 @@ class _ScreenState extends ChangeNotifier {
   }
 
   bool pickingFile = false;
-  void pickResumeFile(BuildContext context, {bool exists = false}) async {
+  void pickResumeFile(BuildContext context) async {
     pickingFile = true;
     notifyListeners();
     try {
@@ -26,12 +26,38 @@ class _ScreenState extends ChangeNotifier {
       if (result != null && context.mounted) {
         final xfile = result.xFiles.first;
         final file = File(xfile.path);
-        FileCubit.c(context).uploadResume(file, exists: exists);
+        FileCubit.c(context).uploadResume(file);
       }
     } catch (e) {
       e.appLog(level: .error);
       if (!context.mounted) return;
       UIFlash.error(context, 'Failed to pickup the resume file.');
+    } finally {
+      pickingFile = false;
+      notifyListeners();
+    }
+  }
+
+  void pickProfilePicture(BuildContext context) async {
+    pickingFile = true;
+    notifyListeners();
+    try {
+      final imagePicker = ImagePicker();
+      final result = await imagePicker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 80,
+        maxWidth: 1080,
+        maxHeight: 1080,
+      );
+      if (result != null && context.mounted) {
+        final xfile = result;
+        final file = File(xfile.path);
+        FileCubit.c(context).uploadProfilePicture(file);
+      }
+    } catch (e) {
+      e.appLog(level: .error);
+      if (!context.mounted) return;
+      UIFlash.error(context, 'Failed to pickup the profile picture.');
     } finally {
       pickingFile = false;
       notifyListeners();

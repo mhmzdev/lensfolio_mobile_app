@@ -82,7 +82,7 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
     try {
-      final data = await UserRepo.ins.fetch(state.userData!.email)
+      final data = await UserRepo.ins.fetch(state.userData!.uid)
         ..toCache();
       emit(
         state.copyWith(
@@ -116,7 +116,7 @@ class UserCubit extends Cubit<UserState> {
           tag: 'USER_CUBIT: init()',
           level: .info,
         );
-        final data = await UserRepo.ins.fetch(cachedUser.email)
+        final data = await UserRepo.ins.fetch(cachedUser.uid)
           ..toCache();
         emit(
           state.copyWith(
@@ -159,7 +159,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       final authResponse = await UserRepo.ins.register(values);
       final user = authResponse.user;
-      final userData = await UserRepo.ins.fetch(user!.email!)
+      final userData = await UserRepo.ins.fetch(user!.id)
         ..toCache();
 
       'User registered successfully'.appLog(
@@ -198,7 +198,7 @@ class UserCubit extends Cubit<UserState> {
       final authResponse = await UserRepo.ins.login(values);
       final user = authResponse.user;
 
-      final userData = await UserRepo.ins.fetch(user!.email!)
+      final userData = await UserRepo.ins.fetch(user!.id)
         ..toCache();
 
       'User logged in successfully'.appLog(
