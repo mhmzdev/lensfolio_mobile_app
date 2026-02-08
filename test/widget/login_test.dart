@@ -3,11 +3,26 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lensfolio_mobile_app/ui/screens/login/login.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/forms/forms.dart';
 
 import '../helpers/tester_extensions.dart';
 
 void main() {
   group('LoginScreen', () {
+    testWidgets('renders the official logo asset', (tester) async {
+      await tester.runWidgetTestZoned((t) async {
+        await t.createRootWidgetAndPump(
+          body: const LoginScreen(),
+        );
+        await t.pumpAndSettle();
+
+        // Verify the screen renders
+        expect(find.byType(LoginScreen), findsOneWidget);
+
+        expect(find.byType(Image), findsOneWidget);
+      });
+    });
+
     testWidgets('renders login screen with all elements', (tester) async {
       await tester.runWidgetTestZoned((t) async {
         await t.createRootWidgetAndPump(
@@ -37,6 +52,9 @@ void main() {
           body: const LoginScreen(),
         );
         await t.pumpAndSettle();
+
+        // verify 2 types exists for [AppFormTextInput]
+        expect(find.byType(AppFormTextInput), findsNWidgets(2));
 
         // Verify form field headings
         expect(find.text('Email'), findsOneWidget);

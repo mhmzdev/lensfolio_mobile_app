@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lensfolio_mobile_app/ui/screens/home/home.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/core/screen/screen.dart';
 
 import '../fixtures/user_data_fixture.dart';
 import '../helpers/tester_extensions.dart';
@@ -27,9 +28,27 @@ void main() {
       });
     });
 
+    testWidgets('shows Screen widget when have enough data', (tester) async {
+      await tester.runWidgetTestZoned((t) async {
+        final userData = UserDataFixture.minimal();
+        final userCubit = MockUserCubit.loggedIn(userData);
+
+        await t.createRootWidgetAndPump(
+          body: const HomeScreen(),
+          userCubit: userCubit,
+        );
+        await t.pumpAndSettle();
+
+        // Should show nothing when userData is null
+        expect(find.byType(HomeScreen), findsOneWidget);
+        // The Screen widget is rendered
+        expect(find.byType(Screen), findsWidgets);
+      });
+    });
+
     testWidgets('displays user name from profile', (tester) async {
       await tester.runWidgetTestZoned((t) async {
-        final userData = UserDataFixture.complete(fullName: 'Jane Smith');
+        final userData = UserDataFixture.complete(fullName: 'Sara Waseem');
         final userCubit = MockUserCubit.loggedIn(userData);
 
         await t.createRootWidgetAndPump(
@@ -42,7 +61,7 @@ void main() {
         expect(find.byType(HomeScreen), findsOneWidget);
 
         // Verify user name is displayed
-        expect(find.text('Jane Smith'), findsOneWidget);
+        expect(find.text('Sara Waseem'), findsOneWidget);
       });
     });
 
@@ -64,8 +83,9 @@ void main() {
       });
     });
 
-    testWidgets('shows Complete Profile button for incomplete profile',
-        (tester) async {
+    testWidgets('shows Complete Profile button for incomplete profile', (
+      tester,
+    ) async {
       await tester.runWidgetTestZoned((t) async {
         final userData = UserDataFixture.incomplete();
         final userCubit = MockUserCubit.loggedIn(userData);
