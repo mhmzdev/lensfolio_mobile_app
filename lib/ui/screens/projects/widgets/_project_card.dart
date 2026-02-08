@@ -45,7 +45,7 @@ class _ProjectCard extends StatelessWidget {
           Padding(
             padding: Space.a.t16,
             child: Column(
-              crossAxisAlignment: .start,
+              crossAxisAlignment: .stretch,
               children: [
                 // Title
                 Text(
@@ -100,7 +100,7 @@ class _ProjectCard extends StatelessWidget {
                       ),
                     if (project.githubUrl.available &&
                         project.liveUrl.available)
-                      Space.x.t12,
+                      Space.x.t08,
                     if (project.liveUrl.available)
                       Expanded(
                         child: AppButton(
@@ -109,6 +109,49 @@ class _ProjectCard extends StatelessWidget {
                           onTap: () => LauncherHelper.url(project.liveUrl!),
                         ),
                       ),
+                    if (project.githubUrl.available ||
+                        project.liveUrl.available)
+                      Space.x.t08,
+                    Expanded(
+                      flex:
+                          project.githubUrl.available ||
+                              project.liveUrl.available
+                          ? 0
+                          : 1,
+                      child: AppButton(
+                        style: .error,
+                        padding: Space.a.t16,
+                        icon: LucideIcons.trash_2,
+                        label:
+                            project.githubUrl.available ||
+                                project.liveUrl.available
+                            ? null
+                            : 'Delete',
+                        onTap: () => showDeleteProjectDialog(context, project),
+                      ),
+                    ),
+                    Space.x.t08,
+                    Expanded(
+                      flex:
+                          project.githubUrl.available ||
+                              project.liveUrl.available
+                          ? 0
+                          : 1,
+                      child: AppButton(
+                        style: .primaryBorder,
+                        padding: Space.a.t16,
+                        icon: LucideIcons.pencil,
+                        label:
+                            project.githubUrl.available ||
+                                project.liveUrl.available
+                            ? null
+                            : 'Edit',
+                        onTap: () => AppRoutes.addProject.push(
+                          context,
+                          arguments: {'project': project},
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Space.y.t12,

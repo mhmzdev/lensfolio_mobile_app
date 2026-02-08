@@ -65,4 +65,16 @@ class Validators {
     final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     return emailRegex.hasMatch(input);
   }
+
+  static String? Function(String?) url() {
+    return (String? value) {
+      if (value == null || value.isEmpty) {
+        return null;
+      }
+      return FormBuilderValidators.url(
+        errorText: 'Enter a valid URL.',
+        requireProtocol: true,
+      )(value);
+    };
+  }
 }

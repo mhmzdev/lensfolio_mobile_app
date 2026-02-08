@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/models/project/project.dart';
@@ -19,14 +20,22 @@ class ProjectsCubit extends Cubit<ProjectsState> {
 
   ProjectsCubit() : super(ProjectsState.def());
 
-  Future<void> delete(int id) async {
+  Future<void> delete(int id, {String? imageUrl}) async {
+    'Delete project function was called'.appLog(
+      level: .info,
+      tag: 'PROJECTS_CUBIT: delete()',
+    );
     emit(
       state.copyWith(
         delete: state.delete.toLoading(),
       ),
     );
     try {
-      await ProjectsRepo.ins.delete(id);
+      await ProjectsRepo.ins.delete(id, imageUrl: imageUrl);
+      'Project deleted successfully'.appLog(
+        level: .info,
+        tag: 'PROJECTS_CUBIT: delete()',
+      );
       emit(
         state.copyWith(
           delete: state.delete.toSuccess(),
@@ -41,14 +50,32 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     }
   }
 
-  Future<void> update(int id, Map<String, dynamic> values) async {
+  Future<void> update(
+    int id,
+    Map<String, dynamic> values, {
+    File? coverImage,
+    bool removeExistingImage = false,
+  }) async {
+    'Update project function was called'.appLog(
+      level: .info,
+      tag: 'PROJECTS_CUBIT: update()',
+    );
     emit(
       state.copyWith(
         update: state.update.toLoading(),
       ),
     );
     try {
-      final data = await ProjectsRepo.ins.update(id, values);
+      final data = await ProjectsRepo.ins.update(
+        id,
+        values,
+        coverImage: coverImage,
+        removeExistingImage: removeExistingImage,
+      );
+      'Project updated successfully'.appLog(
+        level: .info,
+        tag: 'PROJECTS_CUBIT: update()',
+      );
       emit(
         state.copyWith(
           update: state.update.toSuccess(data: data),
@@ -63,7 +90,7 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     }
   }
 
-  Future<void> fetchAll(int uid) async {
+  Future<void> fetchAll() async {
     'Fetch all projects function was called'.appLog(
       level: .info,
       tag: 'PROJECTS_CUBIT: fetchAll()',
@@ -74,7 +101,7 @@ class ProjectsCubit extends Cubit<ProjectsState> {
       ),
     );
     try {
-      final data = await ProjectsRepo.ins.fetchAll(uid);
+      final data = await ProjectsRepo.ins.fetchAll(state.uid);
       'Projects fetched successfully'.appLog(
         level: .info,
         tag: 'PROJECTS_CUBIT: fetchAll()',
@@ -116,7 +143,11 @@ class ProjectsCubit extends Cubit<ProjectsState> {
     }
   }
 
-  Future<void> create(int uid, Map<String, dynamic> payload) async {
+  Future<void> create(
+    int uid,
+    Map<String, dynamic> payload, {
+    File? coverImage,
+  }) async {
     'Create project function was called'.appLog(
       level: .info,
       tag: 'PROJECTS_CUBIT: create()',
@@ -127,7 +158,11 @@ class ProjectsCubit extends Cubit<ProjectsState> {
       ),
     );
     try {
-      final data = await ProjectsRepo.ins.create(uid, payload);
+      final data = await ProjectsRepo.ins.create(
+        uid,
+        payload,
+        coverImage: coverImage,
+      );
       'Project created successfully'.appLog(
         level: .info,
         tag: 'PROJECTS_CUBIT: create()',

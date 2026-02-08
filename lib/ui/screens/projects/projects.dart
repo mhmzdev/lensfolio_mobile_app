@@ -4,10 +4,10 @@ import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:provider/provider.dart';
 
 import 'package:lensfolio_mobile_app/blocs/projects/cubit.dart';
-import 'package:lensfolio_mobile_app/blocs/user/cubit.dart';
 import 'package:lensfolio_mobile_app/configs/configs.dart';
 import 'package:lensfolio_mobile_app/gen/assets/assets.gen.dart';
 import 'package:lensfolio_mobile_app/helpers/launcher.dart';
+import 'package:lensfolio_mobile_app/router/routes.dart';
 import 'package:lensfolio_mobile_app/models/project/project.dart';
 import 'package:lensfolio_mobile_app/ui/animations/animations/bottom_animation.dart';
 import 'package:lensfolio_mobile_app/ui/widgets/core/button/button.dart';
@@ -20,8 +20,10 @@ part '_state.dart';
 
 part 'widgets/_placeholder.dart';
 part 'widgets/_project_card.dart';
+part 'widgets/_delete_dialog.dart';
 
 part 'listeners/_fetch.dart';
+part 'listeners/_delete.dart';
 
 class ProjectsScreen extends StatefulWidget {
   const ProjectsScreen({super.key});
@@ -34,9 +36,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   @override
   void initState() {
     super.initState();
-    final cubit = UserCubit.c(context);
-    final user = cubit.state.userData!;
-    ProjectsCubit.c(context).fetchAll(user.id);
+    ProjectsCubit.c(context).fetchAll();
   }
 
   @override
@@ -72,13 +72,16 @@ class _BodyState extends State<_Body> {
           bottomBarHeight = height;
         });
       },
-      belowBuilders: const [_FetchListener()],
+      belowBuilders: const [
+        _FetchListener(),
+        _DeleteListener(),
+      ],
       overlayBuilders: [
         Positioned(
           bottom: bottomBarHeight + 20.sp(),
           right: SpaceToken.t16,
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () => AppRoutes.addProject.push(context),
             backgroundColor: AppTheme.c.primary,
             shape: RoundedRectangleBorder(
               borderRadius: 12.radius(),
