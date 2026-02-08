@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:lensfolio_mobile_app/services/fault/faults.dart';
 import 'package:lensfolio_mobile_app/services/supabase/database.dart';
 import 'package:lensfolio_mobile_app/services/supabase/supabase.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'file_mocks.dart';
 part 'file_parser.dart';
@@ -17,8 +18,8 @@ class FileRepo {
 
   /// --- repo functions --- ///
 
-  Future<String> uploadResume(File file, String uuid) =>
-      _FileProvider.uploadResume(file, uuid);
+  Future<String> uploadResume(File file, String uuid, [bool exists = false]) =>
+      _FileProvider.uploadResume(file, uuid, exists);
 
   Future<File> downloadResume(String filePath) =>
       _FileProvider.downloadResume(filePath);

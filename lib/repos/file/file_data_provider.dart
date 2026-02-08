@@ -1,15 +1,30 @@
 part of 'file_repo.dart';
 
 class _FileProvider {
-  static Future<String> uploadResume(File file, String uuid) async {
+  static Future<String> uploadResume(
+    File file,
+    String uuid, [
+    bool exists = false,
+  ]) async {
     try {
-      final fullPath = await AppSupabase.supabase.storage
-          .from(SupaBuckets.resumes)
-          .upload('$uuid.pdf', file);
-      return fullPath;
+      late String fullPath;
+      if (!exists) {
+        fullPath = await AppSupabase.supabase.storage
+            .from(SupaBuckets.resumes)
+            .upload('$uuid.pdf', file);
+      } else {
+        fullPath = await AppSupabase.supabase.storage
+            .from(SupaBuckets.resumes)
+            .update('$uuid.pdf', file);
+      }
+
+      /// We only want the uuid.pdf to be path, so that in case we changed
+      /// our bucket on day we don't want 'resumes' hardcoded in the path.
+      final cleanPath = fullPath.split('/').last;
+      return cleanPath;
     } catch (e, st) {
-      if (e is DioException) {
-        throw HttpFault.fromDioException(e, st);
+      if (e is StorageException) {
+        throw SupaStorageFault.fromStorageException(e, st);
       }
       throw UnknownFault('Something went wrong!', st);
     }
@@ -17,14 +32,20 @@ class _FileProvider {
 
   static Future<File> downloadResume(String filePath) async {
     try {
-      /// FIXME: The object is not being found even though it exists in Storage.
-      final file = await AppSupabase.supabase.storage
+      final bytes = await AppSupabase.supabase.storage
           .from(SupaBuckets.resumes)
           .download(filePath);
-      return File.fromRawPath(file);
+
+      final dir = await getApplicationDocumentsDirectory();
+      final file = File('${dir.path}/$filePath');
+
+      await file.parent.create(recursive: true);
+      await file.writeAsBytes(bytes);
+
+      return file;
     } catch (e, st) {
-      if (e is DioException) {
-        throw HttpFault.fromDioException(e, st);
+      if (e is StorageException) {
+        throw SupaStorageFault.fromStorageException(e, st);
       }
       throw UnknownFault('Something went wrong!', st);
     }
@@ -44,8 +65,8 @@ class _FileProvider {
 
       return publicPath;
     } catch (e, st) {
-      if (e is DioException) {
-        throw HttpFault.fromDioException(e, st);
+      if (e is StorageException) {
+        throw SupaStorageFault.fromStorageException(e, st);
       }
       throw UnknownFault('Something went wrong!', st);
     }
@@ -58,8 +79,8 @@ class _FileProvider {
     try {
       await AppSupabase.supabase.storage.from(bucket).remove([filePath]);
     } catch (e, st) {
-      if (e is DioException) {
-        throw HttpFault.fromDioException(e, st);
+      if (e is StorageException) {
+        throw SupaStorageFault.fromStorageException(e, st);
       }
       throw UnknownFault('Something went wrong!', st);
     }

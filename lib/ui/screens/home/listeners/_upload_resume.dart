@@ -18,6 +18,7 @@ class _UploadResumeListener extends StatelessWidget {
             'resume_path': state.uploadResume.data,
           };
           screenState.updateProfile(context, payload: payload);
+          UIFlash.success(context, 'Resume uploaded successfully');
         }
       },
       child: const SizedBox.shrink(),

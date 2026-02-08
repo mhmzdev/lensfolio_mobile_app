@@ -5,8 +5,17 @@ class _ScreenState extends ChangeNotifier {
   static _ScreenState s(BuildContext context, [listen = false]) =>
       Provider.of<_ScreenState>(context, listen: listen);
 
+  void shareFile(File file) async {
+    try {
+      final params = ShareParams(files: [XFile(file.path)]);
+      await SharePlus.instance.share(params);
+    } catch (e) {
+      e.appLog(level: .error);
+    }
+  }
+
   bool pickingFile = false;
-  void pickResumeFile(BuildContext context) async {
+  void pickResumeFile(BuildContext context, {bool exists = false}) async {
     pickingFile = true;
     notifyListeners();
     try {
@@ -17,7 +26,7 @@ class _ScreenState extends ChangeNotifier {
       if (result != null && context.mounted) {
         final xfile = result.xFiles.first;
         final file = File(xfile.path);
-        FileCubit.c(context).uploadResume(file);
+        FileCubit.c(context).uploadResume(file, exists: exists);
       }
     } catch (e) {
       e.appLog(level: .error);

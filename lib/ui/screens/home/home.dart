@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:lensfolio_mobile_app/blocs/file/cubit.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
 import 'package:lensfolio_mobile_app/services/app_log.dart';
@@ -117,8 +118,10 @@ class _BodyState extends State<_Body> {
                                     state: loading || state.pickingFile
                                         ? .disabled
                                         : .def,
-                                    onTap: () =>
-                                        screenState.pickResumeFile(context),
+                                    onTap: () => screenState.pickResumeFile(
+                                      context,
+                                      exists: userData.resumePath.available,
+                                    ),
                                   ),
                                 );
                               },

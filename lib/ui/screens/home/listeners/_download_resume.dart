@@ -12,8 +12,9 @@ class _DownloadResumeListener extends StatelessWidget {
           UIFlash.error(context, state.downloadResume.errorMessage);
         }
         if (state.downloadResume.isSuccess) {
-          UIFlash.success(context, 'Resume saved on your device!');
-          /// TODO: Save the file locally
+          final file = state.downloadResume.data!;
+          UIFlash.success(context, 'Resume saved on your device');
+          _ScreenState.s(context).shareFile(file);
         }
       },
       child: const SizedBox.shrink(),
