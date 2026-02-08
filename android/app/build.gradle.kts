@@ -1,9 +1,25 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
     id("com.google.gms.google-services")
+}
+
+// Load keystore properties
+val keystorePropertiesStage = Properties()
+val keystorePropertiesStageFile = rootProject.file("keyStage.properties")
+if (keystorePropertiesStageFile.exists()) {
+    keystorePropertiesStage.load(FileInputStream(keystorePropertiesStageFile))
+}
+
+val keystorePropertiesProd = Properties()
+val keystorePropertiesProdFile = rootProject.file("keyProd.properties")
+if (keystorePropertiesProdFile.exists()) {
+    keystorePropertiesProd.load(FileInputStream(keystorePropertiesProdFile))
 }
 
 android {
@@ -33,11 +49,33 @@ android {
         multiDexEnabled = true
     }
 
+    signingConfigs {
+        if (keystorePropertiesStageFile.exists()) {
+            create("stage") {
+                keyAlias = keystorePropertiesStage["keyAlias"] as String
+                keyPassword = keystorePropertiesStage["keyPassword"] as String
+                storeFile = keystorePropertiesStage["storeFile"]?.let { file(it) }
+                storePassword = keystorePropertiesStage["storePassword"] as String
+            }
+        }
+        if (keystorePropertiesProdFile.exists()) {
+            create("prod") {
+                keyAlias = keystorePropertiesProd["keyAlias"] as String
+                keyPassword = keystorePropertiesProd["keyPassword"] as String
+                storeFile = keystorePropertiesProd["storeFile"]?.let { file(it) }
+                storePassword = keystorePropertiesProd["storePassword"] as String
+            }
+        }
+    }
+
     buildTypes {
+        debug {
+            // Debug builds use default debug signing
+        }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Release builds will use the signing config from the flavor
+            // Signing is configured per flavor in flavorizr.gradle.kts
+            signingConfig = null
         }
     }
 }
