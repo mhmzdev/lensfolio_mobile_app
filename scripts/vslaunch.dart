@@ -25,11 +25,16 @@ void main(List<String> args) async {
       .toList()
       .where((subList) => subList.length > 1);
 
-  final devices = filteredDevices.map((array) {
+  // Create both stage and prod configurations for each device
+  final allConfigurations = <Map<String, dynamic>>[];
+
+  for (final array in filteredDevices) {
     final name = array[0].trim();
     final deviceId = array[1].trim();
-    final obj = <String, dynamic>{
-      'name': name,
+
+    // Create stage configuration
+    final stageConfig = <String, dynamic>{
+      'name': '$name (stage)',
       'deviceId': deviceId,
       'type': 'dart',
       'request': 'launch',
@@ -37,11 +42,32 @@ void main(List<String> args) async {
       'args': ['--flavor', 'stage'],
     };
     if (desktopFilters.contains(deviceId)) {
-      obj['args'] = [...obj['args'], '-t', 'lib/main.desktop.dart'];
+      stageConfig['args'] = [
+        ...stageConfig['args'],
+        '-t',
+        'lib/main.desktop.dart',
+      ];
     }
+    allConfigurations.add(stageConfig);
 
-    return obj;
-  });
+    // Create prod configuration
+    final prodConfig = <String, dynamic>{
+      'name': '$name (prod)',
+      'deviceId': deviceId,
+      'type': 'dart',
+      'request': 'launch',
+      'program': 'lib/main.dart',
+      'args': ['--flavor', 'prod'],
+    };
+    if (desktopFilters.contains(deviceId)) {
+      prodConfig['args'] = [
+        ...prodConfig['args'],
+        '-t',
+        'lib/main.desktop.dart',
+      ];
+    }
+    allConfigurations.add(prodConfig);
+  }
 
   final newConfig = <String, dynamic>{
     'version': '1.0.0',
@@ -51,12 +77,22 @@ void main(List<String> args) async {
         'request': 'launch',
         'type': 'dart',
       },
-      ...devices,
+      ...allConfigurations,
     ]),
     'compounds': [
       {
-        'name': 'current',
-        'configurations': devices.map((obj) => obj['name']).toList(),
+        'name': 'All Devices (stage)',
+        'configurations': allConfigurations
+            .where((obj) => obj['name'].toString().contains('(stage)'))
+            .map((obj) => obj['name'])
+            .toList(),
+      },
+      {
+        'name': 'All Devices (prod)',
+        'configurations': allConfigurations
+            .where((obj) => obj['name'].toString().contains('(prod)'))
+            .map((obj) => obj['name'])
+            .toList(),
       },
     ],
   };
@@ -69,6 +105,7 @@ void main(List<String> args) async {
 
   vsConfig.writeAsStringSync(newJson);
 
-  print('✓ Generated ${devices.length} launch configurations');
+  print('✓ Generated ${allConfigurations.length} launch configurations');
   print('✓ Devices: ${filteredDevices.length}');
+  print('✓ Flavors: stage, prod');
 }
