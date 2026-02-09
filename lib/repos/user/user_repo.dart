@@ -39,7 +39,7 @@ class UserRepo {
 
   Future<UserData> fetch(String uuid) => _UserProvider.fetch(uuid);
 
-  Future<AuthResponse> register(Map<String, dynamic> values) =>
+  Future<void> register(Map<String, dynamic> values) =>
       _UserProvider.register(values);
 
   Future<AuthResponse> login(Map<String, dynamic> values) =>

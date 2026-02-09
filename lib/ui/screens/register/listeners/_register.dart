@@ -12,9 +12,11 @@ class _RegisterListener extends StatelessWidget {
           UIFlash.error(context, state.register.errorMessage);
         }
         if (state.register.isSuccess) {
-          final user = state.userData!;
-          SetupCubit.setupCubit(context, user.id, uuid: user.uid);
-          AppRoutes.home.pushReplace(context);
+          ''.pop(context);
+          UIFlash.success(
+            context,
+            'Account created successfully, please verify your email & login!',
+          );
         }
       },
       child: const SizedBox.shrink(),

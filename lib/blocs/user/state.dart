@@ -8,7 +8,7 @@ class UserState extends Equatable {
   final BlocState<UserData> update;
   final BlocState<UserData> fetch;
   final BlocState<UserData> init;
-  final BlocState<UserData> register;
+  final BlocState<void> register;
   final BlocState<UserData> login;
 
   // --- state data --- //
@@ -18,7 +18,6 @@ class UserState extends Equatable {
 
   const UserState({
     required this.generateProfile,
-
     required this.logout,
     required this.update,
     required this.fetch,
@@ -33,7 +32,6 @@ class UserState extends Equatable {
   UserState.def()
     : // root-def-constructor
       generateProfile = BlocState(),
-
       logout = BlocState(),
       update = BlocState(),
       fetch = BlocState(),
@@ -46,12 +44,11 @@ class UserState extends Equatable {
 
   UserState copyWith({
     BlocState<GeneratedProfile>? generateProfile,
-
     BlocState<void>? logout,
     BlocState<UserData>? update,
     BlocState<UserData>? fetch,
     BlocState<UserData>? init,
-    BlocState<UserData>? register,
+    BlocState<void>? register,
     BlocState<UserData>? login,
     User? user,
     UserData? userData,
@@ -59,7 +56,6 @@ class UserState extends Equatable {
   }) {
     return UserState(
       generateProfile: generateProfile ?? this.generateProfile,
-
       logout: logout ?? this.logout,
       update: update ?? this.update,
       fetch: fetch ?? this.fetch,

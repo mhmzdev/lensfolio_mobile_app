@@ -66,12 +66,27 @@ class _UserProvider {
 
   static Future<UserData> fetch(String uuid) async {
     try {
-      final user = await AppSupabase.supabase
+      var user = await AppSupabase.supabase
           .from(SupaTables.users)
           .select('*')
           .eq('uid', uuid)
-          .single();
-      return UserData.fromJson(user);
+          .maybeSingle();
+
+      /// We cannot create or insert into user's table after register as Supabase
+      /// doesn't authenticate user on 'signUp' method. And due to RLS policy only
+      /// authenticated users can do INSERT, UPDATE, DELETE operations on user's table.
+      ///
+      /// The user has just registered so we'll create the row in table.
+      /// metadata will have full_name from register flow.
+      if (user == null) {
+        final currentUser = AppSupabase.supabase.auth.currentUser;
+        user = await AppSupabase.supabase.from(SupaTables.users).insert({
+          'email': currentUser!.email,
+          'full_name': currentUser.userMetadata!['full_name'],
+        });
+      }
+
+      return UserData.fromJson(user!);
     } catch (e, st) {
       if (e is AuthApiException) {
         throw SupaAuthFault.fromAuthApiException(e, st);
@@ -83,19 +98,15 @@ class _UserProvider {
     }
   }
 
-  static Future<AuthResponse> register(Map<String, dynamic> values) async {
+  static Future<void> register(Map<String, dynamic> values) async {
     try {
-      final authResponse = await AppSupabase.supabase.auth.signUp(
+      await AppSupabase.supabase.auth.signUp(
         email: values['email'],
         password: values['password'],
+        data: {
+          'full_name': values['full_name'],
+        },
       );
-
-      await AppSupabase.supabase.from(SupaTables.users).insert({
-        'full_name': values['full_name'],
-        'email': values['email'],
-      });
-
-      return authResponse;
     } catch (e, st) {
       if (e is AuthApiException) {
         throw SupaAuthFault.fromAuthApiException(e, st);

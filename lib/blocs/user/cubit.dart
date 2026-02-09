@@ -157,10 +157,7 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
     try {
-      final authResponse = await UserRepo.ins.register(values);
-      final user = authResponse.user;
-      final userData = await UserRepo.ins.fetch(user!.id)
-        ..toCache();
+      await UserRepo.ins.register(values);
 
       'User registered successfully'.appLog(
         tag: 'USER_CUBIT: register()',
@@ -169,10 +166,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(
         state.copyWith(
-          register: state.register.toSuccess(data: userData),
-          user: user,
-          userData: userData,
-          authResponse: authResponse,
+          register: state.register.toSuccess(),
         ),
       );
     } on Fault catch (e) {
