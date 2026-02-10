@@ -24,7 +24,7 @@ class LocalNotificationHandler {
   /// Initialize local notifications
   Future<void> init() async {
     const androidSettings = AndroidInitializationSettings(
-      '@drawable/ic_launcher',
+      'ic_launcher',
     );
     const iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
