@@ -1,4 +1,4 @@
-# Lensfolio Mobile App - In Progress at [flutterkaro](https://flutterkaro.mhmz.dev)
+# Lensfolio Mobile App - Built at [flutterkaro](https://flutterkaro.mhmz.dev)
 
 A Flutter mobile application built with clean architecture, layer-first structure, and best practices.
 
