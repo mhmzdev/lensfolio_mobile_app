@@ -8,7 +8,7 @@ class _FormData {
 
     return {
       _FormKeys.fullName: 'Hamza Shakeel',
-      _FormKeys.email: 'hamza.6.shakeel@gmail.com',
+      _FormKeys.email: 'hamza.6.shakeel+1@gmail.com',
       _FormKeys.password: 'Hamza@123',
       _FormKeys.confirmPassword: 'Hamza@123',
     };

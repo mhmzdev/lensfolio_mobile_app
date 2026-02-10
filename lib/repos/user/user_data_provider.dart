@@ -80,13 +80,17 @@ class _UserProvider {
       /// metadata will have full_name from register flow.
       if (user == null) {
         final currentUser = AppSupabase.supabase.auth.currentUser;
-        user = await AppSupabase.supabase.from(SupaTables.users).insert({
-          'email': currentUser!.email,
-          'full_name': currentUser.userMetadata!['full_name'],
-        });
+        user = await AppSupabase.supabase
+            .from(SupaTables.users)
+            .insert({
+              'email': currentUser!.email,
+              'full_name': currentUser.userMetadata!['full_name'],
+            })
+            .select()
+            .single();
       }
 
-      return UserData.fromJson(user!);
+      return UserData.fromJson(user);
     } catch (e, st) {
       if (e is AuthApiException) {
         throw SupaAuthFault.fromAuthApiException(e, st);
