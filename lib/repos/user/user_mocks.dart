@@ -3,6 +3,10 @@
 part of 'user_repo.dart';
 
 class _UserMocks {
+  static Future<Map> delete() {
+    return Future.value({'message': 'mock', 'data': ''});
+  }
+
   static Future<Map> generateProfile() {
     return Future.value({'message': 'mock', 'data': ''});
   }

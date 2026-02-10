@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lensfolio_mobile_app/ui/widgets/design/modal/app_modal.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:lensfolio_mobile_app/blocs/file/cubit.dart';
 import 'package:lensfolio_mobile_app/router/routes.dart';
@@ -25,6 +26,7 @@ import 'package:lensfolio_mobile_app/utils/flash.dart';
 part '_state.dart';
 
 part 'listeners/_logout.dart';
+part 'listeners/_delete.dart';
 part 'listeners/_upload_profile_picture.dart';
 part 'listeners/_download_resume.dart';
 part 'listeners/_upload_resume.dart';
@@ -38,6 +40,7 @@ part 'widgets/_skills.dart';
 part 'widgets/_tech_stack.dart';
 
 part 'widgets/_settings.dart';
+part 'widgets/_delete_account_modal.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -79,6 +82,7 @@ class _BodyState extends State<_Body> {
         _UploadProfilePictureListener(),
         _UploadResumeListener(),
         _DownloadResumeListener(),
+        _DeleteListener(),
       ],
       bottomBarHeightChanged: (height) {
         setState(() {

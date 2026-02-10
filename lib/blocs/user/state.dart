@@ -3,6 +3,7 @@ part of 'cubit.dart';
 @immutable
 class UserState extends Equatable {
   // --- nested states --- //
+  final BlocState<void> delete;
   final BlocState<GeneratedProfile> generateProfile;
   final BlocState<void> logout;
   final BlocState<UserData> update;
@@ -17,6 +18,7 @@ class UserState extends Equatable {
   final AuthResponse? authResponse;
 
   const UserState({
+    required this.delete,
     required this.generateProfile,
     required this.logout,
     required this.update,
@@ -31,6 +33,7 @@ class UserState extends Equatable {
 
   UserState.def()
     : // root-def-constructor
+      delete = BlocState(),
       generateProfile = BlocState(),
       logout = BlocState(),
       update = BlocState(),
@@ -43,6 +46,7 @@ class UserState extends Equatable {
       authResponse = null;
 
   UserState copyWith({
+    BlocState<void>? delete,
     BlocState<GeneratedProfile>? generateProfile,
     BlocState<void>? logout,
     BlocState<UserData>? update,
@@ -55,6 +59,7 @@ class UserState extends Equatable {
     AuthResponse? authResponse,
   }) {
     return UserState(
+      delete: delete ?? this.delete,
       generateProfile: generateProfile ?? this.generateProfile,
       logout: logout ?? this.logout,
       update: update ?? this.update,
@@ -71,6 +76,7 @@ class UserState extends Equatable {
   @override
   List<Object?> get props => [
     // root-state-props
+    delete,
     generateProfile,
     logout,
     update,

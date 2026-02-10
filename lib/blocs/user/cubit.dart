@@ -122,6 +122,7 @@ class UserCubit extends Cubit<UserState> {
           state.copyWith(
             init: state.init.toSuccess(data: data),
             userData: data,
+            user: AppSupabase.supabase.auth.currentUser,
           ),
         );
       } else {
@@ -133,6 +134,7 @@ class UserCubit extends Cubit<UserState> {
           state.copyWith(
             init: state.init.toSuccess(data: null),
             userData: null,
+            user: null,
           ),
         );
       }
@@ -249,6 +251,8 @@ class UserCubit extends Cubit<UserState> {
       emit(
         state.copyWith(
           logout: state.logout.toSuccess(),
+          userData: null,
+          user: null,
         ),
       );
       reset();
@@ -256,6 +260,31 @@ class UserCubit extends Cubit<UserState> {
       emit(
         state.copyWith(
           logout: state.logout.toFailed(fault: e),
+        ),
+      );
+    }
+  }
+
+  Future<void> delete() async {
+    emit(
+      state.copyWith(
+        delete: state.delete.toLoading(),
+      ),
+    );
+    try {
+      await UserRepo.ins.delete(state.user!.id, state.userData!.id);
+      AppCache.ins.reset();
+      emit(
+        state.copyWith(
+          delete: state.delete.toSuccess(),
+          userData: null,
+          user: null,
+        ),
+      );
+    } on Fault catch (e) {
+      emit(
+        state.copyWith(
+          delete: state.delete.toFailed(fault: e),
         ),
       );
     }

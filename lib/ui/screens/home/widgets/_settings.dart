@@ -22,6 +22,18 @@ class _Settings extends StatelessWidget {
           AppRoutes.editProfile.push(context);
         } else if (value == 'logout') {
           UserCubit.c(context).logout();
+        } else if (value == 'delete') {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            routeSettings: const RouteSettings(
+              name: '/modal/delete-account',
+            ),
+            isDismissible: false,
+            enableDrag: false,
+            backgroundColor: Colors.transparent,
+            builder: (context) => const _DeleteAccountModal(),
+          );
         }
       },
       itemBuilder: (context) {
@@ -72,6 +84,32 @@ class _Settings extends StatelessWidget {
                 Space.x.t12,
                 Text(
                   'Logout',
+                  style: AppText.b1b.copyWith(
+                    color: AppTheme.c.dangerBase,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          PopupMenuItem(
+            value: 'delete',
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: Space.a.t08,
+                  decoration: AppProps.softBoxDecoration.copyWith(
+                    color: AppTheme.c.dangerBase.addOpacity(.1),
+                  ),
+                  child: Icon(
+                    LucideIcons.user_round_x,
+                    size: SpaceToken.t16,
+                    color: AppTheme.c.dangerBase,
+                  ),
+                ),
+                Space.x.t12,
+                Text(
+                  'Delete Account',
                   style: AppText.b1b.copyWith(
                     color: AppTheme.c.dangerBase,
                   ),

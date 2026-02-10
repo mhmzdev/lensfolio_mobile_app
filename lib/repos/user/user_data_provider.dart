@@ -1,6 +1,49 @@
 part of 'user_repo.dart';
 
 class _UserProvider {
+  static Future<void> delete(String uuid, int uid) async {
+    try {
+      /// Deleting fom DB first
+      await Future.wait([
+        AppSupabase.supabase.from(SupaTables.users).delete().eq('uid', uuid),
+        AppSupabase.supabase.from(SupaTables.projects).delete().eq('uid', uid),
+        AppSupabase.supabase
+            .from(SupaTables.coverLetters)
+            .delete()
+            .eq('uid', uid),
+      ]);
+
+      /// Deleting from storage
+      await Future.wait([
+        AppSupabase.supabase.storage.from(SupaBuckets.resumes).remove(
+          ['$uuid.pdf'],
+        ),
+        AppSupabase.supabase.storage.from(SupaBuckets.profilePictures).remove(
+          ['$uuid.png'],
+        ),
+      ]);
+
+      /// Deleting from auth via Edge Function
+      /// Bcz we need the user to stay Authenticated while above
+      /// operations are being performed.
+      await AppSupabase.supabase.functions.invoke(
+        'delete-account',
+        body: {'name': 'Functions'},
+      );
+    } catch (e, st) {
+      if (e is AuthApiException) {
+        throw SupaAuthFault.fromAuthApiException(e, st);
+      }
+      if (e is PostgrestException) {
+        throw SupaPostgresFault.fromPostgrestException(e, st);
+      }
+      if (e is FunctionException) {
+        throw UnknownFault(e.reasonPhrase ?? 'Service error', st);
+      }
+      throw UnknownFault('Something went wrong!', st);
+    }
+  }
+
   static Future<GeneratedProfile> generateProfile(File file) async {
     try {
       final fileBytes = await file.readAsBytes();

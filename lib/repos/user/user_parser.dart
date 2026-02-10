@@ -3,6 +3,8 @@
 part of 'user_repo.dart';
 
 class _UserParser {
+  static Map delete(Map data) => data;
+
   static Map generateProfile(Map data) => data;
 
   static Map logout(Map data) => data;

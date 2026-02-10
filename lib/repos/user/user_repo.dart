@@ -29,6 +29,8 @@ class UserRepo {
 
   /// --- repo functions --- ///
 
+  Future<void> delete(String uuid, int uid) => _UserProvider.delete(uuid, uid);
+
   Future<GeneratedProfile> generateProfile(File file) =>
       _UserProvider.generateProfile(file);
 
